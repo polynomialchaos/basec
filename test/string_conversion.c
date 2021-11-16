@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file string_conversion.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

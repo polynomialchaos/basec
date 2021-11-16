@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file memory.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

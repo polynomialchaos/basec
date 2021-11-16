@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file string.c
+ * @file time.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

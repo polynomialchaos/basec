@@ -23,5 +23,6 @@
 #include "basec/basec_memory.h"
 #include "basec/basec_string.h"
 #include "basec/basec_string_conversion.h"
+#include "basec/basec_time.h"
 
 #endif /* BASEC_MODULE_H */
