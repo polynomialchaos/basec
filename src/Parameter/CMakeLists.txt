@@ -6,35 +6,36 @@
 # @date 2021-11-08
 # @copyright Copyright (c) 2021
 #*******************************************************************************
-set(target ${CMAKE_PROJECT_NAME})
-set(install_target ${target})
+set(target Parameter)
 
 #*******************************************************************************
 # Add subdirecotries
 #******************************************************************************/
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-add_subdirectory(Utils)
-add_subdirectory(JSON)
-add_subdirectory(Parameter)
-add_subdirectory(Math)
+file(GLOB target_sources
+    src/*.c
+)
 
 #*******************************************************************************
 # Build target
 #******************************************************************************/
-if(shared_lib)
-    add_library(${target} SHARED)
-else()
-    add_library(${target} STATIC)
+add_library(${target} OBJECT ${target_sources})
+target_link_libraries( ${target} Utils JSON)
+
+target_include_directories(${target} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include> PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+#*******************************************************************************
+# Unit test target
+#******************************************************************************/
+if(build_unit_tests)
+    include(unit_test)
 endif()
-target_link_libraries( ${target} Utils JSON Parameter Math)
-set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
 
 #*******************************************************************************
 # Install target
 #******************************************************************************/
-install( DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h" )
-install( TARGETS ${target} EXPORT ${install_target}
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+install(TARGETS ${target} EXPORT ${install_target}
     RUNTIME DESTINATION bin INCLUDES DESTINATION include
-    LIBRARY DESTINATION lib ARCHIVE DESTINATION lib )
-
-install( EXPORT ${install_target} DESTINATION share/cmake )
+    LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
