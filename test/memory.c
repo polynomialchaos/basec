@@ -9,13 +9,17 @@
 #include <stdio.h>
 #include "basec/basec_module.h"
 
+/*******************************************************************************
+ * @brief Main test function
+ * @return int
+ ******************************************************************************/
 int main()
 {
     double *tmp = ALLOCATE(sizeof(double) * 12);
-    check_expression((tmp != NULL));
+    check_expression(tmp != NULL);
 
     DEALLOCATE(tmp);
-    check_expression((tmp == NULL));
+    check_expression(tmp == NULL);
 
     return 0;
 }

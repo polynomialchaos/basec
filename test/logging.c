@@ -9,6 +9,10 @@
 #include <stdio.h>
 #include "basec/basec_module.h"
 
+/*******************************************************************************
+ * @brief Main test function
+ * @return int
+ ******************************************************************************/
 int main()
 {
     log_debug("Logging debug message!");
