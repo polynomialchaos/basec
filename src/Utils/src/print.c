@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 #define TERM_WIDTH 132 /** Terminal width */
 #define TITLE_INT 4    /** Block string title indentation */

@@ -8,7 +8,7 @@
  ******************************************************************************/
 #include <string.h>
 #include <ctype.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 /*******************************************************************************
  * @brief Allocate string by copy of string

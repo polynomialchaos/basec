@@ -13,7 +13,7 @@
 #include "basec/basec_type.h"
 
 /*******************************************************************************
- * @brief A macro to add a debug message and pass file, line and function
+ * @brief A macro to add a debug message and pass file, line, function
  ******************************************************************************/
 #define log_debug_pass(_file, _line, _function, format, ...) \
     add_logging(__PASS__, (_file), (_line), (_function),     \
@@ -26,7 +26,7 @@
     log_debug_pass((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
- * @brief A macro to add an error and pass file, line and function
+ * @brief A macro to add an error and pass file, line, function
  ******************************************************************************/
 #define log_error_pass(_file, _line, _function, format, ...) \
     add_logging(__PASS__, (_file), (_line), (_function),     \
@@ -39,7 +39,7 @@
     log_error_pass((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
- * @brief A macro to add a info message and pass file, line and function
+ * @brief A macro to add a info message and pass file, line, function
  ******************************************************************************/
 #define log_info_pass(_file, _line, _function, format, ...) \
     add_logging(__PASS__, (_file), (_line), (_function),    \
@@ -52,7 +52,7 @@
     log_info_pass((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
- * @brief A macro to add a warning and pass file, line and function
+ * @brief A macro to add a warning and pass file, line, function
  ******************************************************************************/
 #define log_warning_pass(_file, _line, _function, format, ...) \
     add_logging(__PASS__, (_file), (_line), (_function),       \
@@ -65,7 +65,7 @@
     log_warning_pass((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
- * @brief A macro to check an expression and pass file, line and function
+ * @brief A macro to check an expression and pass file, line, function
  ******************************************************************************/
 #define check_expression_pass(_file, _line, _function, expression)        \
     (                                                                     \
@@ -106,8 +106,8 @@ typedef enum LoggingLevel
 } logging_level_t;
 
 /*******************************************************************************
- * @brief Set error and pass file, line, function and optional forwarded
- * file, line and function with format specifier as in printf
+ * @brief Add logging, and pass file, line, function, and optional
+ * forwarded file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function

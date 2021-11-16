@@ -8,7 +8,7 @@
  ******************************************************************************/
 #include <math.h>
 #include <limits.h>
-#include "basec/math_module.h"
+#include "math_private.h"
 
 /*******************************************************************************
  * @brief Copy an integer vector to a other integer vector

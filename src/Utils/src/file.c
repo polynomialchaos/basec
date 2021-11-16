@@ -6,7 +6,7 @@
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 /*******************************************************************************
  * @brief Close a given file pointer

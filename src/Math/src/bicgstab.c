@@ -6,7 +6,7 @@
  * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#include "bicgstab_gmres_private.h"
+#include "math_private.h"
 
 /*******************************************************************************
  * @brief Get the bicgstab n m work size

@@ -8,7 +8,7 @@
  ******************************************************************************/
 #include <string.h>
 #include <ctype.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 #define SBL '['       /** String vector left bracket */
 #define SBR ']'       /** String vector right bracket */

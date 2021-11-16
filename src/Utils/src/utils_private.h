@@ -1,13 +1,13 @@
 /*******************************************************************************
- * @file error_private.h
+ * @file utils_private.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
- * @date 2021-11-07
+ * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef ERROR_PRIVATE_H
-#define ERROR_PRIVATE_H
+#ifndef UTILS_PRIVATE_H
+#define UTILS_PRIVATE_H
 
 #include "basec/utils_module.h"
 
@@ -16,4 +16,4 @@
  ******************************************************************************/
 void default_exit_handler();
 
-#endif /* ERROR_PRIVATE_H */
+#endif /* UTILS_PRIVATE_H */

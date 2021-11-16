@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #include <math.h>
-#include "basec/math_module.h"
+#include "math_private.h"
 
 /*******************************************************************************
  * @brief Angle between two vectors

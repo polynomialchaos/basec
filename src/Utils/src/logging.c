@@ -8,7 +8,7 @@
  ******************************************************************************/
 #include <stdlib.h>
 #include <stdarg.h>
-#include "logging_private.h"
+#include "utils_private.h"
 
 #define MSG_SYM '=' /** Logging message separator symbol */
 
@@ -26,6 +26,7 @@ void_ft global_error_state_handler_fun_ptr = NULL;
 
 /** Error state function pointer */
 void_ft error_state_handler_fun_ptr = NULL;
+
 
 /** Exit function pointer */
 void_ft exit_handler_fun_ptr = default_exit_handler;

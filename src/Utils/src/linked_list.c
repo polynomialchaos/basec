@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #include <string.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 /*******************************************************************************
  * @brief Get the ith node
@@ -29,7 +29,7 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
 void list_deallocate_node(node_t *node, void_void_ft fun_ptr);
 
 /*******************************************************************************
- * @brief Allocate and initialize a linked list
+ * @brief Allocate and initialize a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -46,6 +46,7 @@ list_t *list_allocate_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Call a function for each node and check for all results
+ * and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -74,7 +75,7 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Append a node to a linked list
+ * @brief Append a node to a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -108,6 +109,7 @@ void list_append_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Call a function for each node and check for any result
+ * and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -138,6 +140,7 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Deallocate the ith node in a linked list
+ * and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -185,7 +188,7 @@ void list_deallocate_node(node_t *node, void_void_ft fun_ptr)
 }
 
 /*******************************************************************************
- * @brief Deallocate a linked list
+ * @brief Deallocate a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -210,7 +213,7 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
 
 
 /*******************************************************************************
- * @brief Call a function for each node
+ * @brief Call a function for each node and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -232,7 +235,7 @@ void list_for_each_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Get first node in a linked list
+ * @brief Get first node in a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -246,7 +249,7 @@ void *list_get_first_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Get the ith node
+ * @brief Get the ith node and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -267,7 +270,7 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Get ith node in a linked list
+ * @brief Get ith node in a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -284,7 +287,7 @@ void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Get last node in a linked list
+ * @brief Get last node in a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -299,7 +302,7 @@ void *list_get_last_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief Initialize a linked list
+ * @brief Initialize a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -328,7 +331,7 @@ size_t list_length(list_t *list)
 }
 
 /*******************************************************************************
- * @brief Prepend a node to a linked list
+ * @brief Prepend a node to a linked list and pass file, line, function
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function

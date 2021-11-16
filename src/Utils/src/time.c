@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #include <string.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 #define LEN_DATE 50                         /** Maximum date string length */
 #define LEN_TIME LEN_DATE                   /** Maximum date string length */

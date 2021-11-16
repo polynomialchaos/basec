@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #include <math.h>
-#include "bicgstab_gmres_private.h"
+#include "math_private.h"
 
 /*******************************************************************************
  * @brief Get the gmres n m work size

@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #include <stdlib.h>
-#include "basec/utils_module.h"
+#include "utils_private.h"
 
 /*******************************************************************************
  * @brief Allocate portion of memory and pass file, line, function

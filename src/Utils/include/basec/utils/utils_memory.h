@@ -15,6 +15,7 @@
 
 /*******************************************************************************
  * @brief A macro that allocates a portion of memory
+ * and pass file, line, function
  ******************************************************************************/
 #define ALLOCATE(size) allocate_pass(__PASS__, (size))
 
@@ -29,6 +30,7 @@
 
 /*******************************************************************************
  * @brief A macro that reallocates a portion of memory
+ * and pass file, line, function
  ******************************************************************************/
 #define REALLOCATE(old, size) reallocate_pass(__PASS__, (old), (size))
 
