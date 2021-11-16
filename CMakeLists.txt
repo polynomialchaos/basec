@@ -19,7 +19,7 @@ set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
 #*******************************************************************************
 # Project settings
 #******************************************************************************/
-project(base VERSION 1.0.0 DESCRIPTION "Base library for C")
+project(basec VERSION 1.0.0 DESCRIPTION "Base C library")
 set(target ${CMAKE_PROJECT_NAME})
 set(install_target ${target})
 set(build_unit_tests ON)

@@ -19,7 +19,7 @@ file(GLOB ut_target_sources
 #******************************************************************************/
 foreach(ut_target_source ${ut_target_sources})
     get_filename_component(test_name ${ut_target_source} NAME_WE)
-    set(test_target ${target}_${test_name})
+    set(test_target ut_${target}_${test_name})
 
     add_executable(${test_target} ${ut_target_source})
     add_dependencies(${test_target} ${target})
