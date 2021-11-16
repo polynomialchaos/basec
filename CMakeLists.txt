@@ -7,34 +7,15 @@
 # @copyright Copyright (c) 2021
 #*******************************************************************************
 cmake_minimum_required(VERSION 3.16.3)
+project(basec VERSION 1.0.0 DESCRIPTION "Base C library")
 
 #*******************************************************************************
 # CMake settings
 #******************************************************************************/
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin )
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib )
-set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib )
-set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
-
-#*******************************************************************************
-# Project settings
-#******************************************************************************/
-project(basec VERSION 1.0.0 DESCRIPTION "Base C library")
-set(target ${CMAKE_PROJECT_NAME})
-set(install_target ${target})
-
-set(build_unit_tests ON)
-set(memory_check ON)
-
-if(build_unit_tests)
-    enable_testing()
-    if(memory_check)
-        include(CTest)
-        find_program(MEMORYCHECK_COMMAND NAMES valgrind)
-        set( MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
-            --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
-    endif()
-endif()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 #*******************************************************************************
 # Compiler settings
@@ -61,38 +42,37 @@ if(NOT CMAKE_BUILD_TYPE)
         STRINGS Debug Release Profile)
 endif()
 
-if( CMAKE_BUILD_TYPE MATCHES "Debug" )
-    add_definitions( "-DDEBUG" )
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
+    add_definitions("-DDEBUG")
+endif()
+
+#*******************************************************************************
+# User options
+#******************************************************************************/
+set(build_unit_tests ON CACHE BOOL "Build unit tests")
+set(memory_check ON CACHE BOOL "Build unit tests together with memory check")
+set(shared_lib OFF CACHE BOOL "Provide a shared or static library")
+
+if(build_unit_tests)
+    enable_testing()
+    if(memory_check)
+        include(CTest)
+        find_program(MEMORYCHECK_COMMAND NAMES valgrind)
+        set(MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
+            --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
+    endif()
+endif()
+
+if(shared_lib)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC" )
+endif()
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set (CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install"
+         CACHE PATH "default install path" FORCE)
 endif()
 
 #*******************************************************************************
 # Add subdirecotries
 #******************************************************************************/
-file(GLOB target_sources
-    src/*.c
-)
-
-#*******************************************************************************
-# Build target
-#******************************************************************************/
-add_library(${target} SHARED ${target_sources})
-set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
-
-target_include_directories(${target} PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include> PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
-#*******************************************************************************
-# Unit test target
-#******************************************************************************/
-if(build_unit_tests)
-    include(unit_test)
-endif()
-
-#*******************************************************************************
-# Install target
-#******************************************************************************/
-install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
-install(TARGETS ${target} EXPORT ${install_target}
-    RUNTIME DESTINATION bin INCLUDES DESTINATION include
-    LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+add_subdirectory(src)
