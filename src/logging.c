@@ -126,6 +126,15 @@ bool_t is_active_error()
 }
 
 /*******************************************************************************
+ * @brief Set the error state handler
+ * @param fun_ptr
+ ******************************************************************************/
+void set_error_state_handler(void_ft fun_ptr)
+{
+    error_state_handler_fun_ptr = fun_ptr;
+}
+
+/*******************************************************************************
  * @brief Set the exit with failure flag
  * @param do_failure
  ******************************************************************************/

@@ -26,14 +26,43 @@ set(install_target ${target})
 set(build_unit_tests ON)
 set(memory_check ON)
 
-if(${build_unit_tests})
+if(build_unit_tests)
     enable_testing()
-    if(${memory_check})
-        include (CTest)
+    if(memory_check)
+        include(CTest)
         find_program(MEMORYCHECK_COMMAND NAMES valgrind)
         set( MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
             --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
     endif()
+endif()
+
+#*******************************************************************************
+# Compiler settings
+#******************************************************************************/
+if(CMAKE_C_COMPILER_ID MATCHES GNU)
+    set(CMAKE_C_STANDARD 99)
+    set(CMAKE_C_FLAGS_RELEASE "-O3")
+    set(CMAKE_C_FLAGS_DEBUG "-O0 -g -Wall -Wextra")
+    set(CMAKE_C_FLAGS_PROFILE "${CMAKE_C_FLAGS_RELEASE} -pg")
+elseif(CMAKE_C_COMPILER_ID MATCHES AppleClang)
+    set(CMAKE_C_STANDARD 99)
+    set(CMAKE_C_FLAGS_RELEASE "-O3")
+    set(CMAKE_C_FLAGS_DEBUG "-O0 -g -Wall -Wextra")
+    set(CMAKE_C_FLAGS_PROFILE "${CMAKE_C_FLAGS_RELEASE} -pg")
+else()
+    MESSAGE(FATAL_ERROR
+        "Provided unsupported C compiler ${CMAKE_C_COMPILER_ID}!")
+endif()
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING
+        "Choose the type of build, options are: Debug Release" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY
+        STRINGS Debug Release Profile)
+endif()
+
+if( CMAKE_BUILD_TYPE MATCHES "Debug" )
+    add_definitions( "-DDEBUG" )
 endif()
 
 #*******************************************************************************

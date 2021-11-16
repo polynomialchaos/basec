@@ -18,6 +18,9 @@ int main()
     double *tmp = ALLOCATE(sizeof(double) * 12);
     check_expression(tmp != NULL);
 
+    tmp = REALLOCATE(tmp, sizeof(double) * 12);
+    check_expression(tmp != NULL);
+
     DEALLOCATE(tmp);
     check_expression(tmp == NULL);
 

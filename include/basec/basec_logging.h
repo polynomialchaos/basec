@@ -83,12 +83,12 @@
 /*******************************************************************************
  * @brief A macro to restore default abort handler
  ******************************************************************************/
-#define reset_user_abort_handler() set_user_abort_handler(NULL)
+#define reset_error_state_handler() set_error_state_handler(NULL)
 
 /*******************************************************************************
  * @brief A macro to restore global error handler
  ******************************************************************************/
-#define reset_global_error_handler() set_global_error_handler(NULL)
+#define reset_global_error_state_handler() set_global_error_state_handler(NULL)
 
 typedef void (*void_ft)(); /** Abort handler function type */
 
@@ -130,6 +130,12 @@ void check_abort(bool_t is_final);
  * @brief Return error flag
  ******************************************************************************/
 bool_t is_active_error();
+
+/*******************************************************************************
+ * @brief Set the error state handler
+ * @param fun_ptr
+ ******************************************************************************/
+void set_error_state_handler(void_ft fun_ptr);
 
 /*******************************************************************************
  * @brief Set the exit with failure flag

@@ -19,7 +19,7 @@
  * @return node_t*
  ******************************************************************************/
 node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
-                          list_t *list, ssize_t ith);
+                          list_t *list, size_t ith);
 
 /*******************************************************************************
  * @brief Deallocate a node
@@ -29,7 +29,7 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
 void list_deallocate_node(node_t *node, void_void_ft fun_ptr);
 
 /*******************************************************************************
- * @brief
+ * @brief Allocate and initialize a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -45,7 +45,7 @@ list_t *list_allocate_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Call a function for each node and check for all results
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -65,7 +65,7 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
     while (node != NULL)
     {
         result = fun_ptr(node->data);
-        if (result)
+        if (!result)
             break;
         node = node->next;
     }
@@ -74,7 +74,7 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Append a node to a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -107,7 +107,7 @@ void list_append_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Call a function for each node and check for any result
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -122,13 +122,13 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
     check_expression_pass(_file, _line, _function, list != NULL);
     check_expression_pass(_file, _line, _function, fun_ptr != NULL);
 
-    bool_t result = TRUE;
+    bool_t result = FALSE;
 
     node_t *node = list->head;
     while (node != NULL)
     {
         result = fun_ptr(node->data);
-        if (!result)
+        if (result)
             break;
         node = node->next;
     }
@@ -137,7 +137,7 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Deallocate the ith node in a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -145,7 +145,7 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
  * @param ith
  ******************************************************************************/
 void list_deallocate_ith_pass(cstring_t _file, int _line, cstring_t _function,
-                              list_t *list, ssize_t ith)
+                              list_t *list, size_t ith)
 {
     check_expression_pass(_file, _line, _function, list != NULL);
     check_expression_pass(_file, _line, _function, list->length > 0);
@@ -163,7 +163,7 @@ void list_deallocate_ith_pass(cstring_t _file, int _line, cstring_t _function,
     if (current->next != NULL)
         current->next->previous = current->previous;
 
-    list_deallocate_node(current->data, list->deallocate);
+    list_deallocate_node(current, list->deallocate);
     list->length--;
 }
 
@@ -179,14 +179,13 @@ void list_deallocate_node(node_t *node, void_void_ft fun_ptr)
 
     if (fun_ptr != NULL)
         fun_ptr(node->data);
-    else
-        DEALLOCATE(node->data);
 
+    DEALLOCATE(node->data);
     DEALLOCATE(node);
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Deallocate a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -209,8 +208,9 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
     check_expression_pass(_file, _line, _function, list->length == 0);
 }
 
+
 /*******************************************************************************
- * @brief
+ * @brief Call a function for each node
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -232,7 +232,7 @@ void list_for_each_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Get first node in a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -255,24 +255,19 @@ void *list_get_first_pass(cstring_t _file, int _line, cstring_t _function,
  * @return node_t*
  ******************************************************************************/
 node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
-                          list_t *list, ssize_t ith)
+                          list_t *list, size_t ith)
 {
     check_expression_pass(_file, _line, _function, list != NULL);
 
-    ssize_t ith_mod = (ith < 0) ? (ssize_t)list->length + ith : ith;
-    check_expression_pass(_file, _line, _function, ith_mod >= 0);
-    check_expression_pass(_file, _line, _function,
-                          ith_mod < (ssize_t)list->length);
-
     node_t *current = list->head;
-    for (size_t i = 0; i < (size_t)ith_mod; ++i)
+    for (size_t i = 0; i < ith; ++i)
         current = current->next;
 
     return current;
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Get ith node in a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -281,7 +276,7 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
  * @return void*
  ******************************************************************************/
 void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
-                        list_t *list, ssize_t ith)
+                        list_t *list, size_t ith)
 {
     node_t *node = list_get_ith_node(_file, _line, _function, list, ith);
     check_expression_pass(_file, _line, _function, node != NULL);
@@ -289,7 +284,7 @@ void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Get last node in a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -299,11 +294,12 @@ void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
 void *list_get_last_pass(cstring_t _file, int _line, cstring_t _function,
                          list_t *list)
 {
-    return list_get_ith_pass(_file, _line, _function, list, -1);
+    int idx = list_length(list) - 1;
+    return list_get_ith_pass(_file, _line, _function, list, idx);
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Initialize a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
@@ -322,7 +318,7 @@ void list_init_pass(cstring_t _file, int _line, cstring_t _function,
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Return the number of a linked list elements
  * @param list
  * @return size_t
  ******************************************************************************/
@@ -332,7 +328,7 @@ size_t list_length(list_t *list)
 }
 
 /*******************************************************************************
- * @brief
+ * @brief Prepend a node to a linked list
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function

@@ -39,4 +39,9 @@
  ******************************************************************************/
 #define VOID_REF(pointer) (void *)REF(pointer)
 
+/*******************************************************************************
+ * @brief A macro to return a value from void reference
+ ******************************************************************************/
+#define VOID_DEREF(type, pointer) *(type*)pointer
+
 #endif /* BASEC_MACRO_H */
