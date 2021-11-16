@@ -13,34 +13,32 @@
 #include "basec/basec_type.h"
 
 /** String conversion failed message */
-#define UTILITIES_STRING_CON "String conversion of '%s' failed (%s)!"
+#define CONV_FAIL "String conversion of '%s' failed (%s)!"
 
 /*******************************************************************************
  * @brief A macro to convert a string to a value
  ******************************************************************************/
-#define string_to(string, type, value) (                           \
-    {                                                              \
-        int error = string_to_wo_check((string), (type), (value)); \
-        if (error != StringOK)                                     \
-            log_error(UTILITIES_STRING_CON, (#string),             \
-                      string_conversion_flag(error));              \
+#define string_to(string, type, value) (                                    \
+    {                                                                       \
+        int error = string_to_wo_check((string), (type), (value));          \
+        if (error != StringOK)                                              \
+            log_error(CONV_FAIL, (#string), conversion_flag_string(error)); \
     })
 
 /*******************************************************************************
  * @brief A macro to convert a string to a value array
  ******************************************************************************/
-#define string_to_n(string, type, value, n) (                             \
-    {                                                                     \
-        int error = string_to_n_wo_check((string), (type), (value), (n)); \
-        if (error != StringOK)                                            \
-            log_error(UTILITIES_STRING_CON, (#string),                    \
-                      string_conversion_flag(error));                     \
+#define string_to_n(string, type, value, n) (                               \
+    {                                                                       \
+        int error = string_to_n_wo_check((string), (type), (value), (n));   \
+        if (error != StringOK)                                              \
+            log_error(CONV_FAIL, (#string), conversion_flag_string(error)); \
     })
 
 /*******************************************************************************
- * @brief String conversion flag enumeration
+ * @brief String conversion enumeration
  ******************************************************************************/
-typedef enum StringConversion
+typedef enum SCFlag
 {
     StringOK,            /** String conversion OK */
     StringNull,          /** String is NULL */
@@ -48,27 +46,27 @@ typedef enum StringConversion
     StringToLong,        /** String too long */
     StringMissingBraces, /** Missing braces is string */
     StringUndefined,     /** String data type is undefined */
-    _string_conversion_max
-} string_conversion_t;
+    _sc_flag_max
+} sc_flag_t;
 
 /*******************************************************************************
- * @brief String data type enumeration
+ * @brief String datatype enumeration
  ******************************************************************************/
-typedef enum StringDatatype
+typedef enum SCType
 {
-    BooleanString, /** Boolean type */
-    DigitString,   /** Digit type */
-    NumberString,  /** Number type */
-    StringString,  /** String type */
-    _string_datatype_max
-} string_datatype_t;
+    LogicalType, /** Boolean type */
+    DigitType,   /** Digit type */
+    NumberType,  /** Number type */
+    StringType,  /** String type */
+    _sc_type_max
+} sc_type_t;
 
 /*******************************************************************************
  * @brief Decode the given string conversion flag
  * @param[in] error
  * @return cstring_t
  ******************************************************************************/
-cstring_t string_conversion_flag(string_conversion_t flag);
+cstring_t conversion_flag_string(sc_flag_t flag);
 
 /*******************************************************************************
  * @brief Convert string to boolean variable data type
@@ -83,20 +81,18 @@ bool_t string_to_bool(cstring_t string);
  * @param[in] type
  * @param[out] value
  * @param[out] n
- * @return string_error_t
+ * @return sc_flag_t
  ******************************************************************************/
-string_conversion_t string_to_n_wo_check(cstring_t string,
-                                         string_datatype_t type, void **value,
-                                         size_t *n);
+sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
+                               void **value, size_t *n);
 
 /*******************************************************************************
  * @brief Convert string to variable
  * @param[in] string
  * @param[in] type
  * @param[out] value
- * @return string_error_t
+ * @return sc_flag_t
  ******************************************************************************/
-string_conversion_t string_to_wo_check(cstring_t string,
-                                       string_datatype_t type, void *value);
+sc_flag_t string_to_wo_check(cstring_t string, sc_type_t type, void *value);
 
 #endif /* BASE_STRING_CONVERSION_H */

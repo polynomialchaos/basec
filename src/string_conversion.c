@@ -10,13 +10,13 @@
 #include <ctype.h>
 #include "basec/basec_module.h"
 
-#define SBL ']' /** String vector left bracket */
-#define SBR '[' /** String vector right bracket */
-#define SVD ',' /** String vector delimiter */
+#define SBL ']'  /** String vector left bracket */
+#define SBR '['  /** String vector right bracket */
+#define SVD ','  /** String vector delimiter */
 #define SVDS "," /** String vector delimiter */
 
 /** String conversion flag strings */
-cstring_t conversion_flag_strings[_string_conversion_max] = {
+cstring_t conversion_flag_strings[_sc_flag_max] = {
     "String conversion successfull",
     "String is pointing to null"
     "String is empty",
@@ -32,7 +32,7 @@ size_t n_bool_keywords =
     sizeof(bool_keywords) / sizeof(cstring_t);
 
 /** String data type sizes in bytes */
-const size_t string_datatype_bytes[_string_datatype_max] = {
+const size_t string_datatype_bytes[_sc_type_max] = {
     sizeof(bool_t), sizeof(int), sizeof(double), sizeof(string_t)};
 
 /*******************************************************************************
@@ -40,7 +40,7 @@ const size_t string_datatype_bytes[_string_datatype_max] = {
  * @param[in] error
  * @return cstring_t
  ******************************************************************************/
-cstring_t string_conversion_flag(string_conversion_t flag)
+cstring_t conversion_flag_string(sc_flag_t flag)
 {
     return conversion_flag_strings[flag];
 }
@@ -81,30 +81,29 @@ bool_t string_to_bool(cstring_t string)
  * @param[in] type
  * @param[out] value
  * @param[out] n
- * @return string_error_t
+ * @return sc_flag_t
  ******************************************************************************/
-string_conversion_t string_to_i(cstring_t string, string_datatype_t type,
-                                void *value, size_t i)
+sc_flag_t string_to_i(cstring_t string, sc_type_t type, void *value, size_t i)
 {
     if (string == NULL)
         return StringNull;
     if (string[0] == NULL_CHAR)
         return StringEmpty;
 
-    string_conversion_t error = StringOK;
+    sc_flag_t error = StringOK;
 
     switch (type)
     {
-    case BooleanString:
+    case LogicalType:
         ((bool_t *)value)[i] = string_to_bool(string);
         break;
-    case DigitString:
+    case DigitType:
         ((int *)value)[i] = atoi(string);
         break;
-    case NumberString:
+    case NumberType:
         ((double *)value)[i] = atof(string);
         break;
-    case StringString:
+    case StringType:
         ((string_t *)value)[i] = allocate_strcpy(string);
         break;
     default:
@@ -121,11 +120,10 @@ string_conversion_t string_to_i(cstring_t string, string_datatype_t type,
  * @param[in] type
  * @param[out] value
  * @param[out] n
- * @return string_error_t
+ * @return sc_flag_t
  ******************************************************************************/
-string_conversion_t string_to_n_wo_check(cstring_t string,
-                                         string_datatype_t type, void **value,
-                                         size_t *n)
+sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
+                               void **value, size_t *n)
 {
     if (string == NULL)
         return StringNull;
@@ -147,7 +145,7 @@ string_conversion_t string_to_n_wo_check(cstring_t string,
 
     string_t element = strtok(trim(tmp), SVDS);
 
-    string_conversion_t error = StringOK;
+    sc_flag_t error = StringOK;
 
     for (size_t i = 0; i < (*n); ++i)
     {
@@ -166,10 +164,9 @@ string_conversion_t string_to_n_wo_check(cstring_t string,
  * @param[in] string
  * @param[in] type
  * @param[out] value
- * @return string_error_t
+ * @return sc_flag_t
  ******************************************************************************/
-string_conversion_t string_to_wo_check(cstring_t string,
-                                       string_datatype_t type, void *value)
+sc_flag_t string_to_wo_check(cstring_t string, sc_type_t type, void *value)
 {
     return string_to_i(string, type, value, 0);
 }
