@@ -22,10 +22,18 @@ set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH} )
 project(basec VERSION 1.0.0 DESCRIPTION "Base C library")
 set(target ${CMAKE_PROJECT_NAME})
 set(install_target ${target})
-set(build_unit_tests ON)
 
-if(build_unit_tests)
+set(build_unit_tests ON)
+set(memory_check ON)
+
+if(${build_unit_tests})
     enable_testing()
+    if(${memory_check})
+        include (CTest)
+        find_program(MEMORYCHECK_COMMAND NAMES valgrind)
+        set( MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
+            --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
+    endif()
 endif()
 
 #*******************************************************************************
