@@ -10,15 +10,15 @@
 #include <ctype.h>
 #include "basec/basec_module.h"
 
-#define SBL ']'  /** String vector left bracket */
-#define SBR '['  /** String vector right bracket */
-#define SVD ','  /** String vector delimiter */
-#define SVDS "," /** String vector delimiter */
+#define SBL '['       /** String vector left bracket */
+#define SBR ']'       /** String vector right bracket */
+#define SVDS ","      /** String vector delimiter */
+#define SVD (*(SVDS)) /** Char vector delimiter */
 
 /** String conversion flag strings */
 cstring_t conversion_flag_strings[_sc_flag_max] = {
     "String conversion successfull",
-    "String is pointing to null"
+    "String is pointing to null",
     "String is empty",
     "String is too long",
     "Missing brackets",

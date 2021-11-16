@@ -6,8 +6,8 @@
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASE_STRING_CONVERSION_H
-#define BASE_STRING_CONVERSION_H
+#ifndef BASEC_STRING_CONVERSION_H
+#define BASEC_STRING_CONVERSION_H
 
 // #include <stdlib.h>
 #include "basec/basec_type.h"
@@ -95,4 +95,4 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
  ******************************************************************************/
 sc_flag_t string_to_wo_check(cstring_t string, sc_type_t type, void *value);
 
-#endif /* BASE_STRING_CONVERSION_H */
+#endif /* BASEC_STRING_CONVERSION_H */

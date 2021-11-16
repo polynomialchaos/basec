@@ -22,13 +22,13 @@ bool_t abort_active = FALSE;       /** Abort active flag */
 bool_t exit_with_failure = TRUE;   /** Exit with failure flag */
 
 /** Global error state function pointer */
-void_void_ft global_error_state_handler_fun_ptr = NULL;
+void_ft global_error_state_handler_fun_ptr = NULL;
 
 /** Error state function pointer */
-void_void_ft error_state_handler_fun_ptr = NULL;
+void_ft error_state_handler_fun_ptr = NULL;
 
 /** Exit function pointer */
-void_void_ft exit_handler_fun_ptr = default_exit_handler;
+void_ft exit_handler_fun_ptr = default_exit_handler;
 
 /*******************************************************************************
  * @brief Set error and pass file, line, function and optional forwarded
@@ -147,7 +147,7 @@ void set_global_error(bool_t error)
  * @brief Set the global error state handler
  * @param fun_ptr
  ******************************************************************************/
-void set_global_error_state_handler(void_void_ft fun_ptr)
+void set_global_error_state_handler(void_ft fun_ptr)
 {
     global_error_state_handler_fun_ptr = fun_ptr;
 }
@@ -156,7 +156,7 @@ void set_global_error_state_handler(void_void_ft fun_ptr)
  * @brief Set the exit handler
  * @param fun_ptr
  ******************************************************************************/
-void set_exit_handler(void_void_ft fun_ptr)
+void set_exit_handler(void_ft fun_ptr)
 {
     exit_handler_fun_ptr = fun_ptr;
 }

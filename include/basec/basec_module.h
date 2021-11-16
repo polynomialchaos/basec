@@ -24,5 +24,6 @@
 #include "basec/basec_string.h"
 #include "basec/basec_string_conversion.h"
 #include "basec/basec_time.h"
+#include "basec/basec_linked_list.h"
 
 #endif /* BASEC_MODULE_H */

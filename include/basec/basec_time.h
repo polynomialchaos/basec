@@ -6,8 +6,8 @@
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASE_TIME_H
-#define BASE_TIME_H
+#ifndef BASEC_TIME_H
+#define BASEC_TIME_H
 
 #include <time.h>
 #include "basec/basec_type.h"
@@ -68,4 +68,4 @@ time_t get_now();
  ******************************************************************************/
 string_t get_time_string(time_t time);
 
-#endif /* BASE_TIME_H */
+#endif /* BASEC_TIME_H */

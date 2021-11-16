@@ -41,7 +41,7 @@
  * @brief A macro to add a info message and pass file, line and function
  ******************************************************************************/
 #define log_info_pass(_file, _line, _function, format, ...) \
-    add_logging(__PASS__, (_file), (_line), (_function),       \
+    add_logging(__PASS__, (_file), (_line), (_function),    \
                 (Info), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
@@ -90,7 +90,7 @@
  ******************************************************************************/
 #define reset_global_error_handler() set_global_error_handler(NULL)
 
-typedef void (*void_void_ft)(); /** Abort handler function type */
+typedef void (*void_ft)(); /** Abort handler function type */
 
 /*******************************************************************************
  * @brief Logging level enumeration
@@ -147,12 +147,12 @@ void set_global_error(bool_t error);
  * @brief Set the global error state handler
  * @param fun_ptr
  ******************************************************************************/
-void set_global_error_state_handler(void_void_ft fun_ptr);
+void set_global_error_state_handler(void_ft fun_ptr);
 
 /*******************************************************************************
  * @brief Set the exit handler
  * @param fun_ptr
  ******************************************************************************/
-void set_exit_handler(void_void_ft fun_ptr);
+void set_exit_handler(void_ft fun_ptr);
 
 #endif /* BASEC_LOGGING_H */

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file string.c
+ * @file time.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1
@@ -15,9 +15,21 @@
  ******************************************************************************/
 int main()
 {
-    string_t test_string = allocate_strcpy("Hallo du .....");
-    printf_r("%s\n", test_string);
-    DEALLOCATE(test_string);
+    list_t test;
+    list_init(&test, NULL);
+
+    int test_val = 12;
+
+    list_append(&test, sizeof(int), &test_val);
+    list_prepend(&test, sizeof(int), &test_val);
+    list_append(&test, sizeof(int), &test_val);
+    list_append(&test, sizeof(int), &test_val);
+    list_append(&test, sizeof(int), &test_val);
+    list_append(&test, sizeof(int), &test_val);
+    list_prepend(&test, sizeof(int), &test_val);
+    list_prepend(&test, sizeof(int), &test_val);
+
+    list_deallocate(&test);
 
     return 0;
 }
