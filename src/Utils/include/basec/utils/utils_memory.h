@@ -1,15 +1,16 @@
 /*******************************************************************************
- * @file basec_memory.h
+ * @file utils_memory.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_MEMORY_H
-#define BASEC_MEMORY_H
+#ifndef UTILS_MEMORY_H
+#define UTILS_MEMORY_H
 
 #include <stdlib.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -60,4 +61,4 @@ void deallocate_wo_null(void *ptr);
 void *reallocate_pass(cstring_t _file, int _line, cstring_t _function,
                       void *old_ptr, size_t size);
 
-#endif /* BASEC_MEMORY_H */
+#endif /* UTILS_MEMORY_H */

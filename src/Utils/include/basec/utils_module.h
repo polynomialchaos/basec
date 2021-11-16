@@ -9,9 +9,6 @@
 #ifndef UTILS_MODULE_H
 #define UTILS_MODULE_H
 
-#include "basec/basec_macro.h"
-#include "basec/basec_type.h"
-
 #include "basec/utils/utils_print.h"
 #include "basec/utils/utils_logging.h"
 #include "basec/utils/utils_file.h"

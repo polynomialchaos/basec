@@ -6,10 +6,11 @@
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_TIME_H
-#define BASEC_TIME_H
+#ifndef UTILS_TIME_H
+#define UTILS_TIME_H
 
 #include <time.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -68,4 +69,4 @@ time_t get_now();
  ******************************************************************************/
 string_t get_time_string(time_t time);
 
-#endif /* BASEC_TIME_H */
+#endif /* UTILS_TIME_H */

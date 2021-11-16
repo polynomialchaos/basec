@@ -1,15 +1,16 @@
 /*******************************************************************************
- * @file basec_file.h
+ * @file utils_file.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_FILE_H
-#define BASEC_FILE_H
+#ifndef UTILS_FILE_H
+#define UTILS_FILE_H
 
 #include <stdio.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -39,4 +40,4 @@ bool_t file_exists(cstring_t path);
  ******************************************************************************/
 FILE *open_file(cstring_t path);
 
-#endif /* BASEC_FILE_H */
+#endif /* UTILS_FILE_H */

@@ -22,8 +22,8 @@ foreach(ut_target_source ${ut_target_sources})
     set(test_target unit_test_${target}_${test_name})
 
     add_executable(${test_target} ${ut_target_source})
-    add_dependencies(${test_target} ${target})
-    target_link_libraries(${test_target} ${target})
+    add_dependencies(${test_target} ${CMAKE_PROJECT_NAME})
+    target_link_libraries(${test_target} ${CMAKE_PROJECT_NAME})
 
     set_target_properties(${test_target} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/tests)

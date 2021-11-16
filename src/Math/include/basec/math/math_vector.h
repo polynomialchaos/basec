@@ -1,120 +1,149 @@
 /*******************************************************************************
- * @file utils_string.h
+ * @file math_vector.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
- * @date 2021-11-07
+ * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef UTILS_STRING_H
-#define UTILS_STRING_H
+#ifndef MATH_VECTOR_H
+#define MATH_VECTOR_H
 
 #include <stdlib.h>
 #include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
- * @brief Allocate string by copy of string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t allocate_strcpy(cstring_t string);
-
-/*******************************************************************************
- * @brief Allocate string by concatenation of two strings
- * @param[in] string_a
- * @param[in] string_b
- * @return string_t
- ******************************************************************************/
-string_t allocate_strcat(cstring_t string_a, cstring_t string_b);
-
-/*******************************************************************************
- * @brief Count number of char occurences in string
- * @param[in] string
- * @param[in] coi
- * @return size_t
- ******************************************************************************/
-size_t count_chars(cstring_t string, char coi);
-
-/*******************************************************************************
- * @brief Check if string is a digit
- * @param[in] string
- * @return bool_t
- ******************************************************************************/
-bool_t is_digit(cstring_t string);
-
-/*******************************************************************************
- * @brief Check if strings are equal
- * @param[in] string_a
- * @param[in] string_b
- * @return bool_t
- ******************************************************************************/
-bool_t is_equal(cstring_t string_a, cstring_t string_b);
-
-/*******************************************************************************
- * @brief Check if string is empty
- * @param[in] string
- * @return bool_t
- ******************************************************************************/
-bool_t is_empty(cstring_t string);
-
-/*******************************************************************************
- * @brief Check if string is a number
- * @param[in] string
- * @return bool_t
- ******************************************************************************/
-bool_t is_number(cstring_t string);
-
-/*******************************************************************************
- * @brief Length of left/right trimmed string
- * @param[in] string
- * @return size_t
- ******************************************************************************/
-size_t len_trim(cstring_t string);
-
-/*******************************************************************************
- * @brief Left trimmed string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t l_trim(string_t string);
-
-/*******************************************************************************
- * @brief Reallocate string by concatenation of two strings
- * @param[in] string_a
- * @param[in] string_b
- * @return string_t
- ******************************************************************************/
-string_t reallocate_strcat(string_t string_a, cstring_t string_b);
-
-/*******************************************************************************
- * @brief Replace char in string by replacement
- * @param[in] string
- * @param[in] find
- * @param[in] replace
- ******************************************************************************/
-void replace(string_t string, char find, char replace);
-
-/*******************************************************************************
- * @brief Right trimmed string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t r_trim(string_t string);
-
-/*******************************************************************************
- * @brief Maximum length of string array
- * @param[in] strings
+ * @brief Angle between two vectors
+ * @param[in] a
+ * @param[in] b
  * @param[in] n
- * @return size_t
+ * @return double
  ******************************************************************************/
-size_t strlen_n(string_t *strings, size_t n);
+double angle_n(double *a, double *b, size_t n);
 
 /*******************************************************************************
- * @brief Left/right trimmed string
- * @param[in] string
- * @return string_t
+ * @brief Copy a vector to a other vector
+ * @param[in] source
+ * @param[out] dest
+ * @param[in] n
  ******************************************************************************/
-string_t trim(string_t string);
+void copy_n(double *source, double *dest, size_t n);
 
-#endif /* UTILS_STRING_H */
+/*******************************************************************************
+ * @brief Cosinuns(angle) term of two vectors
+ * @param[in] a
+ * @param[in] b
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double cos_angle_n(double *a, double *b, size_t n);
+
+/*******************************************************************************
+ * @brief Cross product of two 3D vectors
+ * @param[in] a
+ * @param[in] b
+ * @param[out] c
+ ******************************************************************************/
+void cross_product_3(double *a, double *b, double *c);
+
+/*******************************************************************************
+ * @brief Determinant of 2D Array (two columns)
+ * @param[in] a
+ * @param[in] b
+ * @return double
+ ******************************************************************************/
+double det_2(double *a, double *b);
+
+/*******************************************************************************
+ * @brief Determinant of 3D Array (three columns)
+ * @param[in] a
+ * @param[in] b
+ * @param[in] c
+ * @return double
+ ******************************************************************************/
+double det_3(double *a, double *b, double *c);
+
+/*******************************************************************************
+ * @brief Dot product of two vectors
+ * @param[in] a
+ * @param[in] b
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double dot_n(double *a, double *b, size_t n);
+
+/*******************************************************************************
+ * @brief Check for Inf values in vector
+ * @param[in] a
+ * @param[in] n
+ * @return bool_t
+ ******************************************************************************/
+bool_t is_inf_n(double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Check for NaN values in vector
+ * @param[in] a
+ * @param[in] n
+ * @return bool_t
+ ******************************************************************************/
+bool_t is_nan_n(double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Length of vector
+ * @param[in] a
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double len_n(double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Maximum value in a vector
+ * @param[in] a
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double max_n(double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Minimum value in a vector
+ * @param[in] a
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double min_n(double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Euclidean norm of vector
+ * @param[in] a
+ * @param[in] n
+ * @param[out] b
+ ******************************************************************************/
+void norm_n(double *a, size_t n, double *b);
+
+/*******************************************************************************
+ * @brief Orthonormal basis for one 3D vector
+ * @param[in] a
+ * @param[out] b
+ * @param[out] c
+ * @param[out] d
+ ******************************************************************************/
+void orthonormal_basis_3(double *a, double *b, double *c, double *d);
+
+/*******************************************************************************
+ * @brief Set all elements in a vector to a value
+ * @param[in] value
+ * @param[out] a
+ * @param[in] n
+ ******************************************************************************/
+void set_value_n(double value, double *a, size_t n);
+
+/*******************************************************************************
+ * @brief Sum up a vector
+ * @param[in] a
+ * @param[in] n
+ * @return double
+ ******************************************************************************/
+double sum_n(double *a, size_t n);
+
+#endif /* MATH_VECTOR_H */

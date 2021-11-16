@@ -1,43 +1,46 @@
 /*******************************************************************************
- * @file utils_file.h
+ * @file math_module.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
- * @date 2021-11-07
+ * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef UTILS_FILE_H
-#define UTILS_FILE_H
+#ifndef MATH_MODULE_H
+#define MATH_MODULE_H
 
-#include <stdio.h>
-#include "basec/basec_macro.h"
-#include "basec/basec_type.h"
+#include "basec/math/math_bicgstab_gmres.h"
+#include "basec/math/math_vector_int.h"
+#include "basec/math/math_vector.h"
 
-/*******************************************************************************
- * @brief Close a given file pointer
- * @param[in] file_ptr
- ******************************************************************************/
-void close_file(FILE *file_ptr);
+#define PI 3.14159265358979323846 /* PI constant */
 
 /*******************************************************************************
- * @brief Create a file at the given path
- * @param[in] path
- * @return FILE*
+ * @brief Conversion from degrees to radiants
+ * @param[in] deg
+ * @return double
  ******************************************************************************/
-FILE *create_file(cstring_t path);
+double deg_to_rad(double deg);
 
 /*******************************************************************************
- * @brief Check if file exists at the given path
- * @param[in] path
- * @return bool_t
+ * @brief Return the factorial of a value
+ * @param[in] n
+ * @return int
  ******************************************************************************/
-bool_t file_exists(cstring_t path);
+int factorial(int n);
 
 /*******************************************************************************
- * @brief Open a file at the given path
- * @param[in] path
- * @return FILE*
+ * @brief String legth for an integer value
+ * @param[in] value
+ * @return int
  ******************************************************************************/
-FILE *open_file(cstring_t path);
+int integer_string_length(int value);
 
-#endif /* UTILS_FILE_H */
+/*******************************************************************************
+ * @brief Conversion from radiants to degrees
+ * @param[in] rad
+ * @return double
+ ******************************************************************************/
+double rad_to_deg(double rad);
+
+#endif /* MATH_MODULE_H */

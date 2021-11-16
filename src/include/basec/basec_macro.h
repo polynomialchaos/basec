@@ -10,7 +10,29 @@
 #define BASEC_MACRO_H
 
 /*******************************************************************************
- * @brief Return the maximum of two values
+ * @brief A macro to return absoute value
+ ******************************************************************************/
+#define ABS_T(a) (              \
+    {                           \
+        __typeof__(a) _a = (a); \
+        _a < 0 ? -_a : _a;      \
+    })
+
+/*******************************************************************************
+ * @brief A macro to compare values within epsilon tolerance
+ ******************************************************************************/
+#define EQ_T(a, b) (                                                   \
+    { ABS_T((a) - (b)) <= (DOUBLE_EPS * MAX_T(ABS_T((a)), ABS_T((b)))) \
+          ? 1                                                          \
+          : 0; })
+
+/*******************************************************************************
+ * @brief A macro to compare value within epsilon tolerance to zero
+ ******************************************************************************/
+#define EQ0_T(a) ({ ABS_T((a)) <= (DOUBLE_MIN * 10) ? 1 : 0; })
+
+/*******************************************************************************
+ * @brief  A macro to return the maximum of two values
  ******************************************************************************/
 #define MAX_T(a, b) (           \
     {                           \
@@ -20,7 +42,7 @@
     })
 
 /*******************************************************************************
- * @brief Return the minimum of two values
+ * @brief  A macro to return the minimum of two values
  ******************************************************************************/
 #define MIN_T(a, b) (           \
     {                           \
@@ -35,6 +57,11 @@
 #define REF(reference) &(reference)
 
 /*******************************************************************************
+ * @brief A macro to touch a pointer to prevent debug warnings
+ ******************************************************************************/
+#define UNUSED(pointer) (void)(pointer)
+
+/*******************************************************************************
  * @brief A macro to return value as void refernce
  ******************************************************************************/
 #define VOID_REF(pointer) (void *)REF(pointer)
@@ -42,6 +69,6 @@
 /*******************************************************************************
  * @brief A macro to return a value from void reference
  ******************************************************************************/
-#define VOID_DEREF(type, pointer) *(type*)pointer
+#define VOID_DEREF(type, pointer) *(type *)pointer
 
 #endif /* BASEC_MACRO_H */

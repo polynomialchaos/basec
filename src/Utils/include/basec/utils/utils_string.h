@@ -1,15 +1,16 @@
 /*******************************************************************************
- * @file basec_string.h
+ * @file utils_string.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_STRING_H
-#define BASEC_STRING_H
+#ifndef UTILS_STRING_H
+#define UTILS_STRING_H
 
 #include <stdlib.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -116,4 +117,4 @@ size_t strlen_n(string_t *strings, size_t n);
  ******************************************************************************/
 string_t trim(string_t string);
 
-#endif /* BASEC_STRING_H */
+#endif /* UTILS_STRING_H */

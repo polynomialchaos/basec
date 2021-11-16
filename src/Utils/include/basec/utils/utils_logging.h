@@ -1,14 +1,15 @@
 /*******************************************************************************
- * @file basec_logging.h
+ * @file utils_logging.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_LOGGING_H
-#define BASEC_LOGGING_H
+#ifndef UTILS_LOGGING_H
+#define UTILS_LOGGING_H
 
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -161,4 +162,4 @@ void set_global_error_state_handler(void_ft fun_ptr);
  ******************************************************************************/
 void set_exit_handler(void_ft fun_ptr);
 
-#endif /* BASEC_LOGGING_H */
+#endif /* UTILS_LOGGING_H */

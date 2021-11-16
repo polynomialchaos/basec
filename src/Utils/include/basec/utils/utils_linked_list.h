@@ -1,15 +1,16 @@
 /*******************************************************************************
- * @file basec_linked_list.h
+ * @file utils_linked_list.h
  * @author Florian Eigentler
  * @brief
  * @version 0.1
  * @date 2021-11-07
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_LINKED_LIST_H
-#define BASEC_LINKED_LIST_H
+#ifndef UTILS_LINKED_LIST_H
+#define UTILS_LINKED_LIST_H
 
 #include <stdlib.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -247,4 +248,4 @@ size_t list_length(list_t *list);
 void list_prepend_pass(cstring_t _file, int _line, cstring_t _function,
                        list_t *list, size_t size, void *data);
 
-#endif /* BASEC_LINKED_LIST_H */
+#endif /* UTILS_LINKED_LIST_H */

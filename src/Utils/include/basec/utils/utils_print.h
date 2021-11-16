@@ -1,15 +1,16 @@
 /*******************************************************************************
- * @file basec_print.h
+ * @file utils_print.h
  * @author Florian Eigentler
  * @brief
  * @version 1.0.0
  * @date 2021-11-15
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef BASEC_PRINT_H
-#define BASEC_PRINT_H
+#ifndef UTILS_PRINT_H
+#define UTILS_PRINT_H
 
 #include <stdio.h>
+#include "basec/basec_macro.h"
 #include "basec/basec_type.h"
 
 /*******************************************************************************
@@ -54,4 +55,4 @@ void printf_r_sep_title(const char symbol, cstring_t title);
  ******************************************************************************/
 void set_stdout(FILE *file_ptr);
 
-#endif /* BASEC_PRINT_H */
+#endif /* UTILS_PRINT_H */

@@ -9,6 +9,10 @@
 #ifndef BASEC_TYPE_H
 #define BASEC_TYPE_H
 
+#define DOUBLE_MIN 1.e-200 /** Double minimum */
+#define DOUBLE_MAX 1.e200  /** Double maximum */
+#define DOUBLE_EPS 1.e-16  /** Double epsilon */
+
 #define NULL_CHAR '\0' /** Null character */
 
 /** File, line and function macro */
