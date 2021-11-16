@@ -140,8 +140,8 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
     // create a copy of the string to perform the string truncation
     string_t tmp = allocate_strcpy(string);
 
-    tmp = replace(tmp, SBL, ' ');
-    tmp = replace(tmp, SBR, ' ');
+    replace(tmp, SBL, ' ');
+    replace(tmp, SBR, ' ');
 
     string_t element = strtok(trim(tmp), SVDS);
 

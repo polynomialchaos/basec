@@ -56,7 +56,8 @@ int main()
     DEALLOCATE(value_c);
 
     string_t *values_c = NULL;
-    string_to_n("[Hello, Wolrd      ,   for,you]", StringType, VOID_REF(values_c), &n);
+    string_to_n("[Hello, Wolrd      ,   for,you]",
+                StringType, VOID_REF(values_c), &n);
     for (size_t i = 0; i < n - 1; ++i)
         printf_r("%s, ", values_c[i]);
     printf_r("%s\n", values_c[n - 1]);

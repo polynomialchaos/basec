@@ -91,9 +91,8 @@ string_t reallocate_strcat(string_t string_a, cstring_t string_b);
  * @param[in] string
  * @param[in] find
  * @param[in] replace
- * @return string_t
  ******************************************************************************/
-string_t replace(string_t string, char find, char replace);
+void replace(string_t string, char find, char replace);
 
 /*******************************************************************************
  * @brief Right trimmed string

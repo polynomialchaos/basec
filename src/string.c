@@ -108,6 +108,8 @@ bool_t is_number(cstring_t string)
         return FALSE;
     if (string[0] == NULL_CHAR)
         return FALSE;
+    if (is_digit(string))
+        return FALSE;
 
     string_t tmp;
     strtod(string, &tmp);
@@ -140,7 +142,7 @@ size_t len_trim(cstring_t string)
  ******************************************************************************/
 string_t l_trim(string_t string)
 {
-    while (isspace(*string) == 1)
+    while (isspace(*string))
         string++;
 
     return string;
@@ -166,15 +168,12 @@ string_t reallocate_strcat(string_t string_a, cstring_t string_b)
  * @param[in] string
  * @param[in] find
  * @param[in] replace
- * @return string_t
  ******************************************************************************/
-string_t replace(string_t string, char find, char replace)
+void replace(string_t string, char find, char replace)
 {
     for (int i = 0; string[i]; ++i)
         if (string[i] == find)
             string[i] = replace;
-
-    return string;
 }
 
 /*******************************************************************************
@@ -184,16 +183,17 @@ string_t replace(string_t string, char find, char replace)
  ******************************************************************************/
 string_t r_trim(string_t string)
 {
-    int len = strlen(string);
-    if (len == 0)
+    if (string == NULL)
+        return string;
+    if (string[0] == NULL_CHAR)
         return string;
 
-    string_t pos = string + len - 1;
-    while ((pos >= string) && (isspace(*pos) == 1))
-    {
-        *pos = NULL_CHAR;
+    string_t pos = string + strlen(string) - 1;
+    while (pos > string && isspace((unsigned char)*pos))
         pos--;
-    }
+
+    // Write new null terminator character
+    pos[1] = NULL_CHAR;
 
     return string;
 }
