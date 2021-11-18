@@ -32,10 +32,16 @@ void flush_user_defaults(cstring_t file_name)
 void free_parameters()
 {
     if (user_defaults != NULL)
+    {
         free_json_object(user_defaults);
+        DEALLOCATE(user_defaults);
+    }
 
     if (user_inputs != NULL)
+    {
         free_json_object(user_inputs);
+        DEALLOCATE(user_inputs);
+    }
 }
 
 /*******************************************************************************

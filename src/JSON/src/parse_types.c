@@ -90,6 +90,60 @@ void increment_read_buffer(buffer_t *buffer)
 }
 
 /*******************************************************************************
+ * @brief Check if char is a break char
+ * @param c
+ * @param breaks
+ * @param n
+ * @param is_ctrl
+ * @return bool_t
+ ******************************************************************************/
+bool_t check_break(char c, const char *breaks, const int n, bool_t is_ctrl)
+{
+    for (int i = 0; i < n; ++i)
+        if ((!is_ctrl) && (c == breaks[i]))
+            return BTRU;
+
+    return BFLS;
+}
+
+/*******************************************************************************
+ * @brief Read buffer until break an retur allocated string
+ * @param buffer
+ * @param breaks
+ * @param n
+ * @param use_ctrl
+ * @return string_t
+ ******************************************************************************/
+string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
+                                 const int n, bool_t use_ctrl)
+{
+    size_t pos = 0;
+    bool_t was_ctrl = BFLS;
+    char tmp_string[JBFL];
+
+    string_t result = NULL;
+    while (buffer->length > 0)
+    {
+        if (check_break(buffer->buffer[buffer->cursor], breaks, n, was_ctrl))
+            break;
+
+        if (pos >= JBFL - 1)
+        {
+            result = append_string(result, tmp_string, pos);
+            pos = 0;
+        }
+
+        was_ctrl = use_ctrl ? (buffer->buffer[buffer->cursor] == '\\') : BFLS;
+        tmp_string[pos] = buffer->buffer[buffer->cursor];
+        pos++;
+
+        increment_read_buffer(buffer);
+    }
+
+    return append_string(result, tmp_string, pos);
+}
+
+/*******************************************************************************
  * @brief Parse a JSON array
  * @param _file
  * @param _line
@@ -122,36 +176,21 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
     if (buffer->buffer[buffer->cursor] == '}')
         return;
 
-    check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == '"');
+    check_expression_pass(_file, _line, _function,
+                          buffer->buffer[buffer->cursor] == '"');
     increment_read_buffer(buffer);
 
-    size_t pos = 0;
-    char tmp_string[JBFL];
+    static const char breaks[] = {'"'};
+    static const int n_breaks = sizeof(breaks) / sizeof(char);
 
-    string_t tmp = NULL;
-    while (buffer->length > 0)
-    {
-        if (buffer->buffer[buffer->cursor] == '"')
-            break;
+    string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
-        if (pos >= JBFL - 1)
-        {
-            tmp = append_string(tmp, tmp_string, pos);
-            pos = 0;
-        }
-
-        tmp_string[pos] = buffer->buffer[buffer->cursor];
-        pos++;
-
-        increment_read_buffer(buffer);
-    }
-
-    tmp = append_string(tmp, tmp_string, pos);
-
-    check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == '"');
+    check_expression_pass(_file, _line, _function,
+                          buffer->buffer[buffer->cursor] == '"');
     increment_read_buffer(buffer);
 
-    check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == ':');
+    check_expression_pass(_file, _line, _function,
+                          buffer->buffer[buffer->cursor] == ':');
     increment_read_buffer(buffer);
 
     JSON_t *child = create_json_child_pass(_file, _line, _function, this);
@@ -188,7 +227,8 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
             increment_read_buffer(buffer);
             parse_json_object(_file, _line, _function, this, buffer);
         }
-        check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == '}');
+        check_expression_pass(_file, _line, _function,
+                              buffer->buffer[buffer->cursor] == '}');
         increment_read_buffer(buffer);
         break;
     case '[':
@@ -200,7 +240,8 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
             increment_read_buffer(buffer);
             parse_json_array(_file, _line, _function, this, buffer);
         }
-        check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == ']');
+        check_expression_pass(_file, _line, _function,
+                              buffer->buffer[buffer->cursor] == ']');
         increment_read_buffer(buffer);
         break;
     case 'n':
@@ -221,12 +262,14 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
     case '"':
         increment_read_buffer(buffer);
         parse_json_value_string(_file, _line, _function, this, buffer);
-        check_expression_pass(_file, _line, _function, buffer->buffer[buffer->cursor] == '"');
+        check_expression_pass(_file, _line, _function,
+                              buffer->buffer[buffer->cursor] == '"');
         increment_read_buffer(buffer);
         break;
     default:
         log_error_pass(_file, _line, _function,
-                       "Unknown JSON parse type character (%c)!", buffer->buffer[buffer->cursor]);
+                       "Unknown JSON parse type character (%c)!",
+                       buffer->buffer[buffer->cursor]);
         break;
     }
 }
@@ -242,39 +285,18 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
                               JSON_t *this, buffer_t *buffer)
 {
-    size_t pos = 0;
-    char tmp_string[JBFL];
+    static const char breaks[] = {'"', '}', ']', ','};
+    static const int n_breaks = sizeof(breaks) / sizeof(char);
 
-    while (buffer->length > 0)
-    {
-        if (buffer->buffer[buffer->cursor] == '"')
-            break;
-        if (buffer->buffer[buffer->cursor] == '}')
-            break;
-        if (buffer->buffer[buffer->cursor] == ']')
-            break;
-        if (buffer->buffer[buffer->cursor] == ',')
-            break;
-
-        if (pos >= JBFL - 1)
-        {
-            this->string = append_string(this->string, tmp_string, pos);
-            pos = 0;
-        }
-
-        tmp_string[pos] = buffer->buffer[buffer->cursor];
-        pos++;
-
-        increment_read_buffer(buffer);
-    }
-
-    this->string = append_string(this->string, tmp_string, pos);
+    string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
     check_expression_pass(_file, _line, _function,
-                          is_equal(JTRU, this->string) || is_equal(JFLS, this->string));
+                          is_equal(JTRU, tmp) || is_equal(JFLS, tmp));
 
     set_json_type_pass(_file, _line, _function, this, JSONBoolean);
-    string_to(this->string, LogicalType, &this->boolean);
+    string_to(tmp, LogicalType, &this->boolean);
+
+    DEALLOCATE(tmp);
 }
 
 /*******************************************************************************
@@ -288,36 +310,15 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, buffer_t *buffer)
 {
-    size_t pos = 0;
-    char tmp_string[JBFL];
+    static const char breaks[] = {'"', '}', ']', ','};
+    static const int n_breaks = sizeof(breaks) / sizeof(char);
 
-    while (buffer->length > 0)
-    {
-        if (buffer->buffer[buffer->cursor] == '"')
-            break;
-        if (buffer->buffer[buffer->cursor] == '}')
-            break;
-        if (buffer->buffer[buffer->cursor] == ']')
-            break;
-        if (buffer->buffer[buffer->cursor] == ',')
-            break;
+    string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
+    check_expression_pass(_file, _line, _function, is_equal(JNLL, tmp));
 
-        if (pos >= JBFL - 1)
-        {
-            this->string = append_string(this->string, tmp_string, pos);
-            pos = 0;
-        }
-
-        tmp_string[pos] = buffer->buffer[buffer->cursor];
-        pos++;
-
-        increment_read_buffer(buffer);
-    }
-
-    this->string = append_string(this->string, tmp_string, pos);
-
-    check_expression_pass(_file, _line, _function, is_equal(JNLL, this->string));
     set_json_type_pass(_file, _line, _function, this, JSONNull);
+
+    DEALLOCATE(tmp);
 }
 
 /*******************************************************************************
@@ -331,49 +332,28 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
-    size_t pos = 0;
-    char tmp_string[JBFL];
+    static const char breaks[] = {'"', '}', ']', ','};
+    static const int n_breaks = sizeof(breaks) / sizeof(char);
 
-    while (buffer->length > 0)
-    {
-        if (buffer->buffer[buffer->cursor] == '"')
-            break;
-        if (buffer->buffer[buffer->cursor] == '}')
-            break;
-        if (buffer->buffer[buffer->cursor] == ']')
-            break;
-        if (buffer->buffer[buffer->cursor] == ',')
-            break;
+    string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
-        if (pos >= JBFL - 1)
-        {
-            this->string = append_string(this->string, tmp_string, pos);
-            pos = 0;
-        }
-
-        tmp_string[pos] = buffer->buffer[buffer->cursor];
-        pos++;
-
-        increment_read_buffer(buffer);
-    }
-
-    this->string = append_string(this->string, tmp_string, pos);
-
-    if (is_digit(this->string))
+    if (is_digit(tmp))
     {
         set_json_type_pass(_file, _line, _function, this, JSONDigit);
-        string_to(this->string, DigitType, &this->digit);
+        string_to(tmp, DigitType, &this->digit);
     }
-    else if (is_number(this->string))
+    else if (is_number(tmp))
     {
         set_json_type_pass(_file, _line, _function, this, JSONNumber);
-        string_to(this->string, NumberType, &this->number);
+        string_to(tmp, NumberType, &this->number);
     }
     else
     {
         log_error_pass(_file, _line, _function,
-                       "Unsupported JSON type digit/number string (%s)!", this->string);
+                       "Unsupported JSON type digit/number string (%s)!", tmp);
     }
+
+    DEALLOCATE(tmp);
 }
 
 /*******************************************************************************
@@ -387,30 +367,9 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
-    size_t pos = 0;
-    char tmp_string[JBFL];
+    static const char breaks[] = {'"'};
+    static const int n_breaks = sizeof(breaks) / sizeof(char);
 
-    bool_t is_control = BFLS;
-    while (buffer->length > 0)
-    {
-        if ((!is_control) && (buffer->buffer[buffer->cursor] == '"'))
-            break;
-
-        is_control = (buffer->buffer[buffer->cursor] == '\\');
-
-        if (pos >= JBFL - 1)
-        {
-            this->string = append_string(this->string, tmp_string, pos);
-            pos = 0;
-        }
-
-        tmp_string[pos] = buffer->buffer[buffer->cursor];
-        pos++;
-
-        increment_read_buffer(buffer);
-    }
-
-    this->string = append_string(this->string, tmp_string, pos);
-
+    this->string = read_buffer_until_break(buffer, breaks, n_breaks, BTRU);
     set_json_type_pass(_file, _line, _function, this, JSONString);
 }

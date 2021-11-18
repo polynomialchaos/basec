@@ -11,6 +11,9 @@
 #include "json_private.h"
 
 #define JIND 4    /** Space indentation */
+#define JWSP " "  /** Whitespace */
+#define JNWL "\n" /** Newline */
+
 #define JLBC "{"  /** Left brace */
 #define JRBC "}"  /** Right brace */
 #define JLBK "["  /** Left bracket */
@@ -18,8 +21,6 @@
 #define JSTR "\"" /** String keeper */
 #define JOSP ":"  /** Object separator */
 #define JVSP ","  /** Value separator */
-#define JWSP " "  /** Whitespace */
-#define JNWL "\n" /** Newline */
 
 /*******************************************************************************
  * @brief Print a JSON object and pass file, line, function
