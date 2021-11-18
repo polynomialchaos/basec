@@ -43,7 +43,7 @@ int main()
     log_info("Logging info message!");
     log_warning("Logging warning message!");
 
-    set_exit_with_failure(FALSE);
+    set_exit_with_failure(BFLS);
     log_error("Logging error message!");
 
     return 0;

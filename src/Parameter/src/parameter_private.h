@@ -13,7 +13,7 @@
 #include "basec/json_module.h"
 #include "basec/parameter_module.h"
 
-#define PARAMETER_VALUE_KEY "value" /** Parameter value string */
+#define PVLK "value" /** Parameter value string */
 
 extern JSON_t *user_defaults; /** Static field for user defaults */
 extern JSON_t *user_inputs;   /** Static field for user inputs */

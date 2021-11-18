@@ -113,5 +113,5 @@ void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
             return;
     }
 
-    log_error(MATH_ITER_FMT, __FUNCTION__, iter);
+    log_error(MITF, __FUNCTION__, iter);
 }

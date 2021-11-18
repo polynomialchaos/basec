@@ -10,10 +10,10 @@
 #include <ctype.h>
 #include "utils_private.h"
 
-#define SBL '['       /** String vector left bracket */
-#define SBR ']'       /** String vector right bracket */
-#define SVDS ","      /** String vector delimiter */
-#define SVD (*(SVDS)) /** Char vector delimiter */
+#define USLB '['       /** String vector left bracket */
+#define USRB ']'       /** String vector right bracket */
+#define USVD ","       /** String vector delimiter */
+#define UCVD (*(USVD)) /** Char vector delimiter */
 
 /** String conversion flag strings */
 cstring_t conversion_flag_strings[_sc_flag_max] = {
@@ -54,7 +54,7 @@ bool_t string_to_bool(cstring_t string)
 {
     if (string == NULL)
         return 0;
-    if (string[0] == NULL_CHAR)
+    if (string[0] == BNCH)
         return 0;
 
     // create a copy of the string to perform lower case transformation
@@ -63,11 +63,11 @@ bool_t string_to_bool(cstring_t string)
         tmp[i] = tolower(tmp[i]);
 
     // check if string is a True place-holder
-    bool_t is_true = FALSE;
+    bool_t is_true = BFLS;
     for (size_t i = 0; i < n_bool_keywords; ++i)
         if (is_equal(tmp, bool_keywords[i]))
         {
-            is_true = TRUE;
+            is_true = BTRU;
             break;
         }
 
@@ -87,7 +87,7 @@ sc_flag_t string_to_i(cstring_t string, sc_type_t type, void *value, size_t i)
 {
     if (string == NULL)
         return StringNull;
-    if (string[0] == NULL_CHAR)
+    if (string[0] == BNCH)
         return StringEmpty;
 
     sc_flag_t error = StringOK;
@@ -127,23 +127,23 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
 {
     if (string == NULL)
         return StringNull;
-    if (string[0] == NULL_CHAR)
+    if (string[0] == BNCH)
         return StringEmpty;
 
     size_t length = strlen(string);
-    if ((string[0] != SBL) || (string[length - 1] != SBR))
+    if ((string[0] != USLB) || (string[length - 1] != USRB))
         return StringMissingBraces;
 
-    (*n) = count_chars(string, SVD) + 1;
+    (*n) = count_chars(string, UCVD) + 1;
     (*value) = ALLOCATE(string_datatype_bytes[type] * (*n));
 
     // create a copy of the string to perform the string truncation
     string_t tmp = allocate_strcpy(string);
 
-    replace(tmp, SBL, ' ');
-    replace(tmp, SBR, ' ');
+    replace(tmp, USLB, ' ');
+    replace(tmp, USRB, ' ');
 
-    string_t element = strtok(trim(tmp), SVDS);
+    string_t element = strtok(trim(tmp), USVD);
 
     sc_flag_t error = StringOK;
 
@@ -152,7 +152,7 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
         error = string_to_i(element, type, *value, i);
         if (error != StringOK)
             break;
-        element = strtok(NULL, SVDS);
+        element = strtok(NULL, USVD);
     }
 
     DEALLOCATE(tmp);

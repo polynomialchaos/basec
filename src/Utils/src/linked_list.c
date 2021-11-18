@@ -60,7 +60,7 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
     check_expression_pass(_file, _line, _function, list != NULL);
     check_expression_pass(_file, _line, _function, fun_ptr != NULL);
 
-    bool_t result = FALSE;
+    bool_t result = BFLS;
 
     node_t *node = list->head;
     while (node != NULL)
@@ -124,7 +124,7 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
     check_expression_pass(_file, _line, _function, list != NULL);
     check_expression_pass(_file, _line, _function, fun_ptr != NULL);
 
-    bool_t result = FALSE;
+    bool_t result = BFLS;
 
     node_t *node = list->head;
     while (node != NULL)
@@ -261,6 +261,7 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
                           list_t *list, size_t ith)
 {
     check_expression_pass(_file, _line, _function, list != NULL);
+    check_expression_pass(_file, _line, _function, ith < list_length(list));
 
     node_t *current = list->head;
     for (size_t i = 0; i < ith; ++i)

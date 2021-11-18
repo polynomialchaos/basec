@@ -52,16 +52,16 @@ int main()
     double vector_33[3] = {0.0, 0.0, 1.0};
     check_expression(EQ_T(det_3(vector_31, vector_32, vector_33), 1.0));
 
-    check_expression(is_nan_n(vector_3, 3) == FALSE);
-    check_expression(is_inf_n(vector_3, 3) == FALSE);
+    check_expression(is_nan_n(vector_3, 3) == BFLS);
+    check_expression(is_inf_n(vector_3, 3) == BFLS);
 
     vector_3[0] = NAN;
-    check_expression(is_inf_n(vector_3, 3) == FALSE);
-    check_expression(is_nan_n(vector_3, 3) == TRUE);
+    check_expression(is_inf_n(vector_3, 3) == BFLS);
+    check_expression(is_nan_n(vector_3, 3) == BTRU);
 
     vector_3[0] = INFINITY;
-    check_expression(is_inf_n(vector_3, 3) == TRUE);
-    check_expression(is_nan_n(vector_3, 3) == FALSE);
+    check_expression(is_inf_n(vector_3, 3) == BTRU);
+    check_expression(is_nan_n(vector_3, 3) == BFLS);
 
     return 0;
 }

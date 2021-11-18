@@ -16,7 +16,7 @@
  ******************************************************************************/
 int main()
 {
-    bool_t data_bool[] = {TRUE, FALSE, TRUE, TRUE};
+    bool_t data_bool[] = {BTRU, BFLS, BTRU, BTRU};
     int data_digit[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     double data_number[] = {1.0, 2.0, 3.0, 4.0};
     char *data_string[] = {"Hello", "World"};

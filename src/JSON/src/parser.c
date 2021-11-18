@@ -27,10 +27,10 @@ JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
     buffer_t buffer;
     buffer.cursor = 0;
     buffer.length = 0;
-    buffer.skip = TRUE;
-    buffer.is_control = FALSE;
+    buffer.skip = BTRU;
+    buffer.is_control = BFLS;
 
-    buffer.is_file = TRUE;
+    buffer.is_file = BTRU;
     buffer.file = open_file(path);
     buffer.is_eof = 0;
 
@@ -56,10 +56,10 @@ JSON_t *parse_json_string_pass(cstring_t _file, int _line, cstring_t _function,
     buffer_t buffer;
     buffer.cursor = 0;
     buffer.length = 0;
-    buffer.skip = TRUE;
-    buffer.is_control = FALSE;
+    buffer.skip = BTRU;
+    buffer.is_control = BFLS;
 
-    buffer.is_file = FALSE;
+    buffer.is_file = BFLS;
     buffer.string = string;
     buffer.is_eof = 0;
 

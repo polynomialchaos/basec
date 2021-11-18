@@ -64,13 +64,13 @@ size_t count_chars(cstring_t string, char coi)
 bool_t is_digit(cstring_t string)
 {
     if (string == NULL)
-        return FALSE;
-    if (string[0] == NULL_CHAR)
-        return FALSE;
+        return BFLS;
+    if (string[0] == BNCH)
+        return BFLS;
 
     string_t tmp;
     strtol(string, &tmp, 10);
-    return (*tmp == NULL_CHAR);
+    return (*tmp == BNCH);
 }
 
 /*******************************************************************************
@@ -105,15 +105,15 @@ bool_t is_empty(cstring_t string)
 bool_t is_number(cstring_t string)
 {
     if (string == NULL)
-        return FALSE;
-    if (string[0] == NULL_CHAR)
-        return FALSE;
+        return BFLS;
+    if (string[0] == BNCH)
+        return BFLS;
     if (is_digit(string))
-        return FALSE;
+        return BFLS;
 
     string_t tmp;
     strtod(string, &tmp);
-    return (*tmp == NULL_CHAR);
+    return (*tmp == BNCH);
 }
 
 /*******************************************************************************
@@ -125,7 +125,7 @@ size_t len_trim(cstring_t string)
 {
     if (string == NULL)
         return 0;
-    if (string[0] == NULL_CHAR)
+    if (string[0] == BNCH)
         return 0;
 
     string_t tmp = allocate_strcpy(string);
@@ -185,7 +185,7 @@ string_t r_trim(string_t string)
 {
     if (string == NULL)
         return string;
-    if (string[0] == NULL_CHAR)
+    if (string[0] == BNCH)
         return string;
 
     string_t pos = string + strlen(string) - 1;
@@ -193,7 +193,7 @@ string_t r_trim(string_t string)
         pos--;
 
     // Write new null terminator character
-    pos[1] = NULL_CHAR;
+    pos[1] = BNCH;
 
     return string;
 }

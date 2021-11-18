@@ -44,10 +44,10 @@ bool_t file_exists(cstring_t path)
     if (file)
     {
         fclose(file);
-        return TRUE;
+        return BTRU;
     }
 
-    return FALSE;
+    return BFLS;
 }
 
 /*******************************************************************************

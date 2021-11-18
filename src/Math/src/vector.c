@@ -115,9 +115,9 @@ bool_t is_inf_n(double *a, size_t n)
 {
     for (size_t i = 0; i < n; ++i)
         if (isinf(a[i]))
-            return TRUE;
+            return BTRU;
 
-    return FALSE;
+    return BFLS;
 }
 
 /*******************************************************************************
@@ -130,9 +130,9 @@ bool_t is_nan_n(double *a, size_t n)
 {
     for (size_t i = 0; i < n; ++i)
         if (isnan(a[i]))
-            return TRUE;
+            return BTRU;
 
-    return FALSE;
+    return BFLS;
 }
 
 /*******************************************************************************
@@ -154,7 +154,7 @@ double len_n(double *a, size_t n)
  ******************************************************************************/
 double max_n(double *a, size_t n)
 {
-    double max = -DOUBLE_MAX;
+    double max = -BDMX;
 
     for (size_t i = 0; i < n; ++i)
         max = MAX_T(max, a[i]);
@@ -170,7 +170,7 @@ double max_n(double *a, size_t n)
  ******************************************************************************/
 double min_n(double *a, size_t n)
 {
-    double min = DOUBLE_MAX;
+    double min = BDMX;
 
     for (size_t i = 0; i < n; ++i)
         min = MIN_T(min, a[i]);

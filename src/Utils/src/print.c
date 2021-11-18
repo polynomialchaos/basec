@@ -11,8 +11,8 @@
 #include <memory.h>
 #include "utils_private.h"
 
-#define TERM_WIDTH 132 /** Terminal width */
-#define TITLE_INT 4    /** Block string title indentation */
+#define UTWD 132 /** Terminal width */
+#define UTIN 4   /** Block string title indentation */
 
 FILE *stdout_r = NULL; /** Redirected stdout */
 
@@ -31,9 +31,9 @@ FILE *get_stdout()
  ******************************************************************************/
 void printf_r_sep(const char symbol)
 {
-    char tmp[TERM_WIDTH];
-    memset(tmp, symbol, TERM_WIDTH);
-    printf_r("%.*s\n", TERM_WIDTH, tmp);
+    char tmp[UTWD];
+    memset(tmp, symbol, UTWD);
+    printf_r("%.*s\n", UTWD, tmp);
 }
 
 /*******************************************************************************
@@ -43,14 +43,14 @@ void printf_r_sep(const char symbol)
  ******************************************************************************/
 void printf_r_sep_title(const char symbol, cstring_t title)
 {
-    char tmp[TERM_WIDTH];
-    memset(tmp, symbol, TERM_WIDTH);
+    char tmp[UTWD];
+    memset(tmp, symbol, UTWD);
 
     int len_tile = MIN_T(strlen(title),
-                         (size_t)(TERM_WIDTH - 2 * TITLE_INT));
+                         (size_t)(UTWD - 2 * UTIN));
 
-    printf_r("%.*s %.*s %.*s\n", TITLE_INT - 1, tmp, len_tile, title,
-             TERM_WIDTH - TITLE_INT - len_tile - 1, tmp);
+    printf_r("%.*s %.*s %.*s\n", UTIN - 1, tmp, len_tile, title,
+             UTWD - UTIN - len_tile - 1, tmp);
 }
 
 /*******************************************************************************

@@ -77,9 +77,9 @@ JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,
 {
     check_expression_pass(_file, _line, _function, user_defaults != NULL);
     string_t path_value = ALLOCATE(
-        sizeof(char) * (strlen(path) + 1 + strlen(PARAMETER_VALUE_KEY) + 1));
+        sizeof(char) * (strlen(path) + 1 + strlen(PVLK) + 1));
     strcpy(path_value, path);
-    strcat(strcat(path_value, "/"), PARAMETER_VALUE_KEY);
+    strcat(strcat(path_value, "/"), PVLK);
 
     JSON_t *result = NULL;
 
@@ -100,7 +100,7 @@ JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,
                                               user_defaults, path);
 
     if (is_required)
-        check_expression_pass(_file, _line, _function, (result != NULL));
+        check_expression_pass(_file, _line, _function, result != NULL);
 
     DEALLOCATE(path_value);
     return result;

@@ -23,7 +23,7 @@ string_t append_string(string_t string, string_t append, size_t n)
     string = REALLOCATE(string, sizeof(char) * (length + n + 1));
 
     strncpy(&string[length], append, n);
-    string[length + n] = NULL_CHAR;
+    string[length + n] = BNCH;
 
     return string;
 }
@@ -37,7 +37,7 @@ void fill_read_buffer(buffer_t *buffer)
     if (buffer->is_eof == EOF)
         return;
 
-    while (buffer->cursor + buffer->length < BUF_LEN)
+    while (buffer->cursor + buffer->length < JBFL)
     {
         // file read section
         if (buffer->is_file)
@@ -47,7 +47,7 @@ void fill_read_buffer(buffer_t *buffer)
         else
         {
             buffer->is_eof = *buffer->string;
-            if ((char)buffer->is_eof == NULL_CHAR)
+            if ((char)buffer->is_eof == BNCH)
                 buffer->is_eof = EOF;
             else
                 buffer->string++;
@@ -60,7 +60,7 @@ void fill_read_buffer(buffer_t *buffer)
         char tmp = (char)buffer->is_eof;
 
         if ((!buffer->is_control) && (tmp == '"'))
-            buffer->skip = !buffer->skip ? TRUE : FALSE;
+            buffer->skip = !buffer->skip ? BTRU : BFLS;
 
         if ((buffer->skip && (tmp == ' ')) ||
             (tmp == '\n') || (tmp == '\r') || (tmp == '\t'))
@@ -79,7 +79,7 @@ void fill_read_buffer(buffer_t *buffer)
 void increment_read_buffer(buffer_t *buffer)
 {
     buffer->cursor++;
-    if (buffer->cursor > BUF_LEN - 1)
+    if (buffer->cursor > JBFL - 1)
         buffer->cursor = 0;
 
     if (buffer->length > 0)
@@ -126,7 +126,7 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
     increment_read_buffer(buffer);
 
     size_t pos = 0;
-    char tmp_string[BUF_LEN];
+    char tmp_string[JBFL];
 
     string_t tmp = NULL;
     while (buffer->length > 0)
@@ -134,7 +134,7 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
         if (buffer->buffer[buffer->cursor] == '"')
             break;
 
-        if (pos >= BUF_LEN - 1)
+        if (pos >= JBFL - 1)
         {
             tmp = append_string(tmp, tmp_string, pos);
             pos = 0;
@@ -243,7 +243,7 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
                               JSON_t *this, buffer_t *buffer)
 {
     size_t pos = 0;
-    char tmp_string[BUF_LEN];
+    char tmp_string[JBFL];
 
     while (buffer->length > 0)
     {
@@ -256,7 +256,7 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
         if (buffer->buffer[buffer->cursor] == ',')
             break;
 
-        if (pos >= BUF_LEN - 1)
+        if (pos >= JBFL - 1)
         {
             this->string = append_string(this->string, tmp_string, pos);
             pos = 0;
@@ -271,7 +271,7 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
     this->string = append_string(this->string, tmp_string, pos);
 
     check_expression_pass(_file, _line, _function,
-                          is_equal(JSON_TRUE, this->string) || is_equal(JSON_FALSE, this->string));
+                          is_equal(JTRU, this->string) || is_equal(JFLS, this->string));
 
     set_json_type_pass(_file, _line, _function, this, JSONBoolean);
     string_to(this->string, LogicalType, &this->boolean);
@@ -289,7 +289,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, buffer_t *buffer)
 {
     size_t pos = 0;
-    char tmp_string[BUF_LEN];
+    char tmp_string[JBFL];
 
     while (buffer->length > 0)
     {
@@ -302,7 +302,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
         if (buffer->buffer[buffer->cursor] == ',')
             break;
 
-        if (pos >= BUF_LEN - 1)
+        if (pos >= JBFL - 1)
         {
             this->string = append_string(this->string, tmp_string, pos);
             pos = 0;
@@ -316,7 +316,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
 
     this->string = append_string(this->string, tmp_string, pos);
 
-    check_expression_pass(_file, _line, _function, is_equal(JSON_NULL, this->string));
+    check_expression_pass(_file, _line, _function, is_equal(JNLL, this->string));
     set_json_type_pass(_file, _line, _function, this, JSONNull);
 }
 
@@ -332,7 +332,7 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
     size_t pos = 0;
-    char tmp_string[BUF_LEN];
+    char tmp_string[JBFL];
 
     while (buffer->length > 0)
     {
@@ -345,7 +345,7 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
         if (buffer->buffer[buffer->cursor] == ',')
             break;
 
-        if (pos >= BUF_LEN - 1)
+        if (pos >= JBFL - 1)
         {
             this->string = append_string(this->string, tmp_string, pos);
             pos = 0;
@@ -388,9 +388,9 @@ void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
     size_t pos = 0;
-    char tmp_string[BUF_LEN];
+    char tmp_string[JBFL];
 
-    bool_t is_control = FALSE;
+    bool_t is_control = BFLS;
     while (buffer->length > 0)
     {
         if ((!is_control) && (buffer->buffer[buffer->cursor] == '"'))
@@ -398,7 +398,7 @@ void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
 
         is_control = (buffer->buffer[buffer->cursor] == '\\');
 
-        if (pos >= BUF_LEN - 1)
+        if (pos >= JBFL - 1)
         {
             this->string = append_string(this->string, tmp_string, pos);
             pos = 0;

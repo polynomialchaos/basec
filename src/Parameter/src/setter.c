@@ -26,7 +26,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         void *options, size_t n_options)
 {
     check_expression_pass(_file, _line, _function,
-                          ((path != NULL) && (path[0] != NULL_CHAR)));
+                          ((path != NULL) && (path[0] != BNCH)));
 
     if (user_defaults == NULL)
     {
@@ -42,7 +42,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
         set_json_type_pass(_file, _line, _function, tmp, JSONObject);
 
         JSON_t *tmp_v = create_json_child_pass(_file, _line, _function, tmp);
-        set_json_key_pass(_file, _line, _function, tmp_v, PARAMETER_VALUE_KEY);
+        set_json_key_pass(_file, _line, _function, tmp_v, PVLK);
         set_json_type_pass(_file, _line, _function, tmp_v, as_json_type[type]);
         set_json_value_pass(_file, _line, _function, tmp_v, as_json_type[type], value);
 
@@ -53,6 +53,10 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
             set_json_type_pass(_file, _line, _function, tmp_d, JSONArray);
             set_json_value_n_pass(_file, _line, _function, tmp_d, as_json_type[type],
                                   options, n_options);
+        }
+        else
+        {
+            set_json_type_pass(_file, _line, _function, tmp_d, JSONNull);
         }
     }
     else
@@ -81,7 +85,7 @@ void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           void *options, size_t n_options)
 {
     check_expression_pass(_file, _line, _function,
-                          ((path != NULL) && (path[0] != NULL_CHAR)));
+                          ((path != NULL) && (path[0] != BNCH)));
 
     if (user_defaults == NULL)
     {
@@ -97,7 +101,7 @@ void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
         set_json_type_pass(_file, _line, _function, tmp, JSONObject);
 
         JSON_t *tmp_v = create_json_child_pass(_file, _line, _function, tmp);
-        set_json_key_pass(_file, _line, _function, tmp_v, PARAMETER_VALUE_KEY);
+        set_json_key_pass(_file, _line, _function, tmp_v, PVLK);
         set_json_type_pass(_file, _line, _function, tmp_v, as_json_type[type]);
         set_json_value_n_pass(_file, _line, _function, tmp_v, as_json_type[type],
                               value, n);

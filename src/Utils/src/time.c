@@ -9,9 +9,9 @@
 #include <string.h>
 #include "utils_private.h"
 
-#define LEN_DATE 50                         /** Maximum date string length */
-#define LEN_TIME LEN_DATE                   /** Maximum date string length */
-#define LEN_DATE_TIME (LEN_DATE + LEN_TIME) /** Maximum date string length */
+#define UDLN 50            /** Maximum date string length */
+#define UTLN UDLN          /** Maximum time string length */
+#define UDTL (UDLN + UTLN) /** Maximum date time string length */
 
 /*******************************************************************************
  * @brief Get the clock time
@@ -31,14 +31,14 @@ double get_clock_time(double initial)
  ******************************************************************************/
 string_t get_clock_time_string(double clock_time)
 {
-    char tmp[LEN_TIME];
+    char tmp[UTLN];
 
     int h = (int)(clock_time / 3600.0);
     int m = (int)((clock_time - h * 3600.0) / 60.0);
     int s = (int)((clock_time - h * 3600.0 - m * 60.0));
 
     double ms = clock_time - (h * 60.0 + m * 3600.0 + s);
-    snprintf(tmp, LEN_TIME - 1, "%dh:%dm:%ds,%e", h, m, s, ms);
+    snprintf(tmp, UTLN - 1, "%dh:%dm:%ds,%e", h, m, s, ms);
 
     return allocate_strcpy(trim(tmp));
 }
@@ -50,8 +50,8 @@ string_t get_clock_time_string(double clock_time)
  ******************************************************************************/
 string_t get_date_string(time_t time)
 {
-    char tmp[LEN_DATE];
-    strftime(tmp, LEN_DATE - 1, "%d-%m-%Y", localtime(&time));
+    char tmp[UDLN];
+    strftime(tmp, UDLN - 1, "%d-%m-%Y", localtime(&time));
     return allocate_strcpy(trim(tmp));
 }
 
@@ -62,8 +62,8 @@ string_t get_date_string(time_t time)
  ******************************************************************************/
 string_t get_date_time_string(time_t time)
 {
-    char tmp[LEN_DATE_TIME];
-    strftime(tmp, LEN_DATE_TIME - 1, "%d-%m-%YT%H:%M:%S", localtime(&time));
+    char tmp[UDTL];
+    strftime(tmp, UDTL - 1, "%d-%m-%YT%H:%M:%S", localtime(&time));
     return allocate_strcpy(trim(tmp));
 }
 
@@ -83,7 +83,7 @@ time_t get_now()
  ******************************************************************************/
 string_t get_time_string(time_t time)
 {
-    char tmp[LEN_TIME];
-    strftime(tmp, LEN_TIME - 1, "%H:%M:%S", localtime(&time));
+    char tmp[UTLN];
+    strftime(tmp, UTLN - 1, "%H:%M:%S", localtime(&time));
     return allocate_strcpy(trim(tmp));
 }

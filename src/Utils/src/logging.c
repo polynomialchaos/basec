@@ -10,23 +10,22 @@
 #include <stdarg.h>
 #include "utils_private.h"
 
-#define MSG_SYM '=' /** Logging message separator symbol */
+#define ULMS '=' /** Logging message separator symbol */
 
 /** Logging level strings */
 cstring_t level_strings[_logging_level_max] = {
     "DEBUG", "INFO", "WARNING", "ERROR"};
 
-bool_t error_state = FALSE;        /** Error state flag */
-bool_t global_error_state = FALSE; /** Global error state flag */
-bool_t abort_active = FALSE;       /** Abort active flag */
-bool_t exit_with_failure = TRUE;   /** Exit with failure flag */
+bool_t error_state = BFLS;        /** Error state flag */
+bool_t global_error_state = BFLS; /** Global error state flag */
+bool_t abort_active = BFLS;       /** Abort active flag */
+bool_t exit_with_failure = BTRU;   /** Exit with failure flag */
 
 /** Global error state function pointer */
 void_ft global_error_state_handler_fun_ptr = NULL;
 
 /** Error state function pointer */
 void_ft error_state_handler_fun_ptr = NULL;
-
 
 /** Exit function pointer */
 void_ft exit_handler_fun_ptr = default_exit_handler;
@@ -49,7 +48,7 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
                  logging_level_t level, cstring_t format, ...)
 {
     if (level > Warning)
-        error_state = TRUE;
+        error_state = BTRU;
 
     va_list arg;
     va_start(arg, format);
@@ -57,7 +56,7 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
     if (level > Info)
     {
         printf_r("\n");
-        printf_r_sep(MSG_SYM);
+        printf_r_sep(ULMS);
     }
 
     printf_r("%s:", level_strings[level]);
@@ -72,12 +71,12 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
 
     if (level > Info)
     {
-        printf_r_sep(MSG_SYM);
+        printf_r_sep(ULMS);
     }
 
     va_end(arg);
 
-    check_abort(FALSE);
+    check_abort(BFLS);
 }
 
 /*******************************************************************************

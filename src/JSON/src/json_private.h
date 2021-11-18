@@ -12,25 +12,25 @@
 #include "basec/utils_module.h"
 #include "basec/json_module.h"
 
-#define JSON_ERROR "Unknown JSON data type (%d)!" /** Unknown type string */
-#define JSON_TRUE "true"                          /** JSON TRUE string */
-#define JSON_FALSE "false"                        /** JSON FALSE string */
-#define JSON_NULL "null"                          /** JSON null string */
+#define JERR "Unknown JSON data type (%d)!" /** Unknown type string */
+#define JTRU "true"                         /** JSON BTRU string */
+#define JFLS "false"                        /** JSON BFLS string */
+#define JNLL "null"                         /** JSON null string */
 
-#define BUF_LEN 2048 /** Maximum buffer length */
+#define JBFL 2048 /** Maximum buffer length */
 
 /*******************************************************************************
  * @brief buffer structure
  ******************************************************************************/
 typedef struct Buffer
 {
-    char buffer[BUF_LEN]; /** Buffer array */
-    size_t cursor;        /** Buffer cursor in array */
-    int length;           /** Buffer length */
-    bool_t skip;          /** Skip flag */
-    bool_t is_control;    /** Control flag */
-    bool_t is_file;       /** File flag */
-    int is_eof;           /** EOF flag */
+    char buffer[JBFL]; /** Buffer array */
+    size_t cursor;     /** Buffer cursor in array */
+    int length;        /** Buffer length */
+    bool_t skip;       /** Skip flag */
+    bool_t is_control; /** Control flag */
+    bool_t is_file;    /** File flag */
+    int is_eof;        /** EOF flag */
     union
     {
         FILE *file;   /** File pointer */

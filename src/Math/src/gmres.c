@@ -159,5 +159,5 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
         norm_r0 = len_n(r0, nm);
     }
 
-    log_error(MATH_ITER_FMT, __FUNCTION__, iter);
+    log_error(MITF, __FUNCTION__, iter);
 }

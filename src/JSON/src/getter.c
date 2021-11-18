@@ -27,28 +27,36 @@ JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
                                      cstring_t _function,
                                      JSON_t *this, cstring_t path)
 {
-    check_expression_pass(_file, _line, _function, (this != NULL));
-    if ((path == NULL) || (path[0] == NULL_CHAR))
+    check_expression_pass(_file, _line, _function, this != NULL);
+
+    /** either path is NULL or empty, or base level is called */
+    if ((path == NULL) || (path[0] == BNCH))
         return this;
 
-    size_t pos = strcspn(path, "/");
-    string_t node = ALLOCATE(sizeof(char) * (pos + 1));
-    strncpy(node, path, pos);
-    node[pos] = NULL_CHAR;
+    /** allocate level substring */
+    size_t len = strcspn(path, "/");
+    string_t level = ALLOCATE(sizeof(char) * (len + 1));
+    strncpy(level, path, len);
+    level[len] = BNCH;
 
+    /** loop through childs an break on identical level/key */
     JSON_t *result = NULL;
     for (size_t i = 0; i < list_length(this->childs); ++i)
     {
         JSON_t *tmp = list_get_ith(this->childs, i);
-        if ((tmp->key != NULL) && is_equal(node, tmp->key))
+        if ((tmp->key != NULL) && is_equal(level, tmp->key))
+        {
             result = tmp;
+            break;
+        }
     }
 
-    if ((result != NULL) && (pos + 1 < len_trim(path)))
+    /** child found but path is not empty */
+    if ((result != NULL) && (len_trim(path) > len + 1))
         result = get_json_object_by_path_pass(_file, _line, _function,
-                                              result, &path[pos + 1]);
+                                              result, &path[len + 1]);
 
-    DEALLOCATE(node);
+    DEALLOCATE(level);
     return result;
 }
 
@@ -66,8 +74,8 @@ void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void *value, size_t i)
 {
-    check_expression_pass(_file, _line, _function, (this != NULL));
-    check_expression_pass(_file, _line, _function, (this->type == type));
+    check_expression_pass(_file, _line, _function, this != NULL);
+    check_expression_pass(_file, _line, _function, this->type == type);
 
     switch (type)
     {
@@ -87,7 +95,7 @@ void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
         }
         break;
     default:
-        log_error_pass(_file, _line, _function, JSON_ERROR, type);
+        log_error_pass(_file, _line, _function, JERR, type);
         break;
     }
 }
@@ -106,8 +114,8 @@ void get_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void **value, size_t *n)
 {
-    check_expression_pass(_file, _line, _function, (this != NULL));
-    check_expression_pass(_file, _line, _function, (this->type == JSONArray));
+    check_expression_pass(_file, _line, _function, this != NULL);
+    check_expression_pass(_file, _line, _function, this->type == JSONArray);
 
     (*n) = count_json_childs(this);
     (*value) = ALLOCATE(json_type_size[type] * (*n));

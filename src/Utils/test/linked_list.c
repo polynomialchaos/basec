@@ -26,8 +26,8 @@ void deallocate_data(void *data)
 bool_t check_data(void *data)
 {
     int tmp = VOID_DEREF(int, data);
-    printf_r("check: %d\n", tmp == -10 ? TRUE : FALSE);
-    return tmp == -10 ? TRUE : FALSE;
+    printf_r("check: %d\n", tmp == -10 ? BTRU : BFLS);
+    return tmp == -10 ? BTRU : BFLS;
 }
 
 /*******************************************************************************
@@ -50,8 +50,8 @@ int main()
     list_prepend(test, sizeof(test_val), REF(test_val));
     check_expression(list_length(test) == 3);
 
-    check_expression(list_all(test, check_data) == FALSE);
-    check_expression(list_any(test, check_data) == TRUE);
+    check_expression(list_all(test, check_data) == BFLS);
+    check_expression(list_any(test, check_data) == BTRU);
 
     list_for_each(test, deallocate_data);
 

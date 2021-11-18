@@ -13,6 +13,6 @@
 #include "basec/math_module.h"
 
 /** Iteration limit reacher string */
-#define MATH_ITER_FMT "Reached %s function iteration limit (%d)!"
+#define MITF "Reached %s function iteration limit (%d)!"
 
 #endif /* MATH_PRIVATE_H */
