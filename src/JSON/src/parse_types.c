@@ -10,6 +10,20 @@
 #include <string.h>
 #include "json_private.h"
 
+#define JWSP ' '  /** Whitespace */
+#define JNWL '\n' /** Newline */
+#define JTBS '\t' /** Tabstop */
+#define JRET '\r' /** Return */
+#define JCTR '\\' /** Control */
+
+#define JLBC '{' /** Left brace */
+#define JRBC '}' /** Right brace */
+#define JLBK '[' /** Left bracket */
+#define JRBK ']' /** Left bracket */
+#define JSTR '"' /** String keeper */
+#define JOSP ':' /** Object separator */
+#define JVSP ',' /** Value separator */
+
 /*******************************************************************************
  * @brief Append no chars to an other string
  * @param string
@@ -59,14 +73,14 @@ void fill_read_buffer(buffer_t *buffer)
         // char parse section
         char tmp = (char)buffer->is_eof;
 
-        if ((!buffer->is_control) && (tmp == '"'))
+        if ((!buffer->is_control) && (tmp == JSTR))
             buffer->skip = !buffer->skip ? BTRU : BFLS;
 
-        if ((buffer->skip && (tmp == ' ')) ||
-            (tmp == '\n') || (tmp == '\r') || (tmp == '\t'))
+        if ((buffer->skip && (tmp == JWSP)) ||
+            (tmp == JNWL) || (tmp == JRET) || (tmp == JTBS))
             continue;
 
-        buffer->is_control = (tmp == '\\');
+        buffer->is_control = (tmp == JCTR);
         buffer->buffer[buffer->cursor + buffer->length] = tmp;
         buffer->length++;
     }
@@ -133,7 +147,7 @@ string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
             pos = 0;
         }
 
-        was_ctrl = use_ctrl ? (buffer->buffer[buffer->cursor] == '\\') : BFLS;
+        was_ctrl = use_ctrl ? (buffer->buffer[buffer->cursor] == JCTR) : BFLS;
         tmp_string[pos] = buffer->buffer[buffer->cursor];
         pos++;
 
@@ -154,7 +168,7 @@ string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
 void parse_json_array(cstring_t _file, int _line, cstring_t _function,
                       JSON_t *this, buffer_t *buffer)
 {
-    if (buffer->buffer[buffer->cursor] == ']')
+    if (buffer->buffer[buffer->cursor] == JRBK)
         return;
 
     JSON_t *child = create_json_child_pass(_file, _line, _function, this);
@@ -173,24 +187,24 @@ void parse_json_array(cstring_t _file, int _line, cstring_t _function,
 void parse_json_object(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, buffer_t *buffer)
 {
-    if (buffer->buffer[buffer->cursor] == '}')
+    if (buffer->buffer[buffer->cursor] == JRBC)
         return;
 
     check_expression_pass(_file, _line, _function,
-                          buffer->buffer[buffer->cursor] == '"');
+                          buffer->buffer[buffer->cursor] == JSTR);
     increment_read_buffer(buffer);
 
-    static const char breaks[] = {'"'};
+    static const char breaks[] = {JSTR};
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
     check_expression_pass(_file, _line, _function,
-                          buffer->buffer[buffer->cursor] == '"');
+                          buffer->buffer[buffer->cursor] == JSTR);
     increment_read_buffer(buffer);
 
     check_expression_pass(_file, _line, _function,
-                          buffer->buffer[buffer->cursor] == ':');
+                          buffer->buffer[buffer->cursor] == JOSP);
     increment_read_buffer(buffer);
 
     JSON_t *child = create_json_child_pass(_file, _line, _function, this);
@@ -218,30 +232,30 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
 
     switch (buffer->buffer[buffer->cursor])
     {
-    case '{':
+    case JLBC:
         increment_read_buffer(buffer);
         set_json_type_pass(_file, _line, _function, this, JSONObject);
         parse_json_object(_file, _line, _function, this, buffer);
-        while (buffer->buffer[buffer->cursor] == ',')
+        while (buffer->buffer[buffer->cursor] == JVSP)
         {
             increment_read_buffer(buffer);
             parse_json_object(_file, _line, _function, this, buffer);
         }
         check_expression_pass(_file, _line, _function,
-                              buffer->buffer[buffer->cursor] == '}');
+                              buffer->buffer[buffer->cursor] == JRBC);
         increment_read_buffer(buffer);
         break;
-    case '[':
+    case JLBK:
         increment_read_buffer(buffer);
         set_json_type_pass(_file, _line, _function, this, JSONArray);
         parse_json_array(_file, _line, _function, this, buffer);
-        while (buffer->buffer[buffer->cursor] == ',')
+        while (buffer->buffer[buffer->cursor] == JVSP)
         {
             increment_read_buffer(buffer);
             parse_json_array(_file, _line, _function, this, buffer);
         }
         check_expression_pass(_file, _line, _function,
-                              buffer->buffer[buffer->cursor] == ']');
+                              buffer->buffer[buffer->cursor] == JRBK);
         increment_read_buffer(buffer);
         break;
     case 'n':
@@ -259,11 +273,11 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
     case '0' ... '9':
         parse_json_value_number(_file, _line, _function, this, buffer);
         break;
-    case '"':
+    case JSTR:
         increment_read_buffer(buffer);
         parse_json_value_string(_file, _line, _function, this, buffer);
         check_expression_pass(_file, _line, _function,
-                              buffer->buffer[buffer->cursor] == '"');
+                              buffer->buffer[buffer->cursor] == JSTR);
         increment_read_buffer(buffer);
         break;
     default:
@@ -285,7 +299,7 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
                               JSON_t *this, buffer_t *buffer)
 {
-    static const char breaks[] = {'"', '}', ']', ','};
+    static const char breaks[] = {JSTR, JRBC, JRBK, JVSP};
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
@@ -310,7 +324,7 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, buffer_t *buffer)
 {
-    static const char breaks[] = {'"', '}', ']', ','};
+    static const char breaks[] = {JSTR, JRBC, JRBK, JVSP};
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
@@ -332,7 +346,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
-    static const char breaks[] = {'"', '}', ']', ','};
+    static const char breaks[] = {JSTR, JRBC, JRBK, JVSP};
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
@@ -367,7 +381,7 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
 void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
 {
-    static const char breaks[] = {'"'};
+    static const char breaks[] = {JSTR};
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     this->string = read_buffer_until_break(buffer, breaks, n_breaks, BTRU);

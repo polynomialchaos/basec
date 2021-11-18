@@ -21,11 +21,12 @@ JSON_t *create_json_child_pass(cstring_t _file, int _line, cstring_t _function,
 {
     check_expression_pass(_file, _line, _function, this != NULL);
     check_expression_pass(_file, _line, _function,
-                     (this->type == JSONObject) || (this->type == JSONArray));
+                          (this->type == JSONObject) || (this->type == JSONArray));
 
     if (this->childs == NULL)
     {
-        this->childs = list_allocate_pass(_file, _line, _function, free_json_object);
+        this->childs = list_allocate_pass(_file, _line, _function,
+                                          free_json_object);
     }
 
     JSON_t *child = create_json_object();
