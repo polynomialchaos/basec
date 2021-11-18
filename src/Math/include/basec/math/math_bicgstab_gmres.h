@@ -26,9 +26,9 @@ size_t get_bicgstab_n_m_work_size(size_t n, size_t m);
 
 /*******************************************************************************
  * @brief Get the gmres n m work size
- * @param n
- * @param m
- * @param n_dims
+ * @param[in] n
+ * @param[in] m
+ * @param[in] n_dims
  * @return size_t
  ******************************************************************************/
 size_t get_gmres_n_m_work_size(size_t n, size_t m, int n_dims);

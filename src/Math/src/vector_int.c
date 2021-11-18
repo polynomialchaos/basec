@@ -13,10 +13,10 @@
 /*******************************************************************************
  * @brief Copy an integer vector to a other integer vector
  * @param[in] source
- * @param[out] dest
  * @param[in] n
+ * @param[out] dest
  ******************************************************************************/
-void copy_int_n(int *source, int *dest, size_t n)
+void copy_int_n(int *source, size_t n, int *dest)
 {
     for (size_t i = 0; i < n; ++i)
         dest[i] = source[i];
@@ -57,10 +57,10 @@ int min_int_n(int *a, size_t n)
 /*******************************************************************************
  * @brief Set all elements in an integer vector to a value
  * @param[in] value
- * @param[out] a
  * @param[in] n
+ * @param[out] a
  ******************************************************************************/
-void set_value_int_n(int value, int *a, size_t n)
+void set_value_int_n(int value, size_t n, int *a)
 {
     for (size_t i = 0; i < n; ++i)
         a[i] = value;

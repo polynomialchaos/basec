@@ -17,6 +17,7 @@ add_subdirectory(Utils)
 add_subdirectory(JSON)
 add_subdirectory(Parameter)
 add_subdirectory(Math)
+add_subdirectory(MPI)
 
 #*******************************************************************************
 # Build target
@@ -26,7 +27,7 @@ if(shared_lib)
 else()
     add_library(${target} STATIC)
 endif()
-target_link_libraries( ${target} Utils JSON Parameter Math)
+target_link_libraries( ${target} Utils JSON Parameter Math MPI)
 set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
 
 #*******************************************************************************

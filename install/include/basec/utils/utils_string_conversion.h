@@ -13,26 +13,26 @@
 #include "basec/basec_type.h"
 
 /** String conversion failed message */
-#define CONV_FAIL "String conversion of '%s' failed (%s)!"
+#define USCF "String conversion of '%s' failed (%s)!"
 
 /*******************************************************************************
  * @brief A macro to convert a string to a value
  ******************************************************************************/
-#define string_to(string, type, value) (                                    \
-    {                                                                       \
-        int error = string_to_wo_check((string), (type), (value));          \
-        if (error != StringOK)                                              \
-            log_error(CONV_FAIL, (#string), conversion_flag_string(error)); \
+#define string_to(string, type, value) (                               \
+    {                                                                  \
+        int error = string_to_wo_check((string), (type), (value));     \
+        if (error != StringOK)                                         \
+            log_error(USCF, (#string), conversion_flag_string(error)); \
     })
 
 /*******************************************************************************
  * @brief A macro to convert a string to a value array
  ******************************************************************************/
-#define string_to_n(string, type, value, n) (                               \
-    {                                                                       \
-        int error = string_to_n_wo_check((string), (type), (value), (n));   \
-        if (error != StringOK)                                              \
-            log_error(CONV_FAIL, (#string), conversion_flag_string(error)); \
+#define string_to_n(string, type, value, n) (                             \
+    {                                                                     \
+        int error = string_to_n_wo_check((string), (type), (value), (n)); \
+        if (error != StringOK)                                            \
+            log_error(USCF, (#string), conversion_flag_string(error));    \
     })
 
 /*******************************************************************************

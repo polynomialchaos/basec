@@ -37,7 +37,7 @@ double get_clock_time(double initial);
 
 /*******************************************************************************
  * @brief Get the clock time string
- * @param clock_time
+ * @param[in] clock_time
  * @return string_t
  ******************************************************************************/
 string_t get_clock_time_string(double clock_time);
@@ -64,7 +64,7 @@ time_t get_now();
 
 /*******************************************************************************
  * @brief Get the time string based on given time.
- * @param time
+ * @param[in] time
  * @return string_t
  ******************************************************************************/
 string_t get_time_string(time_t time);

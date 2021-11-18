@@ -22,14 +22,14 @@
  * @brief A macro to compare values within epsilon tolerance
  ******************************************************************************/
 #define EQ_T(a, b) (                                                   \
-    { ABS_T((a) - (b)) <= (DOUBLE_EPS * MAX_T(ABS_T((a)), ABS_T((b)))) \
+    { ABS_T((a) - (b)) <= (BDEP * MAX_T(ABS_T((a)), ABS_T((b)))) \
           ? 1                                                          \
           : 0; })
 
 /*******************************************************************************
  * @brief A macro to compare value within epsilon tolerance to zero
  ******************************************************************************/
-#define EQ0_T(a) ({ ABS_T((a)) <= (DOUBLE_MIN * 10) ? 1 : 0; })
+#define EQ0_T(a) ({ ABS_T((a)) <= (BDMN * 10) ? 1 : 0; })
 
 /*******************************************************************************
  * @brief  A macro to return the maximum of two values
@@ -55,6 +55,11 @@
  * @brief A macro to return value as refernce
  ******************************************************************************/
 #define REF(reference) &(reference)
+
+/*******************************************************************************
+ * @brief A macro to touch a pointer to prevent debug warnings
+ ******************************************************************************/
+#define UNUSED(pointer) (void)(pointer)
 
 /*******************************************************************************
  * @brief A macro to return value as void refernce

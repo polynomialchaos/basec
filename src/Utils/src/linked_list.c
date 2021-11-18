@@ -14,8 +14,8 @@
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param ith
+ * @param[in] list
+ * @param[in] ith
  * @return node_t*
  ******************************************************************************/
 node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
@@ -23,8 +23,8 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Deallocate a node
- * @param node
- * @param fun_ptr
+ * @param[in] node
+ * @param[in] fun_ptr
  ******************************************************************************/
 void list_deallocate_node(node_t *node, void_void_ft fun_ptr);
 
@@ -33,7 +33,7 @@ void list_deallocate_node(node_t *node, void_void_ft fun_ptr);
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param fun_ptr
+ * @param[in] fun_ptr
  * @return list_t*
  ******************************************************************************/
 list_t *list_allocate_pass(cstring_t _file, int _line, cstring_t _function,
@@ -50,8 +50,8 @@ list_t *list_allocate_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param fun_ptr
+ * @param[in] list
+ * @param[in] fun_ptr
  * @return bool_t
  ******************************************************************************/
 bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
@@ -79,9 +79,9 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param size
- * @param data
+ * @param[in] list
+ * @param[in] size
+ * @param[in] data
  ******************************************************************************/
 void list_append_pass(cstring_t _file, int _line, cstring_t _function,
                       list_t *list, size_t size, void *data)
@@ -113,10 +113,9 @@ void list_append_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param fun_ptr
- * @return true
- * @return false
+ * @param[in] list
+ * @param[in] fun_ptr
+ * @return bool_t
  ******************************************************************************/
 bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
                      list_t *list, bool_void_ft fun_ptr)
@@ -144,8 +143,8 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param ith
+ * @param[in] list
+ * @param[in] ith
  ******************************************************************************/
 void list_deallocate_ith_pass(cstring_t _file, int _line, cstring_t _function,
                               list_t *list, size_t ith)
@@ -172,8 +171,8 @@ void list_deallocate_ith_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Deallocate a node
- * @param node
- * @param fun_ptr
+ * @param[in] node
+ * @param[in] fun_ptr
  ******************************************************************************/
 void list_deallocate_node(node_t *node, void_void_ft fun_ptr)
 {
@@ -192,7 +191,7 @@ void list_deallocate_node(node_t *node, void_void_ft fun_ptr)
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
+ * @param[in] list
  ******************************************************************************/
 void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
                           list_t *list)
@@ -217,8 +216,8 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param fun_ptr
+ * @param[in] list
+ * @param[in] fun_ptr
  ******************************************************************************/
 void list_for_each_pass(cstring_t _file, int _line, cstring_t _function,
                         list_t *list, void_void_ft fun_ptr)
@@ -239,7 +238,7 @@ void list_for_each_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
+ * @param[in] list
  * @return void*
  ******************************************************************************/
 void *list_get_first_pass(cstring_t _file, int _line, cstring_t _function,
@@ -253,8 +252,8 @@ void *list_get_first_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param ith
+ * @param[in] list
+ * @param[in] ith
  * @return node_t*
  ******************************************************************************/
 node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
@@ -275,8 +274,8 @@ node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param ith
+ * @param[in] list
+ * @param[in] ith
  * @return void*
  ******************************************************************************/
 void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
@@ -292,7 +291,7 @@ void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
+ * @param[in] list
  * @return void*
  ******************************************************************************/
 void *list_get_last_pass(cstring_t _file, int _line, cstring_t _function,
@@ -307,8 +306,8 @@ void *list_get_last_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param fun_ptr
+ * @param[in] list
+ * @param[in] fun_ptr
  ******************************************************************************/
 void list_init_pass(cstring_t _file, int _line, cstring_t _function,
                     list_t *list, void_void_ft fun_ptr)
@@ -323,7 +322,7 @@ void list_init_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Return the number of a linked list elements
- * @param list
+ * @param[in] list
  * @return size_t
  ******************************************************************************/
 size_t list_length(list_t *list)
@@ -336,9 +335,9 @@ size_t list_length(list_t *list)
  * @param[in] _file
  * @param[in] _line
  * @param[in] _function
- * @param list
- * @param size
- * @param data
+ * @param[in] list
+ * @param[in] size
+ * @param[in] data
  ******************************************************************************/
 void list_prepend_pass(cstring_t _file, int _line, cstring_t _function,
                        list_t *list, size_t size, void *data)

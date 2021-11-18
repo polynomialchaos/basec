@@ -41,7 +41,7 @@ void_ft exit_handler_fun_ptr = default_exit_handler;
  * @param[in] _function2
  * @param[in] level
  * @param[in] format
- * @param ...
+ * @param[in] ...
  ******************************************************************************/
 void add_logging(cstring_t _file, int _line, cstring_t _function,
                  cstring_t _file2, int _line2, cstring_t _function2,
@@ -127,7 +127,7 @@ bool_t is_active_error()
 
 /*******************************************************************************
  * @brief Set the error state handler
- * @param fun_ptr
+ * @param[in] fun_ptr
  ******************************************************************************/
 void set_error_state_handler(void_ft fun_ptr)
 {
@@ -136,7 +136,7 @@ void set_error_state_handler(void_ft fun_ptr)
 
 /*******************************************************************************
  * @brief Set the exit with failure flag
- * @param do_failure
+ * @param[in] do_failure
  ******************************************************************************/
 void set_exit_with_failure(bool_t do_failure)
 {
@@ -145,7 +145,7 @@ void set_exit_with_failure(bool_t do_failure)
 
 /*******************************************************************************
  * @brief Set the global error
- * @param error
+ * @param[in] error
  ******************************************************************************/
 void set_global_error(bool_t error)
 {
@@ -154,7 +154,7 @@ void set_global_error(bool_t error)
 
 /*******************************************************************************
  * @brief Set the global error state handler
- * @param fun_ptr
+ * @param[in] fun_ptr
  ******************************************************************************/
 void set_global_error_state_handler(void_ft fun_ptr)
 {
@@ -163,7 +163,7 @@ void set_global_error_state_handler(void_ft fun_ptr)
 
 /*******************************************************************************
  * @brief Set the exit handler
- * @param fun_ptr
+ * @param[in] fun_ptr
  ******************************************************************************/
 void set_exit_handler(void_ft fun_ptr)
 {

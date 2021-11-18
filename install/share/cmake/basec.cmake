@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget Utils Math basec)
+foreach(_expectedTarget Utils JSON Parameter Math MPI basec)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -56,6 +56,22 @@ set_target_properties(Utils PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
 )
 
+# Create imported target JSON
+add_library(JSON INTERFACE IMPORTED)
+
+set_target_properties(JSON PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "Utils"
+)
+
+# Create imported target Parameter
+add_library(Parameter INTERFACE IMPORTED)
+
+set_target_properties(Parameter PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "Utils;JSON"
+)
+
 # Create imported target Math
 add_library(Math INTERFACE IMPORTED)
 
@@ -64,12 +80,20 @@ set_target_properties(Math PROPERTIES
   INTERFACE_LINK_LIBRARIES "m;Utils"
 )
 
+# Create imported target MPI
+add_library(MPI INTERFACE IMPORTED)
+
+set_target_properties(MPI PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include;${_IMPORT_PREFIX}/include"
+  INTERFACE_LINK_LIBRARIES "Utils"
+)
+
 # Create imported target basec
 add_library(basec STATIC IMPORTED)
 
 set_target_properties(basec PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "Utils;Math"
+  INTERFACE_LINK_LIBRARIES "Utils;JSON;Parameter;Math;MPI"
 )
 
 if(CMAKE_VERSION VERSION_LESS 3.0.0)

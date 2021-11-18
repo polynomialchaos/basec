@@ -25,10 +25,10 @@ double angle_n(double *a, double *b, size_t n);
 /*******************************************************************************
  * @brief Copy a vector to a other vector
  * @param[in] source
- * @param[out] dest
  * @param[in] n
+ * @param[out] dest
  ******************************************************************************/
-void copy_n(double *source, double *dest, size_t n);
+void copy_n(double *source, size_t n, double *dest);
 
 /*******************************************************************************
  * @brief Cosinuns(angle) term of two vectors
@@ -133,10 +133,10 @@ void orthonormal_basis_3(double *a, double *b, double *c, double *d);
 /*******************************************************************************
  * @brief Set all elements in a vector to a value
  * @param[in] value
- * @param[out] a
  * @param[in] n
+ * @param[out] a
  ******************************************************************************/
-void set_value_n(double value, double *a, size_t n);
+void set_value_n(double value, size_t n, double *a);
 
 /*******************************************************************************
  * @brief Sum up a vector

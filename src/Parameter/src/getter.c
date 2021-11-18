@@ -11,12 +11,12 @@
 
 /*******************************************************************************
  * @brief Get a parameter and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
- * @param type
- * @param value
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] type
+ * @param[out] value
  ******************************************************************************/
 void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type, void *value)
@@ -27,10 +27,10 @@ void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a vector parameter count and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
  * @return int
  ******************************************************************************/
 int get_parameter_count_pass(cstring_t _file, int _line, cstring_t _function,
@@ -42,17 +42,17 @@ int get_parameter_count_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a vector parameter and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
- * @param value
- * @param type
- * @param n
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] type
+ * @param[out] value
+ * @param[out] n
  ******************************************************************************/
 void get_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
-                          cstring_t path, void **value,
-                          parameter_type_t type, size_t *n)
+                          cstring_t path, parameter_type_t type,
+                          void **value, size_t *n)
 {
     JSON_t *tmp = get_parameter_path_pass(_file, _line, _function, path, 1);
     get_json_value_n_pass(_file, _line, _function, tmp, as_json_type[type], value, n);
@@ -60,10 +60,10 @@ void get_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Check if parameter exists and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
  * @return int
  ******************************************************************************/
 bool_t parameter_exists_pass(cstring_t _file, int _line, cstring_t _function,

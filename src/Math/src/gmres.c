@@ -11,9 +11,9 @@
 
 /*******************************************************************************
  * @brief Get the gmres n m work size
- * @param n
- * @param m
- * @param n_dims
+ * @param[in] n
+ * @param[in] m
+ * @param[in] n_dims
  * @return size_t
  ******************************************************************************/
 size_t get_gmres_n_m_work_size(size_t n, size_t m, int n_dims)
@@ -73,8 +73,8 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
     *iter = 0;
     double tolerance = *residual;
 
-    set_value_n(0.0, x, nm);
-    copy_n(b, r0, nm);
+    set_value_n(0.0, nm, x);
+    copy_n(b, nm, r0);
 
     double norm_r0 = len_n(b, nm);
 

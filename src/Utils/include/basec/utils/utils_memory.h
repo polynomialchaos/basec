@@ -47,7 +47,7 @@ void *allocate_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Deallocate portion of memory
- * @param ptr
+ * @param[in] ptr
  ******************************************************************************/
 void deallocate_wo_null(void *ptr);
 

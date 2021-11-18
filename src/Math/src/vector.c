@@ -24,18 +24,13 @@ double angle_n(double *a, double *b, size_t n)
 /*******************************************************************************
  * @brief Copy a vector to a other vector
  * @param[in] source
- * @param[out] dest
  * @param[in] n
+ * @param[out] dest
  ******************************************************************************/
-double cos_angle_n(double *a, double *b, size_t n)
+void copy_n(double *source, size_t n, double *dest)
 {
-
-    double result = dot_n(a, b, n);
-    result /= len_n(a, n);
-    result /= len_n(b, n);
-    result = MAX_T(MIN_T(result, 1.0), -1.0);
-
-    return result;
+    for (size_t i = 0; i < n; ++i)
+        dest[i] = source[i];
 }
 
 /*******************************************************************************
@@ -45,10 +40,14 @@ double cos_angle_n(double *a, double *b, size_t n)
  * @param[in] n
  * @return double
  ******************************************************************************/
-void copy_n(double *source, double *dest, size_t n)
+double cos_angle_n(double *a, double *b, size_t n)
 {
-    for (size_t i = 0; i < n; ++i)
-        dest[i] = source[i];
+    double result = dot_n(a, b, n);
+    result /= len_n(a, n);
+    result /= len_n(b, n);
+    result = MAX_T(MIN_T(result, 1.0), -1.0);
+
+    return result;
 }
 
 /*******************************************************************************
@@ -223,10 +222,10 @@ void orthonormal_basis_3(double *a, double *b, double *c, double *d)
 /*******************************************************************************
  * @brief Set all elements in a vector to a value
  * @param[in] value
- * @param[out] a
  * @param[in] n
+ * @param[out] a
  ******************************************************************************/
-void set_value_n(double value, double *a, size_t n)
+void set_value_n(double value, size_t n, double *a)
 {
     for (size_t i = 0; i < n; ++i)
         a[i] = value;

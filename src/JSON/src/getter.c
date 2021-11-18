@@ -16,11 +16,11 @@ const size_t json_type_size[_json_type_max] = {
 
 /*******************************************************************************
  * @brief Get a JSON object by path and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param path
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] path
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
@@ -62,17 +62,17 @@ JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
 
 /*******************************************************************************
  * @brief Get a JSON value at index i and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param type
- * @param value
- * @param i
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] type
+ * @param[in] i
+ * @param[out] value
  ******************************************************************************/
 void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
-                           void *value, size_t i)
+                           size_t i, void *value)
 {
     check_expression_pass(_file, _line, _function, this != NULL);
     check_expression_pass(_file, _line, _function, this->type == type);
@@ -102,13 +102,13 @@ void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a JSON value vector and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param type
- * @param value
- * @param n
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] type
+ * @param[out] value
+ * @param[out] n
  ******************************************************************************/
 void get_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
@@ -123,6 +123,6 @@ void get_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
     for (size_t i = 0; i < (*n); ++i)
     {
         JSON_t *tmp = list_get_ith(this->childs, i);
-        get_json_value_i_pass(_file, _line, _function, tmp, type, *value, i);
+        get_json_value_i_pass(_file, _line, _function, tmp, type, i, *value);
     }
 }

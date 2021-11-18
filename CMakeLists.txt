@@ -52,19 +52,25 @@ endif()
 set(build_unit_tests ON CACHE BOOL "Build unit tests")
 set(memory_check ON CACHE BOOL "Build unit tests together with memory check")
 set(shared_lib OFF CACHE BOOL "Provide a shared or static library")
+set(use_mpi ON CACHE BOOL "Use the message passing interface")
 
 if(build_unit_tests)
     enable_testing()
     if(memory_check)
-        include(CTest)
-        find_program(MEMORYCHECK_COMMAND NAMES valgrind)
         set(MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
             --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
+        # set(MEMORYCHECK_SUPPRESSIONS_FILE "${PROJECT_BINARY_DIR}/mpi_sup.sup_scal")
+        include(CTest)
+        find_program(MEMORYCHECK_COMMAND NAMES valgrind)
     endif()
 endif()
 
 if(shared_lib)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC" )
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+endif()
+
+if(use_mpi)
+    add_definitions("-DMPI")
 endif()
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)

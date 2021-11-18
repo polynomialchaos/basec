@@ -10,15 +10,15 @@
 
 /*******************************************************************************
  * @brief Set a parameter and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
- * @param type
- * @param value
- * @param description
- * @param options
- * @param n_options
+ * @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] type
+ * @param[in] value
+ * @param[in] description
+ * @param[in] options
+ * @param[in] n_options
  ******************************************************************************/
 void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type,
@@ -68,16 +68,16 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Set a vector parameter and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param path
- * @param type
- * @param value
- * @param n
- * @param description
- * @param options
- * @param n_options
+ * @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] type
+ * @param[in] value
+ * @param[in] n
+ * @param[in] description
+ * @param[in] options
+ * @param[in] n_options
  ******************************************************************************/
 void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           cstring_t path, parameter_type_t type,

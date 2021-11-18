@@ -27,13 +27,13 @@
  * @brief A macro to get a JSON object value
  ******************************************************************************/
 #define get_json_value(this, type, value) \
-    get_json_value_i_pass(__PASS__, (this), (type), (0), (value))
+    get_json_value_i_pass(__PASS__, (this), (type), (value), (0))
 
 /*******************************************************************************
  * @brief A macro to get a JSON object value at index i
  ******************************************************************************/
-#define get_json_value_i(this, type, i, value) \
-    get_json_value_i_pass(__PASS__, (this), (type), (i), (value))
+#define get_json_value_i(this, type, value, i) \
+    get_json_value_i_pass(__PASS__, (this), (type), (value), (i))
 
 /*******************************************************************************
  * @brief A macro to get all JSON object values
@@ -46,7 +46,7 @@
  ******************************************************************************/
 #define get_json_value_pass(_file, _line, _function, this, type, value) \
     get_json_value_i_pass((_file), (_line), (_function),                \
-                          (this), (type), (0), (value))
+                          (this), (type), (value), (0))
 
 /*******************************************************************************
  * @brief A macro to parse a JSON file
@@ -152,10 +152,10 @@ typedef struct JSON
 
 /*******************************************************************************
  * @brief Create a JSON object child and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *create_json_child_pass(cstring_t _file, int _line, cstring_t _function,
@@ -169,24 +169,24 @@ JSON_t *create_json_object();
 
 /*******************************************************************************
  * @brief Count number of JSON object childs
- * @param[in] this
+ * @param this
  * @return size_t
  ******************************************************************************/
 size_t count_json_childs(JSON_t *this);
 
 /*******************************************************************************
  * @brief Deallocate a JSON object
- * @param[in] this
+ * @param this
  ******************************************************************************/
 void free_json_object(void *this);
 
 /*******************************************************************************
  * @brief Get a JSON object by path and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] path
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param path
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
@@ -195,27 +195,27 @@ JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
 
 /*******************************************************************************
  * @brief Get a JSON value at index i and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] type
- * @param[in] i
- * @param[out] value
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param type
+ * @param value
+ * @param i
  ******************************************************************************/
 void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
-                           size_t i, void *value);
+                           void *value, size_t i);
 
 /*******************************************************************************
  * @brief Get a JSON value vector and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] type
- * @param[out] value
- * @param[out] n
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param type
+ * @param value
+ * @param n
  ******************************************************************************/
 void get_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
@@ -223,10 +223,10 @@ void get_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JOSN file and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
@@ -234,10 +234,10 @@ JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JOSN string and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] string
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param string
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *parse_json_string_pass(cstring_t _file, int _line, cstring_t _function,
@@ -245,34 +245,34 @@ JSON_t *parse_json_string_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Print a JSON object and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] file_pointer
- * @param[in] indent
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param file_pointer
+ * @param indent
  ******************************************************************************/
 void print_json_object_pass(cstring_t _file, int _line, cstring_t _function,
                             JSON_t *this, FILE *file_pointer, int indent);
 
 /*******************************************************************************
  * @brief Set the JSON object key and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] key
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param key
  ******************************************************************************/
 void set_json_key_pass(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, cstring_t key);
 
 /*******************************************************************************
  * @brief Se a JSON object by path and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] path
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param path
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
@@ -281,24 +281,24 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
 
 /*******************************************************************************
  * @brief Set the JSON object type and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] type
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param type
  ******************************************************************************/
 void set_json_type_pass(cstring_t _file, int _line, cstring_t _function,
                         JSON_t *this, json_type_t type);
 
 /*******************************************************************************
  * @brief Set a JSON value at index i and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] type
- * @param[in] value
- * @param[in] i
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param type
+ * @param value
+ * @param i
  ******************************************************************************/
 void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
@@ -306,13 +306,13 @@ void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Set a JSON value vector and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] this
- * @param[in] type
- * @param[in] value
- * @param[in] n
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param this
+ * @param type
+ * @param value
+ * @param n
  ******************************************************************************/
 void set_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,

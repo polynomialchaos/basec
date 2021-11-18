@@ -74,22 +74,22 @@ void free_parameters();
 
 /*******************************************************************************
  * @brief Get a parameter and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
- * @param[in] type
- * @param[out] value
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
+ * @param type
+ * @param value
  ******************************************************************************/
 void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type, void *value);
 
 /*******************************************************************************
  * @brief Get a vector parameter count and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
  * @return int
  ******************************************************************************/
 int get_parameter_count_pass(cstring_t _file, int _line, cstring_t _function,
@@ -97,24 +97,24 @@ int get_parameter_count_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a vector parameter and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
- * @param[in] type
- * @param[out] value
- * @param[out] n
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
+ * @param value
+ * @param type
+ * @param n
  ******************************************************************************/
 void get_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
-                          cstring_t path, parameter_type_t type,
-                          void **value, size_t *n);
+                          cstring_t path, void **value,
+                          parameter_type_t type, size_t *n);
 
 /*******************************************************************************
  * @brief Check if parameter exists and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
  * @return int
  ******************************************************************************/
 bool_t parameter_exists_pass(cstring_t _file, int _line, cstring_t _function,
@@ -138,15 +138,15 @@ void read_user_inputs(cstring_t file_name);
 
 /*******************************************************************************
  * @brief Set a parameter and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
- * @param[in] type
- * @param[in] value
- * @param[in] description
- * @param[in] options
- * @param[in] n_options
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
+ * @param type
+ * @param value
+ * @param description
+ * @param options
+ * @param n_options
  ******************************************************************************/
 void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type,
@@ -155,16 +155,16 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Set a vector parameter and pass file, line, function
-*  @param[in] _file
- * @param[in] _line
- * @param[in] _function
- * @param[in] path
- * @param[in] type
- * @param[in] value
- * @param[in] n
- * @param[in] description
- * @param[in] options
- * @param[in] n_options
+ * @param _file
+ * @param _line
+ * @param _function
+ * @param path
+ * @param type
+ * @param value
+ * @param n
+ * @param description
+ * @param options
+ * @param n_options
  ******************************************************************************/
 void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           cstring_t path, parameter_type_t type,

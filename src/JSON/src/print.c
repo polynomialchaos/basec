@@ -24,12 +24,12 @@
 
 /*******************************************************************************
  * @brief Print a JSON object and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param file_pointer
- * @param indent
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] file_pointer
+ * @param[in] indent
  ******************************************************************************/
 void print_json_object_pass(cstring_t _file, int _line, cstring_t _function,
                             JSON_t *this, FILE *file_pointer, int indent)

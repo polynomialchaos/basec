@@ -79,11 +79,11 @@ bool_t string_to_bool(cstring_t string)
  * @brief Convert string at ith position
  * @param[in] string
  * @param[in] type
+ * @param[in] i
  * @param[out] value
- * @param[out] n
  * @return sc_flag_t
  ******************************************************************************/
-sc_flag_t string_to_i(cstring_t string, sc_type_t type, void *value, size_t i)
+sc_flag_t string_to_i(cstring_t string, sc_type_t type, size_t i, void *value)
 {
     if (string == NULL)
         return StringNull;
@@ -149,7 +149,7 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
 
     for (size_t i = 0; i < (*n); ++i)
     {
-        error = string_to_i(element, type, *value, i);
+        error = string_to_i(element, type, i, *value);
         if (error != StringOK)
             break;
         element = strtok(NULL, USVD);
@@ -168,5 +168,5 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
  ******************************************************************************/
 sc_flag_t string_to_wo_check(cstring_t string, sc_type_t type, void *value)
 {
-    return string_to_i(string, type, value, 0);
+    return string_to_i(string, type, 0, value);
 }

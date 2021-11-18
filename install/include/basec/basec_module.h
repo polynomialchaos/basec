@@ -13,5 +13,9 @@
 #include "basec/basec_type.h"
 
 #include "basec/utils_module.h"
+#include "basec/json_module.h"
+#include "basec/parameter_module.h"
+#include "basec/math_module.h"
+#include "basec/mpi_modules.h"
 
 #endif /* BASEC_MODULE_H */

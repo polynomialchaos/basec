@@ -10,10 +10,10 @@
 
 /*******************************************************************************
  * @brief Create a JSON object child and pass file, line, function
- * @param _file
- * @param _line
- * @param _function
- * @param this
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *create_json_child_pass(cstring_t _file, int _line, cstring_t _function,
@@ -59,7 +59,7 @@ JSON_t *create_json_object()
 
 /*******************************************************************************
  * @brief Count number of JSON object childs
- * @param this
+ * @param[in] this
  * @return size_t
  ******************************************************************************/
 size_t count_json_childs(JSON_t *this)
@@ -69,7 +69,7 @@ size_t count_json_childs(JSON_t *this)
 
 /*******************************************************************************
  * @brief Deallocate a JSON object
- * @param this
+ * @param[in] this
  ******************************************************************************/
 void free_json_object(void *this)
 {

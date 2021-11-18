@@ -22,11 +22,11 @@ extern int as_json_type[]; /** Parameter type sizes */
 
 /*******************************************************************************
  * @brief Get the parameter object by path
- * @param _file
- * @param _line
- * @param _function
- * @param path
- * @param is_required
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] is_required
  * @return JSON_t*
  ******************************************************************************/
 JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,

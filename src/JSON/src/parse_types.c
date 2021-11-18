@@ -32,9 +32,9 @@
 
 /*******************************************************************************
  * @brief Append no chars to an other string
- * @param string
- * @param append
- * @param n
+ * @param[in] string
+ * @param[in] append
+ * @param[in] n
  * @return string_t
  ******************************************************************************/
 string_t append_string(string_t string, string_t append, size_t n)
@@ -50,7 +50,7 @@ string_t append_string(string_t string, string_t append, size_t n)
 
 /*******************************************************************************
  * @brief Fill and read buffer
- * @param buffer
+ * @param[in] buffer
  ******************************************************************************/
 void fill_read_buffer(buffer_t *buffer)
 {
@@ -94,7 +94,7 @@ void fill_read_buffer(buffer_t *buffer)
 
 /*******************************************************************************
  * @brief Increment and read buffer
- * @param buffer
+ * @param[in] buffer
  ******************************************************************************/
 void increment_read_buffer(buffer_t *buffer)
 {
@@ -111,10 +111,10 @@ void increment_read_buffer(buffer_t *buffer)
 
 /*******************************************************************************
  * @brief Check if char is a break char
- * @param c
- * @param breaks
- * @param n
- * @param is_ctrl
+ * @param[in] c
+ * @param[in] breaks
+ * @param[in] n
+ * @param[in] is_ctrl
  * @return bool_t
  ******************************************************************************/
 bool_t check_break(char c, const char *breaks, const int n, bool_t is_ctrl)
@@ -128,10 +128,10 @@ bool_t check_break(char c, const char *breaks, const int n, bool_t is_ctrl)
 
 /*******************************************************************************
  * @brief Read buffer until break an retur allocated string
- * @param buffer
- * @param breaks
- * @param n
- * @param use_ctrl
+ * @param[in] buffer
+ * @param[in] breaks
+ * @param[in] n
+ * @param[in] use_ctrl
  * @return string_t
  ******************************************************************************/
 string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
@@ -165,11 +165,11 @@ string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
 
 /*******************************************************************************
  * @brief Parse a JSON array
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_array(cstring_t _file, int _line, cstring_t _function,
                       JSON_t *this, buffer_t *buffer)
@@ -184,11 +184,11 @@ void parse_json_array(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON object
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_object(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, buffer_t *buffer)
@@ -223,11 +223,11 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON value
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value(cstring_t _file, int _line, cstring_t _function,
                       JSON_t *this, buffer_t *buffer)
@@ -296,11 +296,11 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON logical
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
                               JSON_t *this, buffer_t *buffer)
@@ -321,11 +321,11 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON null object
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, buffer_t *buffer)
@@ -343,11 +343,11 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON number
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)
@@ -378,11 +378,11 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON string
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer)

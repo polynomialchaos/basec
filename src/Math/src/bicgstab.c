@@ -66,14 +66,14 @@ void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
     double omega = 1.0;
 
     // Set initial residual
-    copy_n(b, r, nm);
-    copy_n(r, rtld, nm);
+    copy_n(b, nm, r);
+    copy_n(r, nm, rtld);
 
-    set_value_n(0.0, p, nm);
-    set_value_n(0.0, v, nm);
-    set_value_n(0.0, s, nm);
-    set_value_n(0.0, t, nm);
-    set_value_n(0.0, x, nm);
+    set_value_n(0.0, nm, p);
+    set_value_n(0.0, nm, v);
+    set_value_n(0.0, nm, s);
+    set_value_n(0.0, nm, t);
+    set_value_n(0.0, nm, x);
 
     // Perform BiConjugate Gradient Stabilized iteration.
     for (*iter = 1; *iter <= max_iter; (*iter)++)

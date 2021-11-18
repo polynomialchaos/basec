@@ -27,7 +27,7 @@ FILE *get_stdout()
 
 /*******************************************************************************
  * @brief Print a separator line without title
- * @param symbol
+ * @param[in] symbol
  ******************************************************************************/
 void printf_r_sep(const char symbol)
 {
@@ -38,8 +38,8 @@ void printf_r_sep(const char symbol)
 
 /*******************************************************************************
  * @brief Print a separator line with title
- * @param symbol
- * @param title
+ * @param[in] symbol
+ * @param[in] title
  ******************************************************************************/
 void printf_r_sep_title(const char symbol, cstring_t title)
 {
@@ -55,7 +55,7 @@ void printf_r_sep_title(const char symbol, cstring_t title)
 
 /*******************************************************************************
  * @brief Set the redirected stdout
- * @param file_ptr
+ * @param[in] file_ptr
  ******************************************************************************/
 void set_stdout(FILE *file_ptr)
 {

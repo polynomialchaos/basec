@@ -40,77 +40,77 @@ typedef struct Buffer
 
 /*******************************************************************************
  * @brief Parse a JSON array
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_array(cstring_t _file, int _line, cstring_t _function,
                       JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON object
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_object(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON value
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value(cstring_t _file, int _line, cstring_t _function,
                       JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON logical
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
                               JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON null object
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON number
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer);
 
 /*******************************************************************************
  * @brief Parse a JSON string
- * @param _file
- * @param _line
- * @param _function
- * @param this
- * @param buffer
+*  @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] this
+ * @param[in] buffer
  ******************************************************************************/
 void parse_json_value_string(cstring_t _file, int _line, cstring_t _function,
                              JSON_t *this, buffer_t *buffer);

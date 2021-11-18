@@ -22,10 +22,10 @@ int main()
     check_expression(EQ_T(min_n(vector_3, 3), 1.0));
     check_expression(EQ_T(max_n(vector_3, 3), 3.0));
 
-    set_value_n(3.0, vector_3, 3);
+    set_value_n(3.0, 3, vector_3);
     check_expression(EQ_T(sum_n(vector_3, 3), 9.0));
 
-    copy_n(vector_2, vector_3, 2);
+    copy_n(vector_2, 2, vector_3);
     check_expression(EQ_T(sum_n(vector_3, 3), 6.0));
 
     check_expression(EQ_T(dot_n(vector_2, vector_3, 2), 5.0));
