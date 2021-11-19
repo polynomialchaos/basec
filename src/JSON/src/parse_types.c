@@ -24,12 +24,6 @@
 #define JOSP ':' /** Object separator */
 #define JVSP ',' /** Value separator */
 
-/** Unknown parse type character */
-#define JPTC "Unknown JSON parse type character (%c)!"
-
-/** Unsupported digit/number string */
-#define JUDN "Unsupported JSON type digit/number string (%s)!"
-
 /*******************************************************************************
  * @brief Append no chars to an other string
  * @param[in] string
@@ -288,7 +282,7 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
         break;
     default:
         log_error_pass(_file, _line, _function,
-                       JPTC,
+                       "Unknown JSON parse type character (%c)!",
                        buffer->buffer[buffer->cursor]);
         break;
     }
@@ -370,7 +364,7 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
     else
     {
         log_error_pass(_file, _line, _function,
-                       JUDN, tmp);
+                       "Unsupported JSON type digit/number string (%s)!", tmp);
     }
 
     DEALLOCATE(tmp);

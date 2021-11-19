@@ -6,6 +6,7 @@
  * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
+#include "basec/utils_module.h"
 #include "mpi_private.h"
 
 int i_mpi_proc = 0;           /* Processor ID */

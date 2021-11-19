@@ -9,7 +9,6 @@
 #ifndef JSON_PRIVATE_H
 #define JSON_PRIVATE_H
 
-#include "basec/utils_module.h"
 #include "basec/json_module.h"
 
 #define JERR "Unknown JSON data type (%d)!" /** Unknown type string */

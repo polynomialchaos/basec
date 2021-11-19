@@ -5,7 +5,19 @@ valgrind \
     --track-origins=yes \
     --error-limit=no \
     --gen-suppressions=all \
-    --log-file=mpi_sup_scal.log \
-    tests/unit_test_MPI_mpi_sup
+    --log-file=mpi_supp_scal.log \
+    tests/unit_test_MPI_mpi
 
-cat mpi_sup_scal.log | ../tools/parse_valgrind_suppressions.sh > mpi_sup.sup_scal
+cat mpi_supp_scal.log | ../tools/parse_valgrind_suppressions.sh > mpi_supp_scal.sup
+
+valgrind \
+    --leak-check=full \
+    --show-leak-kinds=all \
+    --show-reachable=yes \
+    --track-origins=yes \
+    --error-limit=no \
+    --gen-suppressions=all \
+    --log-file=global_supp_scal.log \
+    tests/unit_test_Global_global
+
+cat global_supp_scal.log | ../tools/parse_valgrind_suppressions.sh >> mpi_supp_scal.sup

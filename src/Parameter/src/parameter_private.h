@@ -9,7 +9,6 @@
 #ifndef PARAMETER_PRIVATE_H
 #define PARAMETER_PRIVATE_H
 
-#include "basec/utils_module.h"
 #include "basec/json_module.h"
 #include "basec/parameter_module.h"
 

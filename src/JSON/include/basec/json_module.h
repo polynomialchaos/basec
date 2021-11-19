@@ -11,6 +11,7 @@
 
 #include "basec/basec_macro.h"
 #include "basec/basec_type.h"
+#include "basec/utils_module.h"
 
 /*******************************************************************************
  * @brief A macro to create child in JSON object

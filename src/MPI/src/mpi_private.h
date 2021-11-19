@@ -9,7 +9,6 @@
 #ifndef MPI_PRIVATE_H
 #define MPI_PRIVATE_H
 
-#include "basec/utils_module.h"
 #include "basec/mpi_module.h"
 
 #define MPI_ROOT_ID 0 /* Root processor ID */

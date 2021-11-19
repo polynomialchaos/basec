@@ -9,7 +9,6 @@
 #ifndef MATH_PRIVATE_H
 #define MATH_PRIVATE_H
 
-#include "basec/utils_module.h"
 #include "basec/math_module.h"
 
 /** Iteration limit reacher string */
