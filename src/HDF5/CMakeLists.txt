@@ -6,7 +6,7 @@
 # @date 2021-11-08
 # @copyright Copyright (c) 2021
 #*******************************************************************************
-set(target MPI)
+set(target HDF5)
 
 #*******************************************************************************
 # Add subdirecotries
@@ -18,20 +18,19 @@ file(GLOB target_sources
 #*******************************************************************************
 # External libraries
 #******************************************************************************/
-if(use_mpi)
-    find_package(MPI REQUIRED)
-endif()
+find_package(HDF5 COMPONENTS C REQUIRED)
 
 #*******************************************************************************
 # Build target
 #******************************************************************************/
 add_library(${target} OBJECT ${target_sources})
-target_link_libraries( ${target} Utils ${MPI_C_LIBRARIES})
+target_link_libraries( ${target} Utils MPI
+    ${HDF5_C_HL_LIBRARIES} ${HDF5_C_LIBRARIES})
 
 target_include_directories(${target} PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${MPI_C_INCLUDE_PATH}>"
-    "$<INSTALL_INTERFACE:include>" "$<INSTALL_INTERFACE:${MPI_C_INCLUDE_PATH}>"
+    "$<BUILD_INTERFACE:${HDF5_C_INCLUDE_DIRS}>"
+    "$<INSTALL_INTERFACE:include>" "$<INSTALL_INTERFACE:${HDF5_C_INCLUDE_DIRS}>"
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 #*******************************************************************************

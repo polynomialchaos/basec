@@ -19,6 +19,7 @@ add_subdirectory(Parameter)
 add_subdirectory(Math)
 add_subdirectory(MPI)
 add_subdirectory(Global)
+add_subdirectory(HDF5)
 
 #*******************************************************************************
 # Build target
@@ -28,7 +29,7 @@ if(shared_lib)
 else()
     add_library(${target} STATIC)
 endif()
-target_link_libraries( ${target} Utils JSON Parameter Math MPI Global)
+target_link_libraries( ${target} Utils JSON Parameter Math MPI Global HDF5)
 set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
 
 #*******************************************************************************

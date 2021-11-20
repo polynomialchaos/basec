@@ -82,7 +82,7 @@ void global_error_handler_mpi()
 void mpi_barrier()
 {
 #ifdef MPI
-    check_error_mpi(MPI_Barrier(comm));
+    check_mpi_expression(MPI_Barrier(comm));
 #endif /* MPI */
 }
 
@@ -92,7 +92,7 @@ void mpi_barrier()
 void mpi_finalize()
 {
 #ifdef MPI
-    check_error_mpi(MPI_Finalize());
+    check_mpi_expression(MPI_Finalize());
 
     reset_global_error_state_handler();
 
@@ -115,9 +115,9 @@ void mpi_initialize(int argc, string_t *argv,
                     bool_t only_rank, bool_t file_out)
 {
 #ifdef MPI
-    check_error_mpi(MPI_Init(&argc, &argv));
-    check_error_mpi(MPI_Comm_rank(comm, &i_mpi_proc));
-    check_error_mpi(MPI_Comm_size(comm, &n_mpi_procs));
+    check_mpi_expression(MPI_Init(&argc, &argv));
+    check_mpi_expression(MPI_Comm_rank(comm, &i_mpi_proc));
+    check_mpi_expression(MPI_Comm_size(comm, &n_mpi_procs));
 
     set_global_error_state_handler(global_error_handler_mpi);
     store_file_out = file_out;

@@ -1,120 +1,112 @@
 /*******************************************************************************
- * @file utils_string.h
+ * @file hdf5_module.c
  * @author Florian Eigentler
- * @brief
- * @version 0.1
- * @date 2021-11-07
+ * @brief @version 0.1
+ * @date 2021-11-08
  * @copyright Copyright (c) 2021
  ******************************************************************************/
-#ifndef UTILS_STRING_H
-#define UTILS_STRING_H
+#ifndef HDF5_MODULE_H
+#define HDF5_MODULE_H
 
-#include <stdlib.h>
-#include "basec/basec_macro.h"
-#include "basec/basec_type.h"
+#include <hdf5.h>
+#include "basec/utils_module.h"
+#include "basec/hdf5/hdf5_type.h"
+#include "basec/hdf5/hdf5_attribute.h"
+#include "basec/hdf5/hdf5_dataset.h"
 
 /*******************************************************************************
- * @brief Allocate string by copy of string
- * @param[in] string
- * @return string_t
+ * @brief String buffer for writing HDF5 fixed string length array
+ * @param strings
+ * @param n
+ * @return string_t*
  ******************************************************************************/
-string_t allocate_strcpy(cstring_t string);
+string_t *allocate_hdf5_string_buffer(string_t *strings, size_t n);
 
 /*******************************************************************************
- * @brief Allocate string by concatenation of two strings
- * @param[in] string_a
- * @param[in] string_b
- * @return string_t
+ * @brief Wrapper to close a HDF5 file
+ * @param file_id
  ******************************************************************************/
-string_t allocate_strcat(cstring_t string_a, cstring_t string_b);
+void close_hdf5_file(hid_t file_id);
 
 /*******************************************************************************
- * @brief Count number of char occurences in string
- * @param[in] string
- * @param[in] coi
- * @return size_t
+ * @brief Wrapper to close a HDF5 group
+ * @param group_id
  ******************************************************************************/
-size_t count_chars(cstring_t string, char coi);
+void close_hdf5_group(hid_t group_id);
 
 /*******************************************************************************
- * @brief Check if string is a digit
- * @param[in] string
+ * @brief Wrapper to create a HDF5 file
+ * @param file_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t create_hdf5_file(cstring_t file_name);
+
+/*******************************************************************************
+ * @brief Wrapper to create a HDF5 group
+ * @param parent_id
+ * @param group_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t create_hdf5_group(hid_t parent_id, cstring_t group_name);
+
+/*******************************************************************************
+ * @brief Wrapper to create a HDF5 soft link
+ * @param parent_id
+ * @param link_name
+ * @param target
+ ******************************************************************************/
+void create_hdf5_soft_link(hid_t parent_id,
+                           cstring_t link_name, cstring_t target);
+
+/*******************************************************************************
+ * @brief Deallocate a string buffer
+ * @param buffer
+ ******************************************************************************/
+void deallocate_hdf5_string_buffer(string_t **buffer);
+
+/*******************************************************************************
+ * @brief Wrapper to delete a HDF5 soft link
+ * @param parent_id
+ * @param link_name
+ ******************************************************************************/
+void delete_hdf5_link(hid_t parent_id, cstring_t link_name);
+
+/*******************************************************************************
+ * @brief Wrapper to check if HDF5 group exists
+ * @param parent_id
+ * @param group_name
  * @return bool_t
  ******************************************************************************/
-bool_t is_digit(cstring_t string);
+bool_t exists_hdf5_group(hid_t parent_id, cstring_t group_name);
 
 /*******************************************************************************
- * @brief Check if strings are equal
- * @param[in] string_a
- * @param[in] string_b
+ * @brief Wrapper to check if HDF5 link exists
+ * @param parent_id
+ * @param link_name
  * @return bool_t
  ******************************************************************************/
-bool_t is_equal(cstring_t string_a, cstring_t string_b);
+bool_t exists_hdf5_link(hid_t parent_id, cstring_t link_name);
 
 /*******************************************************************************
- * @brief Check if string is empty
- * @param[in] string
+ * @brief Wrapper to check if HDF5 file exists
+ * @param file_name
  * @return bool_t
  ******************************************************************************/
-bool_t is_empty(cstring_t string);
+bool_t is_valid_hdf5_file(cstring_t file_name);
 
 /*******************************************************************************
- * @brief Check if string is a number
- * @param[in] string
- * @return bool_t
+ * @brief Wrapper to open a HDF5 file
+ * @param file_name
+ * @return hid_t
  ******************************************************************************/
-bool_t is_number(cstring_t string);
+hid_t open_hdf5_file(cstring_t file_name);
 
 /*******************************************************************************
- * @brief Length of left/right trimmed string
- * @param[in] string
- * @return size_t
+ * @brief Wrapper to open a HDF5 group
+ * @param parent_id
+ * @param group_name
+ * @return hid_t
  ******************************************************************************/
-size_t len_trim(cstring_t string);
+hid_t open_hdf5_group(hid_t parent_id, cstring_t group_name);
 
-/*******************************************************************************
- * @brief Left trimmed string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t l_trim(string_t string);
-
-/*******************************************************************************
- * @brief Reallocate string by concatenation of two strings
- * @param[in] string_a
- * @param[in] string_b
- * @return string_t
- ******************************************************************************/
-string_t reallocate_strcat(string_t string_a, cstring_t string_b);
-
-/*******************************************************************************
- * @brief Replace char in string by replacement
- * @param[in] string
- * @param[in] find
- * @param[in] replace
- ******************************************************************************/
-void replace(string_t string, char find, char replace);
-
-/*******************************************************************************
- * @brief Right trimmed string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t r_trim(string_t string);
-
-/*******************************************************************************
- * @brief Maximum length of string array
- * @param[in] strings
- * @param[in] n
- * @return size_t
- ******************************************************************************/
-size_t strlen_n(string_t *strings, size_t n);
-
-/*******************************************************************************
- * @brief Left/right trimmed string
- * @param[in] string
- * @return string_t
- ******************************************************************************/
-string_t trim(string_t string);
-
-#endif /* UTILS_STRING_H */
+#endif /* HDF5_MODULE_H */
