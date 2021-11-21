@@ -24,15 +24,20 @@ void close_hdf5_file(hid_t file_id)
  ******************************************************************************/
 hid_t create_hdf5_file(cstring_t file_name)
 {
-    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
 #ifdef MPI
+    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
     check_hdf5_expression(H5Pset_fapl_mpio(plist_id, comm, info));
+#else
+    hid_t plist_id = H5P_DEFAULT;
 #endif /* MPI */
 
     hid_t file_id = H5Fcreate(file_name, H5F_ACC_TRUNC, H5P_DEFAULT, plist_id);
-    check_hdf5_expression(H5Pclose(plist_id));
-
     check_hdf5_expression(file_id);
+
+#ifdef MPI
+    check_hdf5_expression(H5Pclose(plist_id));
+#endif /* MPI */
+
     return file_id;
 }
 
@@ -57,14 +62,20 @@ bool_t is_valid_hdf5_file(cstring_t file_name)
  ******************************************************************************/
 hid_t open_hdf5_file(cstring_t file_name)
 {
-    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
+
 #ifdef MPI
+    hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
     check_hdf5_expression(H5Pset_fapl_mpio(plist_id, comm, info));
+#else
+    hid_t plist_id = H5P_DEFAULT;
 #endif /* MPI */
 
     hid_t file_id = H5Fopen(file_name, H5F_ACC_RDWR, plist_id);
-    check_hdf5_expression(H5Pclose(plist_id));
-
     check_hdf5_expression(file_id);
+
+#ifdef MPI
+    check_hdf5_expression(H5Pclose(plist_id));
+#endif /* MPI */
+
     return file_id;
 }

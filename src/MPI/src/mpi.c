@@ -140,6 +140,8 @@ void mpi_initialize(int argc, string_t *argv,
 #ifdef DEBUG
     UNUSED(argc);
     UNUSED(argv);
+    UNUSED(only_rank);
+    UNUSED(file_out);
 #endif /* DEBUG */
 #endif /* MPI */
 }

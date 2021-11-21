@@ -51,6 +51,7 @@ endif()
 #******************************************************************************/
 set(build_unit_tests ON CACHE BOOL "Build unit tests")
 set(memory_check ON CACHE BOOL "Build unit tests together with memory check")
+set(memory_check_sup OFF CACHE BOOL "Use supression file with memory check")
 set(shared_lib OFF CACHE BOOL "Provide a shared or static library")
 set(use_mpi ON CACHE BOOL "Use the message passing interface")
 
@@ -59,7 +60,10 @@ if(build_unit_tests)
     if(memory_check)
         set(MEMORYCHECK_COMMAND_OPTIONS "--leak-check=full \
             --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
-        set(MEMORYCHECK_SUPPRESSIONS_FILE "${PROJECT_BINARY_DIR}/mpi_supp_scal.sup")
+        if(memory_check_sup)
+            set(MEMORYCHECK_SUPPRESSIONS_FILE
+                "${PROJECT_BINARY_DIR}/mpi_supp_scal.sup")
+        endif()
         include(CTest)
         find_program(MEMORYCHECK_COMMAND NAMES valgrind)
     endif()
