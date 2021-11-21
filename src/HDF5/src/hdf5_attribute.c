@@ -144,10 +144,16 @@ void set_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
                                    H5P_DEFAULT, H5P_DEFAULT);
     check_hdf5_expression(attribute_id);
 
-    check_hdf5_expression(H5Awrite(attribute_id, datatype_id, data));
-
     if (type == HDF5String)
+    {
+        void *str_data = ((string_t *) data)[0];
+        check_hdf5_expression(H5Awrite(attribute_id, datatype_id, str_data));
         check_hdf5_expression(H5Tclose(datatype_id));
+    }
+    else
+    {
+        check_hdf5_expression(H5Awrite(attribute_id, datatype_id, data));
+    }
 
     check_hdf5_expression(H5Aclose(attribute_id));
     check_hdf5_expression(H5Sclose(dataspace_id));

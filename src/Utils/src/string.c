@@ -63,9 +63,7 @@ size_t count_chars(cstring_t string, char coi)
  ******************************************************************************/
 bool_t is_digit(cstring_t string)
 {
-    if (string == NULL)
-        return BFLS;
-    if (string[0] == BNCH)
+    if (is_empty(string))
         return BFLS;
 
     string_t tmp;
@@ -94,7 +92,12 @@ bool_t is_equal(cstring_t string_a, cstring_t string_b)
  ******************************************************************************/
 bool_t is_empty(cstring_t string)
 {
-    return (len_trim(string) == 0);
+    if (string == NULL)
+        return BTRU;
+    else if (string[0] == BNCH)
+        return BTRU;
+
+    return BFLS;
 }
 
 /*******************************************************************************
@@ -104,10 +107,9 @@ bool_t is_empty(cstring_t string)
  ******************************************************************************/
 bool_t is_number(cstring_t string)
 {
-    if (string == NULL)
+    if (is_empty(string))
         return BFLS;
-    if (string[0] == BNCH)
-        return BFLS;
+
     if (is_digit(string))
         return BFLS;
 
@@ -123,9 +125,7 @@ bool_t is_number(cstring_t string)
  ******************************************************************************/
 size_t len_trim(cstring_t string)
 {
-    if (string == NULL)
-        return 0;
-    if (string[0] == BNCH)
+    if (is_empty(string))
         return 0;
 
     string_t tmp = allocate_strcpy(string);
@@ -183,9 +183,7 @@ void replace(string_t string, char find, char replace)
  ******************************************************************************/
 string_t r_trim(string_t string)
 {
-    if (string == NULL)
-        return string;
-    if (string[0] == BNCH)
+    if (is_empty(string))
         return string;
 
     string_t pos = string + strlen(string) - 1;

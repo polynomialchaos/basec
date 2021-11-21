@@ -18,8 +18,7 @@
 /** String conversion flag strings */
 cstring_t conversion_flag_strings[_sc_flag_max] = {
     "String conversion successfull",
-    "String is pointing to null",
-    "String is empty",
+    "String is pointing to null or is empty",
     "String is too long",
     "Missing brackets",
     "Unknown data type"};
@@ -85,10 +84,8 @@ bool_t string_to_bool(cstring_t string)
  ******************************************************************************/
 sc_flag_t string_to_i(cstring_t string, sc_type_t type, size_t i, void *value)
 {
-    if (string == NULL)
-        return StringNull;
-    if (string[0] == BNCH)
-        return StringEmpty;
+    if (is_empty(string))
+        return StringNullEmpty;
 
     sc_flag_t error = StringOK;
 
@@ -125,10 +122,8 @@ sc_flag_t string_to_i(cstring_t string, sc_type_t type, size_t i, void *value)
 sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
                                void **value, size_t *n)
 {
-    if (string == NULL)
-        return StringNull;
-    if (string[0] == BNCH)
-        return StringEmpty;
+    if (is_empty(string))
+        return StringNullEmpty;
 
     size_t length = strlen(string);
     if ((string[0] != USLB) || (string[length - 1] != USRB))

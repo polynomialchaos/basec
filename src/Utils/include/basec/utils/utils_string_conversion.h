@@ -41,8 +41,7 @@
 typedef enum SCFlag
 {
     StringOK,            /** String conversion OK */
-    StringNull,          /** String is NULL */
-    StringEmpty,         /** String empty */
+    StringNullEmpty,     /** String is NULL or empty */
     StringToLong,        /** String too long */
     StringMissingBraces, /** Missing braces is string */
     StringUndefined,     /** String data type is undefined */

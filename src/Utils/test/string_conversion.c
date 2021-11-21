@@ -51,7 +51,7 @@ int main()
 
     string_t value_c = NULL;
     char string[] = " 1234      ";
-    string_to(trim(&string[0]), StringType, &value_c);
+    string_to(trim(string), StringType, &value_c);
     printf_r("'%s' from '%s'\n", value_c, string);
     DEALLOCATE(value_c);
 

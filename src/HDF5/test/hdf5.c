@@ -32,12 +32,12 @@ int main(int argc, string_t *argv)
 
     set_hdf5_attribute(group_id, "scal_int_attr", HDF5Int, &scal_int_attr);
     set_hdf5_attribute(group_id, "scal_dbl_attr", HDF5Double, &scal_dbl_attr);
-    set_hdf5_attribute(group_id, "scal_str_attr", HDF5String, scal_str_attr);
+    set_hdf5_attribute(group_id, "scal_str_attr", HDF5String, &scal_str_attr);
 
     hsize_t dim = 4;
     int vec_int_attr[] = {144, 101, 1, 12};
     double vec_dbl_attr[] = {12.0, -3.0, 1.0, -6.0};
-    string_t vec_str_attr[] = {"Hello World!", "See you!", "a", "be"};
+    string_t vec_str_attr[] = {"Hello", "See you! + World!", "a", "be"};
     string_t *tmp = allocate_hdf5_string_buffer(vec_str_attr, dim);
 
     set_hdf5_attribute_n(group_id, "vec_int_attr",
@@ -45,14 +45,16 @@ int main(int argc, string_t *argv)
     set_hdf5_attribute_n(group_id, "vec_dbl_attr",
                          HDF5Double, vec_dbl_attr, dim);
     set_hdf5_attribute_n(group_id, "vec_str_attr",
-                         HDF5String, tmp[0], dim);
+                         HDF5String, tmp, dim);
 
     close_hdf5_group(group_id);
 
     // vector dataset
     set_hdf5_dataset_n(file_id, "vec_int_dset", HDF5Int, vec_int_attr, dim);
     set_hdf5_dataset_n(file_id, "vec_dbl_dset", HDF5Double, vec_dbl_attr, dim);
-    set_hdf5_dataset_n(file_id, "vec_str_dset", HDF5String, tmp[0], dim);
+    set_hdf5_dataset_n(file_id, "vec_str_dset", HDF5String, tmp, dim);
+
+    deallocate_hdf5_string_buffer(&tmp);
 
     // vector dataset + offset/count/stride/block + hyperslab
     hsize_t dim_glob = 20;
@@ -123,7 +125,7 @@ int main(int argc, string_t *argv)
                                 arr_dbl_dset, 2, dim_arr, dim_arr_glob,
                                 off_elm, elements_arr, n_elements_arr);
 
-    deallocate_hdf5_string_buffer(&tmp);
+    DEALLOCATE(arr_dbl_dset);
 
     close_hdf5_file(file_id);
     check_expression(is_valid_hdf5_file(file_name) == BTRU);

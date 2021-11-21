@@ -30,7 +30,7 @@ JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
     check_expression_pass(_file, _line, _function, this != NULL);
 
     /** either path is NULL or empty, or base level is called */
-    if ((path == NULL) || (path[0] == BNCH))
+    if (is_empty(path))
         return this;
 
     /** allocate level substring */

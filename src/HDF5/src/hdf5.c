@@ -37,12 +37,12 @@ string_t *allocate_hdf5_string_buffer(string_t *strings, size_t n)
 
     string_t *cstrings = ALLOCATE(sizeof(string_t) * n);
     cstrings[0] = ALLOCATE(sizeof(char) * n * max_len);
-
     for (size_t i = 0; i < n; ++i)
+    {
         cstrings[i] = cstrings[0] + i * max_len;
-
-    for (size_t i = 0; i < n; ++i)
+        memset(cstrings[i], '\0', max_len);
         strcpy(cstrings[i], strings[i]);
+    }
 
     return cstrings;
 }
@@ -176,8 +176,9 @@ hid_t set_hdf5_data_type(hdf5_type_t type, void *data, int rank, hsize_t *dims)
     case HDF5String:
         datatype_id = H5Tcopy(H5T_C_S1);
         check_hdf5_expression(datatype_id);
-        size_t str_len = strlen(data) + 1;
-        check_hdf5_expression(H5Tset_size(datatype_id, str_len));
+        string_t *strvec = (string_t *) data;
+        size_t str_len = strlen_n(strvec, rank > 0 ? dims[0] : 1);
+        check_hdf5_expression(H5Tset_size(datatype_id, str_len + 1));
         break;
     default:
         log_error(HDF5_TYPE_FMT, type);
