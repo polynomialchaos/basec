@@ -27,9 +27,15 @@ target_include_directories(${target} PUBLIC
 #*******************************************************************************
 # Unit test target
 #******************************************************************************/
-if(build_unit_tests)
-    include(unit_test)
-endif()
+include(unit_test)
+unit_test(${target} "test/print.c")
+unit_test(${target} "test/logging.c")
+unit_test(${target} "test/file.c")
+unit_test(${target} "test/memory.c")
+unit_test(${target} "test/string.c")
+unit_test(${target} "test/string_conversion.c")
+unit_test(${target} "test/time.c")
+unit_test(${target} "test/linked_list.c")
 
 #*******************************************************************************
 # Install target

@@ -28,9 +28,8 @@ target_include_directories(${target} PUBLIC
 #*******************************************************************************
 # Unit test target
 #******************************************************************************/
-if(build_unit_tests)
-    include(unit_test)
-endif()
+include(unit_test)
+unit_test(${target} "test/global.c")
 
 #*******************************************************************************
 # Install target

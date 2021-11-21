@@ -37,8 +37,8 @@
  * @brief A macro to get a HDF5 dataset (1D)
  ******************************************************************************/
 #define get_hdf5_dataset_n(parent_id, dataset_name, type, rank, dims, data)    \
-    get_hdf5_dataset((parent_id), (dataset_name), (type), (rank), (REF(DIMS)), \
-                     (1), (REF(DIMS)), (NULL), (NULL), (NULL), (NULL),         \
+    get_hdf5_dataset((parent_id), (dataset_name), (type), (rank), (REF(dims)), \
+                     (1), (REF(dims)), (NULL), (NULL), (NULL), (NULL),         \
                      (NULL), (0), (data))
 
 /*******************************************************************************

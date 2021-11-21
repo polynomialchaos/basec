@@ -6,23 +6,12 @@
 # @date 2021-11-08
 # @copyright Copyright (c) 2021
 #******************************************************************************/
-
-#*******************************************************************************
-# Add subdirecotries
-#******************************************************************************/
-file(GLOB ut_target_sources
-    test/*.c
-)
-
-#*******************************************************************************
-# Build target
-#******************************************************************************/
-foreach(ut_target_source ${ut_target_sources})
+function(unit_test target ut_target_source)
     get_filename_component(test_name ${ut_target_source} NAME_WE)
     set(test_target unit_test_${target}_${test_name})
 
     add_executable(${test_target} ${ut_target_source})
-    add_dependencies(${test_target} ${CMAKE_PROJECT_NAME})
+    add_dependencies(${test_target} ${target})
     target_link_libraries(${test_target} ${CMAKE_PROJECT_NAME})
 
     set_target_properties(${test_target} PROPERTIES
@@ -32,4 +21,4 @@ foreach(ut_target_source ${ut_target_sources})
         NAME ${test_target} COMMAND ${test_target}
         WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/tests
     )
-endforeach()
+endfunction()

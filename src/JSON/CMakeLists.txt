@@ -28,9 +28,10 @@ target_include_directories(${target} PUBLIC
 #*******************************************************************************
 # Unit test target
 #******************************************************************************/
-if(build_unit_tests)
-    include(unit_test)
-endif()
+include(unit_test)
+unit_test(${target} "test/json.c")
+unit_test(${target} "test/json_parse.c")
+unit_test(${target} "test/json_parse_string.c")
 
 #*******************************************************************************
 # Install target

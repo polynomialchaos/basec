@@ -38,7 +38,9 @@ int main(int argc, string_t *argv)
     int vec_int_attr[] = {144, 101, 1, 12};
     double vec_dbl_attr[] = {12.0, -3.0, 1.0, -6.0};
     string_t vec_str_attr[] = {"Hello", "See you! + World!", "a", "be"};
-    string_t *tmp = allocate_hdf5_string_buffer(vec_str_attr, dim);
+
+    size_t max_len = strlen_n(vec_str_attr, dim) + 1;
+    string_t *tmp = allocate_hdf5_string_buffer(dim, max_len, vec_str_attr);
 
     set_hdf5_attribute_n(group_id, "vec_int_attr",
                          HDF5Int, vec_int_attr, dim);

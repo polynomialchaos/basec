@@ -65,10 +65,16 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
     hid_t datatype_id = get_hdf5_data_type(type, attribute_id, H5Aget_type);
     check_expression(datatype_id);
 
-    check_hdf5_expression(H5Aread(attribute_id, datatype_id, data));
-
     if (type == HDF5String)
+    {
+        void *str_data = ((string_t *) data)[0];
+        check_hdf5_expression(H5Aread(attribute_id, datatype_id, str_data));
         check_hdf5_expression(H5Tclose(datatype_id));
+    }
+    else
+    {
+        check_hdf5_expression(H5Aread(attribute_id, datatype_id, data));
+    }
 
     check_hdf5_expression(H5Sclose(dataspace_id));
     check_hdf5_expression(H5Aclose(attribute_id));

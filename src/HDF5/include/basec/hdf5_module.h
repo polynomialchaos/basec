@@ -20,7 +20,8 @@
  * @param n
  * @return string_t*
  ******************************************************************************/
-string_t *allocate_hdf5_string_buffer(string_t *strings, size_t n);
+string_t *allocate_hdf5_string_buffer(size_t n, size_t length,
+                                      string_t *strings);
 
 /*******************************************************************************
  * @brief Wrapper to close a HDF5 file

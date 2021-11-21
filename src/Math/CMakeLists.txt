@@ -28,9 +28,12 @@ target_include_directories(${target} PUBLIC
 #*******************************************************************************
 # Unit test target
 #******************************************************************************/
-if(build_unit_tests)
-    include(unit_test)
-endif()
+include(unit_test)
+unit_test(${target} "test/vector_int.c")
+unit_test(${target} "test/vector.c")
+unit_test(${target} "test/conversion.c")
+unit_test(${target} "test/functions.c")
+unit_test(${target} "test/bicgstab_gmres.c")
 
 #*******************************************************************************
 # Install target

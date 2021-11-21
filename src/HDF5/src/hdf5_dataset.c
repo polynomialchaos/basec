@@ -74,8 +74,9 @@ void get_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
 
     if (type == HDF5String)
     {
+        void *str_data = ((string_t *)data)[0];
         check_hdf5_expression(H5Dread(dataset_id, datatype_id, H5S_ALL, H5S_ALL,
-                                      plist_id, data));
+                                      plist_id, str_data));
         check_hdf5_expression(H5Tclose(datatype_id));
     }
     else
@@ -163,7 +164,7 @@ void set_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
 
     if (type == HDF5String)
     {
-        void *str_data = ((string_t *) data)[0];
+        void *str_data = ((string_t *)data)[0];
         check_hdf5_expression(H5Dwrite(dataset_id, datatype_id, H5S_ALL,
                                        H5S_ALL, plist_id, str_data));
         check_hdf5_expression(H5Tclose(datatype_id));
