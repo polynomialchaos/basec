@@ -63,19 +63,19 @@ int main(int argc, string_t *argv)
     hsize_t offset = 4;
     hsize_t count = dim;
     set_hdf5_dataset_chunk_n(file_id, "vec_int_dset_off", HDF5Int,
-                             vec_int_attr, dim, dim_glob,
+                             vec_int_attr, dim, 1, &dim_glob,
                              &offset, &count, NULL, NULL);
 
     hsize_t stride = 2;
     set_hdf5_dataset_chunk_n(file_id, "vec_int_dset_str", HDF5Int,
-                             vec_int_attr, dim, dim_glob,
+                             vec_int_attr, dim, 1, &dim_glob,
                              &offset, &count, &stride, NULL);
 
     count = 2;
     stride = 4;
     hsize_t block = 2;
     set_hdf5_dataset_chunk_n(file_id, "vec_int_dset_blk", HDF5Int,
-                             vec_int_attr, dim, dim_glob,
+                             vec_int_attr, dim, 1, &dim_glob,
                              &offset, &count, &stride, &block);
 
     size_t n_elements = 4;
@@ -92,39 +92,39 @@ int main(int argc, string_t *argv)
             *(arr_dbl_dset + i * dim_arr[1] + j) = i * dim_arr[1] + j + 1;
 
     set_hdf5_dataset_n_m(file_id, "arr_dbl_dset", HDF5Double,
-                         arr_dbl_dset, 2, dim_arr);
+                         arr_dbl_dset, dim_arr);
 
     // array dataset + offset/count/stride/block
     hsize_t dim_arr_glob[] = {20, 20};
     hsize_t offset_arr[] = {4, 4};
     hsize_t count_arr[] = {4, 6};
     set_hdf5_dataset_chunk_n_m(file_id, "arr_dbl_dset_off", HDF5Double,
-                               arr_dbl_dset, 2, dim_arr, dim_arr_glob,
+                               arr_dbl_dset, dim_arr, 2, dim_arr_glob,
                                offset_arr, count_arr, NULL, NULL);
 
     hsize_t offset_vec[] = {10, 10};
     hsize_t count_vec[] = {1, 4};
-    set_hdf5_dataset_chunk_n_m(file_id, "arr_dbl_dset_off", HDF5Double,
-                               vec_dbl_attr, 1, &dim, dim_arr_glob,
+    set_hdf5_dataset_chunk_n(file_id, "arr_dbl_dset_off", HDF5Double,
+                               vec_dbl_attr, dim, 2, dim_arr_glob,
                                offset_vec, count_vec, NULL, NULL);
 
     hsize_t stride_arr[] = {2, 2};
     set_hdf5_dataset_chunk_n_m(file_id, "arr_dbl_dset_str", HDF5Double,
-                               arr_dbl_dset, 2, dim_arr, dim_arr_glob,
+                               arr_dbl_dset, dim_arr, 2, dim_arr_glob,
                                offset_arr, count_arr, stride_arr, NULL);
 
     hsize_t count_blk[] = {2, 3};
     hsize_t stride_blk[] = {4, 4};
     hsize_t block_arr[] = {2, 2};
     set_hdf5_dataset_chunk_n_m(file_id, "arr_dbl_dset_blk", HDF5Double,
-                               arr_dbl_dset, 2, dim_arr, dim_arr_glob,
+                               arr_dbl_dset, dim_arr, 2, dim_arr_glob,
                                offset_arr, count_blk, stride_blk, block_arr);
 
-    hsize_t off_elm = 1;
+    hsize_t off_elm = 2;
     size_t n_elements_arr = 4;
     hsize_t elements_arr[] = {0, 1, 2, 3};
     set_hdf5_dataset_select_n_m(file_id, "arr_dbl_dset_hps", HDF5Double,
-                                arr_dbl_dset, 2, dim_arr, dim_arr_glob,
+                                arr_dbl_dset, dim_arr, dim_arr_glob,
                                 off_elm, elements_arr, n_elements_arr);
 
     DEALLOCATE(arr_dbl_dset);
