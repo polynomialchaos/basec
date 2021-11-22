@@ -38,14 +38,14 @@ int main()
     bool_t log_rvalue = BFLS;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/scalar/bool") == BTRU);
-    GET_PARAMETER("section/bool/scalar/bool", LogicalType, &log_rvalue);
+    GET_PARAMETER("section/bool/scalar/bool", LogicalParameter, &log_rvalue);
     CHECK_EXPRESSION(log_rvalue == log_value);
 
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/scalar/bool_desc") == BTRU);
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/scalar/bool_desc/Description") == BTRU);
-    GET_PARAMETER("section/bool/scalar/bool_desc", LogicalType, &log_rvalue);
+    GET_PARAMETER("section/bool/scalar/bool_desc", LogicalParameter, &log_rvalue);
     CHECK_EXPRESSION(log_rvalue == log_value);
 
     CHECK_EXPRESSION(
@@ -54,7 +54,7 @@ int main()
         PARAMETER_EXISTS(
             "section/bool/scalar/bool_desc_opt/Description with options") ==
         BTRU);
-    GET_PARAMETER("section/bool/scalar/bool_desc_opt", LogicalType,
+    GET_PARAMETER("section/bool/scalar/bool_desc_opt", LogicalParameter,
                   &log_rvalue);
     CHECK_EXPRESSION(log_rvalue == log_value);
 
@@ -63,7 +63,7 @@ int main()
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/vector/bool") == BTRU);
     CHECK_EXPRESSION(GET_PARAMETER_COUNT("section/bool/vector/bool") == 4);
-    GET_PARAMETER_N("section/bool/vector/bool", LogicalType,
+    GET_PARAMETER_N("section/bool/vector/bool", LogicalParameter,
                     VOID_REF(log_rvalues), &n_log_rvalues);
     CHECK_EXPRESSION(n_log_rvalues == 4);
     CHECK_EXPRESSION(log_rvalues[0] == log_values[0]);
@@ -78,7 +78,7 @@ int main()
         PARAMETER_EXISTS("section/bool/scalar/bool_desc/Description") == BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/bool/vector/bool_desc") == 4);
-    GET_PARAMETER_N("section/bool/vector/bool_desc", LogicalType,
+    GET_PARAMETER_N("section/bool/vector/bool_desc", LogicalParameter,
                     VOID_REF(log_rvalues), &n_log_rvalues);
     CHECK_EXPRESSION(n_log_rvalues == 4);
     CHECK_EXPRESSION(log_rvalues[0] == log_values[0]);
@@ -95,7 +95,7 @@ int main()
         BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/bool/vector/bool_desc_opt") == 4);
-    GET_PARAMETER_N("section/bool/vector/bool_desc_opt", LogicalType,
+    GET_PARAMETER_N("section/bool/vector/bool_desc_opt", LogicalParameter,
                     VOID_REF(log_rvalues), &n_log_rvalues);
     CHECK_EXPRESSION(n_log_rvalues == 4);
     CHECK_EXPRESSION(log_rvalues[0] == log_values[0]);
@@ -108,14 +108,14 @@ int main()
     int dig_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/scalar/digit") == BTRU);
-    GET_PARAMETER("section/digit/scalar/digit", DigitType, &dig_rvalue);
+    GET_PARAMETER("section/digit/scalar/digit", DigitParameter, &dig_rvalue);
     CHECK_EXPRESSION(dig_rvalue == dig_value);
 
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/scalar/digit_desc") == BTRU);
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/scalar/digit_desc/Description") == BTRU);
-    GET_PARAMETER("section/digit/scalar/digit_desc", DigitType, &dig_rvalue);
+    GET_PARAMETER("section/digit/scalar/digit_desc", DigitParameter, &dig_rvalue);
     CHECK_EXPRESSION(dig_rvalue == dig_value);
 
     CHECK_EXPRESSION(
@@ -124,7 +124,7 @@ int main()
         PARAMETER_EXISTS(
             "section/digit/scalar/digit_desc_opt/Description with options") ==
         BTRU);
-    GET_PARAMETER("section/digit/scalar/digit_desc_opt", DigitType,
+    GET_PARAMETER("section/digit/scalar/digit_desc_opt", DigitParameter,
                   &dig_rvalue);
     CHECK_EXPRESSION(dig_rvalue == dig_value);
 
@@ -133,7 +133,7 @@ int main()
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/vector/digit") == BTRU);
     CHECK_EXPRESSION(GET_PARAMETER_COUNT("section/digit/vector/digit") == 4);
-    GET_PARAMETER_N("section/digit/vector/digit", DigitType,
+    GET_PARAMETER_N("section/digit/vector/digit", DigitParameter,
                     VOID_REF(dig_rvalues), &n_dig_rvalues);
     CHECK_EXPRESSION(n_dig_rvalues == 4);
     CHECK_EXPRESSION(dig_rvalues[0] == dig_values[0]);
@@ -148,7 +148,7 @@ int main()
         PARAMETER_EXISTS("section/digit/scalar/digit_desc/Description") == BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/digit/vector/digit_desc") == 4);
-    GET_PARAMETER_N("section/digit/vector/digit_desc", DigitType,
+    GET_PARAMETER_N("section/digit/vector/digit_desc", DigitParameter,
                     VOID_REF(dig_rvalues), &n_dig_rvalues);
     CHECK_EXPRESSION(n_dig_rvalues == 4);
     CHECK_EXPRESSION(dig_rvalues[0] == dig_values[0]);
@@ -165,7 +165,7 @@ int main()
         BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/digit/vector/digit_desc_opt") == 4);
-    GET_PARAMETER_N("section/digit/vector/digit_desc_opt", DigitType,
+    GET_PARAMETER_N("section/digit/vector/digit_desc_opt", DigitParameter,
                     VOID_REF(dig_rvalues), &n_dig_rvalues);
     CHECK_EXPRESSION(n_dig_rvalues == 4);
     CHECK_EXPRESSION(dig_rvalues[0] == dig_values[0]);
@@ -178,14 +178,14 @@ int main()
     double num_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/scalar/number") == BTRU);
-    GET_PARAMETER("section/number/scalar/number", NumberType, &num_rvalue);
+    GET_PARAMETER("section/number/scalar/number", NumberParameter, &num_rvalue);
     CHECK_EXPRESSION(num_rvalue == num_value);
 
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/scalar/number_desc") == BTRU);
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/scalar/number_desc/Description") == BTRU);
-    GET_PARAMETER("section/number/scalar/number_desc", NumberType, &num_rvalue);
+    GET_PARAMETER("section/number/scalar/number_desc", NumberParameter, &num_rvalue);
     CHECK_EXPRESSION(num_rvalue == num_value);
 
     CHECK_EXPRESSION(
@@ -194,7 +194,7 @@ int main()
         PARAMETER_EXISTS(
             "section/number/scalar/number_desc_opt/Description with options") ==
         BTRU);
-    GET_PARAMETER("section/number/scalar/number_desc_opt", NumberType,
+    GET_PARAMETER("section/number/scalar/number_desc_opt", NumberParameter,
                   &num_rvalue);
     CHECK_EXPRESSION(num_rvalue == num_value);
 
@@ -203,7 +203,7 @@ int main()
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/vector/number") == BTRU);
     CHECK_EXPRESSION(GET_PARAMETER_COUNT("section/number/vector/number") == 4);
-    GET_PARAMETER_N("section/number/vector/number", NumberType,
+    GET_PARAMETER_N("section/number/vector/number", NumberParameter,
                     VOID_REF(num_rvalues), &n_num_rvalues);
     CHECK_EXPRESSION(n_num_rvalues == 4);
     CHECK_EXPRESSION(num_rvalues[0] == num_values[0]);
@@ -218,7 +218,7 @@ int main()
         PARAMETER_EXISTS("section/number/scalar/number_desc/Description") == BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/number/vector/number_desc") == 4);
-    GET_PARAMETER_N("section/number/vector/number_desc", NumberType,
+    GET_PARAMETER_N("section/number/vector/number_desc", NumberParameter,
                     VOID_REF(num_rvalues), &n_num_rvalues);
     CHECK_EXPRESSION(n_num_rvalues == 4);
     CHECK_EXPRESSION(num_rvalues[0] == num_values[0]);
@@ -235,7 +235,7 @@ int main()
         BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/number/vector/number_desc_opt") == 4);
-    GET_PARAMETER_N("section/number/vector/number_desc_opt", NumberType,
+    GET_PARAMETER_N("section/number/vector/number_desc_opt", NumberParameter,
                     VOID_REF(num_rvalues), &n_num_rvalues);
     CHECK_EXPRESSION(n_num_rvalues == 4);
     CHECK_EXPRESSION(num_rvalues[0] == num_values[0]);
@@ -248,7 +248,7 @@ int main()
     string_t str_rvalue = NULL;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/string/scalar/string") == BTRU);
-    GET_PARAMETER("section/string/scalar/string", StringType, &str_rvalue);
+    GET_PARAMETER("section/string/scalar/string", StringParameter, &str_rvalue);
     CHECK_EXPRESSION(is_equal(str_rvalue, str_value));
     DEALLOCATE(str_rvalue);
 
@@ -256,7 +256,7 @@ int main()
         PARAMETER_EXISTS("section/string/scalar/string_desc") == BTRU);
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/string/scalar/string_desc/Description") == BTRU);
-    GET_PARAMETER("section/string/scalar/string_desc", StringType, &str_rvalue);
+    GET_PARAMETER("section/string/scalar/string_desc", StringParameter, &str_rvalue);
     CHECK_EXPRESSION(is_equal(str_rvalue, str_value));
     DEALLOCATE(str_rvalue);
 
@@ -266,7 +266,7 @@ int main()
         PARAMETER_EXISTS(
             "section/string/scalar/string_desc_opt/Description with options") ==
         BTRU);
-    GET_PARAMETER("section/string/scalar/string_desc_opt", StringType,
+    GET_PARAMETER("section/string/scalar/string_desc_opt", StringParameter,
                   &str_rvalue);
     CHECK_EXPRESSION(is_equal(str_rvalue, str_value));
     DEALLOCATE(str_rvalue);
@@ -276,7 +276,7 @@ int main()
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/string/vector/string") == BTRU);
     CHECK_EXPRESSION(GET_PARAMETER_COUNT("section/string/vector/string") == 4);
-    GET_PARAMETER_N("section/string/vector/string", StringType,
+    GET_PARAMETER_N("section/string/vector/string", StringParameter,
                     VOID_REF(str_rvalues), &n_str_rvalues);
     CHECK_EXPRESSION(n_str_rvalues == 4);
     CHECK_EXPRESSION(is_equal(str_rvalues[0], str_values[0]));
@@ -293,7 +293,7 @@ int main()
         PARAMETER_EXISTS("section/string/scalar/string_desc/Description") == BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/string/vector/string_desc") == 4);
-    GET_PARAMETER_N("section/string/vector/string_desc", StringType,
+    GET_PARAMETER_N("section/string/vector/string_desc", StringParameter,
                     VOID_REF(str_rvalues), &n_str_rvalues);
     CHECK_EXPRESSION(n_str_rvalues == 4);
     CHECK_EXPRESSION(is_equal(str_rvalues[0], str_values[0]));
@@ -312,7 +312,7 @@ int main()
         BTRU);
     CHECK_EXPRESSION(
         GET_PARAMETER_COUNT("section/string/vector/string_desc_opt") == 4);
-    GET_PARAMETER_N("section/string/vector/string_desc_opt", StringType,
+    GET_PARAMETER_N("section/string/vector/string_desc_opt", StringParameter,
                     VOID_REF(str_rvalues), &n_str_rvalues);
     CHECK_EXPRESSION(n_str_rvalues == 4);
     CHECK_EXPRESSION(is_equal(str_rvalues[0], str_values[0]));
