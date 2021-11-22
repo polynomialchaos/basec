@@ -15,10 +15,13 @@
  ******************************************************************************/
 int main()
 {
-    FILE *output = create_file("out2.dat");
+    string_t file_name = "out.dat";
+    FILE *output = create_file(file_name);
     fclose(output);
 
-    output = open_file("out2.dat");
+    check_expression(file_exists(file_name) == BTRU);
+
+    output = open_file(file_name);
     fclose(output);
 
     return 0;
