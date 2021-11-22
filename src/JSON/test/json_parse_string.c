@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file json_parse_strings.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

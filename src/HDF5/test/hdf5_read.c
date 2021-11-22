@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file hdf5_read.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

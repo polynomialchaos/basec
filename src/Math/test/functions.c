@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file functions.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

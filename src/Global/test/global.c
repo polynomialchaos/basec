@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file main.c
+ * @file global.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1
