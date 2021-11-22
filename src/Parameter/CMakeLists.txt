@@ -29,7 +29,8 @@ target_include_directories(${target} PUBLIC
 # Unit test target
 #******************************************************************************/
 include(unit_test)
-unit_test(${target} "test/parameter.c")
+unit_test(${target} "test/parameter_write.c")
+unit_test(${target} "test/parameter_read.c")
 
 #*******************************************************************************
 # Install target

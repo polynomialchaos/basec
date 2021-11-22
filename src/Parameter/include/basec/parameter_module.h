@@ -54,10 +54,10 @@
  ******************************************************************************/
 typedef enum ParameterType
 {
-    ParameterBool,   /** Boolean parameter type */
-    ParameterDigit,  /** Digit parameter type */
-    ParameterNumber, /** Number parameter type */
-    ParameterString, /** String parameter type */
+    LogicalParameter, /** Boolean parameter type */
+    DigitParameter,   /** Digit parameter type */
+    NumberParameter,  /** Number parameter type */
+    StringParameter,  /** String parameter type */
     _parameter_type_max
 } parameter_type_t;
 
@@ -168,7 +168,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
  ******************************************************************************/
 void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           cstring_t path, parameter_type_t type,
-                          void **value, size_t n, cstring_t description,
+                          void *value, size_t n, cstring_t description,
                           void *options, size_t n_options);
 
 #endif /* PARAMETER_MODULE_H */

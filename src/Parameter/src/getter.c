@@ -72,10 +72,18 @@ bool_t parameter_exists_pass(cstring_t _file, int _line, cstring_t _function,
     return (get_parameter_path_pass(_file, _line, _function, path, 0) != NULL);
 }
 
+/*******************************************************************************
+ * @brief Get the parameter object by path
+ * @param[in] _file
+ * @param[in] _line
+ * @param[in] _function
+ * @param[in] path
+ * @param[in] is_required
+ * @return JSON_t*
+ ******************************************************************************/
 JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,
                                 cstring_t path, int is_required)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, user_defaults != NULL);
     string_t path_value = ALLOCATE(
         sizeof(char) * (strlen(path) + 1 + strlen(PVLK) + 1));
     strcpy(path_value, path);

@@ -21,7 +21,7 @@ extern int as_json_type[]; /** Parameter type sizes */
 
 /*******************************************************************************
  * @brief Get the parameter object by path
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path
