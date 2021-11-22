@@ -12,6 +12,10 @@ project(basec VERSION 1.0.0 DESCRIPTION "Base C library")
 #*******************************************************************************
 # CMake settings
 #******************************************************************************/
+mark_as_advanced(CMAKE_OSX_ARCHITECTURES)
+mark_as_advanced(CMAKE_OSX_DEPLOYMENT_TARGET)
+mark_as_advanced(CMAKE_OSX_SYSROOT)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
