@@ -26,6 +26,8 @@ void free_user()
 
 /*******************************************************************************
  * @brief Main test function
+ * @param argc
+ * @param argv
  * @return int
  ******************************************************************************/
 int main(int argc, string_t *argv)
