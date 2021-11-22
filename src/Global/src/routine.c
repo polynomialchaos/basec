@@ -76,7 +76,8 @@ void call_initialize_list()
 {
     call_routines(initialize_list, "Initialize");
 
-    LIST_DEALLOCATE(initialize_list);
+    if(initialize_list != NULL)
+        LIST_DEALLOCATE(initialize_list);
     DEALLOCATE(initialize_list);
 }
 
@@ -87,7 +88,8 @@ void call_finalize_list()
 {
     call_routines(finalize_list, "Finalize");
 
-    LIST_DEALLOCATE(finalize_list);
+    if(finalize_list != NULL)
+        LIST_DEALLOCATE(finalize_list);
     DEALLOCATE(finalize_list);
 }
 
