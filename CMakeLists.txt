@@ -66,7 +66,7 @@ if(build_unit_tests)
             --show-leak-kinds=all --show-reachable=yes --track-origins=yes")
         if(memory_check_sup)
             set(MEMORYCHECK_SUPPRESSIONS_FILE
-                "${PROJECT_BINARY_DIR}/mpi_supp_scal.sup")
+                "${PROJECT_BINARY_DIR}/basec.sup")
         endif()
         include(CTest)
         find_program(MEMORYCHECK_COMMAND NAMES valgrind)
