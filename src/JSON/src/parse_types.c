@@ -190,7 +190,7 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
     if (buffer->buffer[buffer->cursor] == JRBC)
         return;
 
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           buffer->buffer[buffer->cursor] == JSTR);
     increment_read_buffer(buffer);
 
@@ -199,11 +199,11 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           buffer->buffer[buffer->cursor] == JSTR);
     increment_read_buffer(buffer);
 
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           buffer->buffer[buffer->cursor] == JOSP);
     increment_read_buffer(buffer);
 
@@ -241,7 +241,7 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
             increment_read_buffer(buffer);
             parse_json_object(_file, _line, _function, this, buffer);
         }
-        check_expression_pass(_file, _line, _function,
+        CHECK_EXPRESSION_PASS(_file, _line, _function,
                               buffer->buffer[buffer->cursor] == JRBC);
         increment_read_buffer(buffer);
         break;
@@ -254,7 +254,7 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
             increment_read_buffer(buffer);
             parse_json_array(_file, _line, _function, this, buffer);
         }
-        check_expression_pass(_file, _line, _function,
+        CHECK_EXPRESSION_PASS(_file, _line, _function,
                               buffer->buffer[buffer->cursor] == JRBK);
         increment_read_buffer(buffer);
         break;
@@ -276,12 +276,12 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
     case JSTR:
         increment_read_buffer(buffer);
         parse_json_value_string(_file, _line, _function, this, buffer);
-        check_expression_pass(_file, _line, _function,
+        CHECK_EXPRESSION_PASS(_file, _line, _function,
                               buffer->buffer[buffer->cursor] == JSTR);
         increment_read_buffer(buffer);
         break;
     default:
-        log_error_pass(_file, _line, _function,
+        LOG_ERROR_PASS(_file, _line, _function,
                        "Unknown JSON parse type character (%c)!",
                        buffer->buffer[buffer->cursor]);
         break;
@@ -304,11 +304,11 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
 
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           is_equal(JTRU, tmp) || is_equal(JFLS, tmp));
 
     set_json_type_pass(_file, _line, _function, this, JSONBoolean);
-    string_to(tmp, LogicalType, &this->boolean);
+    STRING_TO(tmp, LogicalType, &this->boolean);
 
     DEALLOCATE(tmp);
 }
@@ -328,7 +328,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
     static const int n_breaks = sizeof(breaks) / sizeof(char);
 
     string_t tmp = read_buffer_until_break(buffer, breaks, n_breaks, BFLS);
-    check_expression_pass(_file, _line, _function, is_equal(JNLL, tmp));
+    CHECK_EXPRESSION_PASS(_file, _line, _function, is_equal(JNLL, tmp));
 
     set_json_type_pass(_file, _line, _function, this, JSONNull);
 
@@ -354,16 +354,16 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
     if (is_digit(tmp))
     {
         set_json_type_pass(_file, _line, _function, this, JSONDigit);
-        string_to(tmp, DigitType, &this->digit);
+        STRING_TO(tmp, DigitType, &this->digit);
     }
     else if (is_number(tmp))
     {
         set_json_type_pass(_file, _line, _function, this, JSONNumber);
-        string_to(tmp, NumberType, &this->number);
+        STRING_TO(tmp, NumberType, &this->number);
     }
     else
     {
-        log_error_pass(_file, _line, _function,
+        LOG_ERROR_PASS(_file, _line, _function,
                        "Unsupported JSON type digit/number string (%s)!", tmp);
     }
 

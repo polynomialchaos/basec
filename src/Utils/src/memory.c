@@ -24,7 +24,7 @@ void *allocate_pass(cstring_t _file, int _line, cstring_t _function,
         return NULL;
 
     void *ptr = malloc(size);
-    check_expression_pass(_file, _line, _function, ptr != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, ptr != NULL);
 
     return ptr;
 }
@@ -60,7 +60,7 @@ void *reallocate_pass(cstring_t _file, int _line, cstring_t _function,
     }
 
     void *ptr = realloc(old_ptr, size);
-    check_expression_pass(_file, _line, _function, ptr != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, ptr != NULL);
 
     return ptr;
 }

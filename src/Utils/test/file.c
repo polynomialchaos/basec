@@ -19,7 +19,7 @@ int main()
     FILE *output = create_file(file_name);
     fclose(output);
 
-    check_expression(file_exists(file_name) == BTRU);
+    CHECK_EXPRESSION(file_exists(file_name) == BTRU);
 
     output = open_file(file_name);
     fclose(output);

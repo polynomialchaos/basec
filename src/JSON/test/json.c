@@ -22,50 +22,50 @@ int main()
     char *data_string[] = {"Hello", "World"};
 
     JSON_t *root = create_json_object();
-    set_json_type(root, JSONObject);
+    SET_JSON_TYPE(root, JSONObject);
 
-    JSON_t *child = create_json_child(root);
-    set_json_type(child, JSONBoolean);
-    set_json_key(child, "bool_t value");
-    set_json_value(child, JSONBoolean, &data_bool[0]);
+    JSON_t *child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONBoolean);
+    SET_JSON_KEY(child, "bool_t value");
+    SET_JSON_VALUE(child, JSONBoolean, &data_bool[0]);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONDigit);
-    set_json_key(child, "digit value");
-    set_json_value(child, JSONDigit, &data_digit[0]);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONDigit);
+    SET_JSON_KEY(child, "digit value");
+    SET_JSON_VALUE(child, JSONDigit, &data_digit[0]);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONNumber);
-    set_json_key(child, "number value");
-    set_json_value(child, JSONNumber, &data_number[0]);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONNumber);
+    SET_JSON_KEY(child, "number value");
+    SET_JSON_VALUE(child, JSONNumber, &data_number[0]);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONString);
-    set_json_key(child, "string value");
-    set_json_value(child, JSONString, &data_string[0]);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONString);
+    SET_JSON_KEY(child, "string value");
+    SET_JSON_VALUE(child, JSONString, &data_string[0]);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONArray);
-    set_json_key(child, "bool_t vector");
-    set_json_value_n(child, JSONBoolean, &data_bool[0], 4);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONArray);
+    SET_JSON_KEY(child, "bool_t vector");
+    SET_JSON_VALUE_N(child, JSONBoolean, &data_bool[0], 4);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONArray);
-    set_json_key(child, "digit vector");
-    set_json_value_n(child, JSONDigit, &data_digit[0], 10);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONArray);
+    SET_JSON_KEY(child, "digit vector");
+    SET_JSON_VALUE_N(child, JSONDigit, &data_digit[0], 10);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONArray);
-    set_json_key(child, "number vector");
-    set_json_value_n(child, JSONNumber, &data_number[0], 4);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONArray);
+    SET_JSON_KEY(child, "number vector");
+    SET_JSON_VALUE_N(child, JSONNumber, &data_number[0], 4);
 
-    child = create_json_child(root);
-    set_json_type(child, JSONArray);
-    set_json_key(child, "string vector");
-    set_json_value_n(child, JSONString, &data_string[0], 2);
+    child = CREATE_JSON_CHILD(root);
+    SET_JSON_TYPE(child, JSONArray);
+    SET_JSON_KEY(child, "string vector");
+    SET_JSON_VALUE_N(child, JSONString, &data_string[0], 2);
 
     FILE *file = fopen("test.json", "w");
-    print_json_object_short(root, file);
+    PRINT_JSON_OBJECT_SHORT(root, file);
     fclose(file);
 
     free_json_object(root);

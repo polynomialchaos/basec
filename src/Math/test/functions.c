@@ -16,10 +16,10 @@
  ******************************************************************************/
 int main()
 {
-    check_expression(EQ_T(factorial(0), 1));
-    check_expression(EQ_T(factorial(1), 1));
-    check_expression(EQ_T(factorial(2), 2));
-    check_expression(EQ_T(factorial(3), 6));
+    CHECK_EXPRESSION(EQ(factorial(0), 1));
+    CHECK_EXPRESSION(EQ(factorial(1), 1));
+    CHECK_EXPRESSION(EQ(factorial(2), 2));
+    CHECK_EXPRESSION(EQ(factorial(3), 6));
 
     return 0;
 }

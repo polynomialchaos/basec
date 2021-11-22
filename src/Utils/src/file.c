@@ -28,7 +28,7 @@ void close_file(FILE *file_ptr)
 FILE *create_file(cstring_t path)
 {
     FILE *file_ptr = fopen(path, "w");
-    check_expression(file_ptr != NULL);
+    CHECK_EXPRESSION(file_ptr != NULL);
 
     return file_ptr;
 }
@@ -58,7 +58,7 @@ bool_t file_exists(cstring_t path)
 FILE *open_file(cstring_t path)
 {
     FILE *file_ptr = fopen(path, "r");
-    check_expression(file_ptr != NULL);
+    CHECK_EXPRESSION(file_ptr != NULL);
 
     return file_ptr;
 }

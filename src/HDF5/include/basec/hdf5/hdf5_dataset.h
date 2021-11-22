@@ -16,7 +16,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset chunk (1D)
  ******************************************************************************/
-#define get_hdf5_dataset_chunk_n(parent_id, dataset_name, type,      \
+#define GET_HDF5_DATASET_CHUNK_N(parent_id, dataset_name, type,      \
                                  dim, glob_rank, glob_dims,          \
                                  offset, count, stride, block, data) \
     get_hdf5_dataset((parent_id), (dataset_name), (type),            \
@@ -26,7 +26,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset chunk (2D)
  ******************************************************************************/
-#define get_hdf5_dataset_chunk_n_m(parent_id, dataset_name, type,      \
+#define GET_HDF5_DATASET_CHUNK_N_M(parent_id, dataset_name, type,      \
                                    dims, glob_rank, glob_dims,         \
                                    offset, count, stride, block, data) \
     get_hdf5_dataset((parent_id), (dataset_name), (type),              \
@@ -36,7 +36,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset (1D)
  ******************************************************************************/
-#define get_hdf5_dataset_n(parent_id, dataset_name, type, dim, data) \
+#define GET_HDF5_DATASET_N(parent_id, dataset_name, type, dim, data) \
     get_hdf5_dataset((parent_id), (dataset_name), (type),            \
                      (1), (REF(dim)), (1), (REF(dim)),               \
                      (NULL), (NULL), (NULL), (NULL), (NULL), (0), (data))
@@ -44,7 +44,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset (2D)
  ******************************************************************************/
-#define get_hdf5_dataset_n_m(parent_id, dataset_name, type, dims, data) \
+#define GET_HDF5_DATASET_N_M(parent_id, dataset_name, type, dims, data) \
     get_hdf5_dataset((parent_id), (dataset_name), (type),               \
                      (2), (dims), (2), (dims),                          \
                      (NULL), (NULL), (NULL), (NULL), (NULL), (0), (data))
@@ -52,7 +52,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset selection (1D)
  ******************************************************************************/
-#define get_hdf5_dataset_select_n(parent_id, dataset_name, type,             \
+#define GET_HDF5_DATASET_SELECT_N(parent_id, dataset_name, type,             \
                                   dim, glob_dim, elements, n_elements, data) \
     get_hdf5_dataset((parent_id), (dataset_name), (type),                    \
                      (1), (REF(dim)), (1), (REF(glob_dim)),                  \
@@ -62,7 +62,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 dataset selection (2D)
  ******************************************************************************/
-#define get_hdf5_dataset_select_n_m(parent_id, dataset_name, type,         \
+#define GET_HDF5_DATASET_SELECT_N_M(parent_id, dataset_name, type,         \
                                     dims, glob_dims,                       \
                                     offset, elements, n_elements, data)    \
     get_hdf5_dataset((parent_id), (dataset_name), (type),                  \
@@ -72,7 +72,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset chunk (1D)
  ******************************************************************************/
-#define set_hdf5_dataset_chunk_n(parent_id, dataset_name, type, data, \
+#define SET_HDF5_DATASET_CHUNK_N(parent_id, dataset_name, type, data, \
                                  dim, glob_rank, glob_dims,           \
                                  offset, count, stride, block)        \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),     \
@@ -82,7 +82,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset chunk (2D)
  ******************************************************************************/
-#define set_hdf5_dataset_chunk_n_m(parent_id, dataset_name, type, data, \
+#define SET_HDF5_DATASET_CHUNK_N_M(parent_id, dataset_name, type, data, \
                                    dims, glob_rank, glob_dims,          \
                                    offset, count, stride, block)        \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),       \
@@ -92,7 +92,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset (1D)
  ******************************************************************************/
-#define set_hdf5_dataset_n(parent_id, dataset_name, type, data, dim) \
+#define SET_HDF5_DATASET_N(parent_id, dataset_name, type, data, dim) \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),    \
                      (1), (REF(dim)), (1), (REF(dim)),               \
                      (NULL), (NULL), (NULL), (NULL), (NULL), (0))
@@ -100,7 +100,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset (2D)
  ******************************************************************************/
-#define set_hdf5_dataset_n_m(parent_id, dataset_name, type, data, dims) \
+#define SET_HDF5_DATASET_N_M(parent_id, dataset_name, type, data, dims) \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),       \
                      (2), (dims), (2), (dims),                          \
                      (NULL), (NULL), (NULL), (NULL), (NULL), (0))
@@ -108,7 +108,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset selection (1D)
  ******************************************************************************/
-#define set_hdf5_dataset_select_n(parent_id, dataset_name, type, data, \
+#define SET_HDF5_DATASET_SELECT_N(parent_id, dataset_name, type, data, \
                                   dim, glob_dim, elements, n_elements) \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),      \
                      (1), (REF(dim)), (1), (REF(glob_dim)),            \
@@ -117,7 +117,7 @@
 /*******************************************************************************
  * @brief A macro to set a HDF5 dataset selection (2D)
  ******************************************************************************/
-#define set_hdf5_dataset_select_n_m(parent_id, dataset_name, type, data,   \
+#define SET_HDF5_DATASET_SELECT_N_M(parent_id, dataset_name, type, data,   \
                                     dims, glob_dims,                       \
                                     offset, elements, n_elements)          \
     set_hdf5_dataset((parent_id), (dataset_name), (type), (data),          \

@@ -19,49 +19,49 @@ int main()
     double vector_2[2] = {1.0, 2.0};
     double vector_3[3] = {1.0, 2.0, 3.0};
 
-    check_expression(EQ_T(min_n(vector_3, 3), 1.0));
-    check_expression(EQ_T(max_n(vector_3, 3), 3.0));
+    CHECK_EXPRESSION(EQ(min_n(vector_3, 3), 1.0));
+    CHECK_EXPRESSION(EQ(max_n(vector_3, 3), 3.0));
 
     set_value_n(3.0, 3, vector_3);
-    check_expression(EQ_T(sum_n(vector_3, 3), 9.0));
+    CHECK_EXPRESSION(EQ(sum_n(vector_3, 3), 9.0));
 
     copy_n(vector_2, 2, vector_3);
-    check_expression(EQ_T(sum_n(vector_3, 3), 6.0));
+    CHECK_EXPRESSION(EQ(sum_n(vector_3, 3), 6.0));
 
-    check_expression(EQ_T(dot_n(vector_2, vector_3, 2), 5.0));
-    check_expression(EQ_T(len_n(vector_3, 3), sqrt(1 + 4 + 9)));
+    CHECK_EXPRESSION(EQ(dot_n(vector_2, vector_3, 2), 5.0));
+    CHECK_EXPRESSION(EQ(len_n(vector_3, 3), sqrt(1 + 4 + 9)));
 
     vector_2[0] = 1;
     vector_2[1] = 0;
     vector_3[0] = 0;
     vector_3[1] = 1;
-    check_expression(EQ_T(rad_to_deg(angle_n(vector_2, vector_3, 2)), 90.0));
+    CHECK_EXPRESSION(EQ(rad_to_deg(angle_n(vector_2, vector_3, 2)), 90.0));
 
     vector_3[0] = 1;
     norm_n(vector_3, 3, vector_3);
-    check_expression(EQ_T(len_n(vector_3, 3), 1.0));
+    CHECK_EXPRESSION(EQ(len_n(vector_3, 3), 1.0));
 
     vector_2[0] = 1;
     vector_2[1] = 0;
     vector_3[0] = 0;
     vector_3[1] = 1;
-    check_expression(EQ_T(det_2(vector_2, vector_3), 1.0));
+    CHECK_EXPRESSION(EQ(det_2(vector_2, vector_3), 1.0));
 
     double vector_31[3] = {1.0, 0.0, 0.0};
     double vector_32[3] = {0.0, 1.0, 0.0};
     double vector_33[3] = {0.0, 0.0, 1.0};
-    check_expression(EQ_T(det_3(vector_31, vector_32, vector_33), 1.0));
+    CHECK_EXPRESSION(EQ(det_3(vector_31, vector_32, vector_33), 1.0));
 
-    check_expression(is_nan_n(vector_3, 3) == BFLS);
-    check_expression(is_inf_n(vector_3, 3) == BFLS);
+    CHECK_EXPRESSION(is_nan_n(vector_3, 3) == BFLS);
+    CHECK_EXPRESSION(is_inf_n(vector_3, 3) == BFLS);
 
     vector_3[0] = NAN;
-    check_expression(is_inf_n(vector_3, 3) == BFLS);
-    check_expression(is_nan_n(vector_3, 3) == BTRU);
+    CHECK_EXPRESSION(is_inf_n(vector_3, 3) == BFLS);
+    CHECK_EXPRESSION(is_nan_n(vector_3, 3) == BTRU);
 
     vector_3[0] = INFINITY;
-    check_expression(is_inf_n(vector_3, 3) == BTRU);
-    check_expression(is_nan_n(vector_3, 3) == BFLS);
+    CHECK_EXPRESSION(is_inf_n(vector_3, 3) == BTRU);
+    CHECK_EXPRESSION(is_nan_n(vector_3, 3) == BFLS);
 
     return 0;
 }

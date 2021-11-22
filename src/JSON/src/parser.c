@@ -21,7 +21,7 @@
 JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
                              cstring_t path)
 {
-    check_expression_pass(_file, _line, _function, file_exists(path));
+    CHECK_EXPRESSION_PASS(_file, _line, _function, file_exists(path));
     JSON_t *root = create_json_object();
 
     buffer_t buffer;

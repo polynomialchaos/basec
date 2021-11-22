@@ -16,15 +16,15 @@
  ******************************************************************************/
 int main()
 {
-    JSON_t *root = parse_json_file("test.json");
-    print_json_object(root, get_stdout());
+    JSON_t *root = PARSE_JSON_FILE("test.json");
+    PRINT_JSON_OBJECT(root, get_stdout());
 
-    JSON_t *tmp = get_json_object_by_path(root, "number vector");
+    JSON_t *tmp = GET_JSON_OBJECT_BY_PATH(root, "number vector");
     double *data;
     size_t n;
 
-    get_json_value_n(tmp, JSONNumber, VOID_REF(data), &n);
-    printf_r("%ld\n", n);
+    GET_JSON_VALUE_N(tmp, JSONNumber, VOID_REF(data), &n);
+    PRINTF("%ld\n", n);
     DEALLOCATE(data);
 
     free_json_object(root);

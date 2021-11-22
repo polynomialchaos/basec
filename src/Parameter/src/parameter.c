@@ -22,7 +22,7 @@ int as_json_type[_parameter_type_max] = {
 void flush_user_defaults(cstring_t file_name)
 {
     FILE *file = create_file(file_name);
-    print_json_object(user_defaults, file);
+    PRINT_JSON_OBJECT(user_defaults, file);
     close_file(file);
 }
 
@@ -49,7 +49,7 @@ void free_parameters()
  ******************************************************************************/
 void print_user_defaults()
 {
-    print_json_object(user_defaults, get_stdout());
+    PRINT_JSON_OBJECT(user_defaults, get_stdout());
 }
 
 /*******************************************************************************
@@ -57,7 +57,7 @@ void print_user_defaults()
  ******************************************************************************/
 void print_user_inputs()
 {
-    print_json_object(user_inputs, get_stdout());
+    PRINT_JSON_OBJECT(user_inputs, get_stdout());
 }
 
 /*******************************************************************************
@@ -66,5 +66,5 @@ void print_user_inputs()
  ******************************************************************************/
 void read_user_inputs(cstring_t file_name)
 {
-    user_inputs = parse_json_file(file_name);
+    user_inputs = PARSE_JSON_FILE(file_name);
 }

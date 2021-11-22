@@ -53,7 +53,7 @@ int main()
     iter = 100;
     residual = 1e-32;
     solve_bicgstab_n_m(n, 1, b, x, work, matrix_vector_n_m, &iter, &residual);
-    printf_r("%d / %e: %e %e %e\n", iter, residual, x[0], x[1], x[2]);
+    PRINTF("%d / %e: %e %e %e\n", iter, residual, x[0], x[1], x[2]);
 
     DEALLOCATE(work);
 
@@ -63,7 +63,7 @@ int main()
     residual = 1e-32;
     solve_gmres_n_m(n, 1, b, x, work,
                     matrix_vector_n_m, &iter, &residual, 20, 10);
-    printf_r("%d / %e: %e %e %e\n", iter, residual, x[0], x[1], x[2]);
+    PRINTF("%d / %e: %e %e %e\n", iter, residual, x[0], x[1], x[2]);
 
     DEALLOCATE(work);
 

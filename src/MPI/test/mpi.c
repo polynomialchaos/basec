@@ -20,8 +20,8 @@ int main(int argc, string_t *argv)
     int i_proc = get_rank_number();
     int result;
 
-    mpi_all_reduce(MPIInt, MPIMax, &i_proc, &result);
-    printf_r("Hello World from #%d (max=%d)\n", i_proc, result);
+    MPI_ALL_REDUCE(MPIInt, MPIMax, &i_proc, &result);
+    PRINTF("Hello World from #%d (max=%d)\n", i_proc, result);
 
     mpi_finalize();
 

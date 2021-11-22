@@ -17,9 +17,9 @@ void create_hdf5_soft_link(hid_t parent_id,
                            cstring_t link_name, cstring_t target)
 {
     hid_t plist_id = H5Pcreate(H5P_LINK_CREATE);
-    check_hdf5_expression(H5Lcreate_soft(
+    CHECK_HDF5_EXPRESSION(H5Lcreate_soft(
         target, parent_id, link_name, plist_id, H5P_DEFAULT));
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 }
 
 /*******************************************************************************
@@ -30,8 +30,8 @@ void create_hdf5_soft_link(hid_t parent_id,
 void delete_hdf5_link(hid_t parent_id, cstring_t link_name)
 {
     hid_t plist_id = H5Pcreate(H5P_LINK_ACCESS);
-    check_hdf5_expression(H5Ldelete(parent_id, link_name, plist_id));
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Ldelete(parent_id, link_name, plist_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 }
 
 /*******************************************************************************
@@ -43,7 +43,7 @@ void delete_hdf5_link(hid_t parent_id, cstring_t link_name)
 bool_t exists_hdf5_link(hid_t parent_id, cstring_t link_name)
 {
     int result = H5Lexists(parent_id, link_name, H5P_DEFAULT);
-    check_hdf5_expression(result);
+    CHECK_HDF5_EXPRESSION(result);
 
     return (result > 0);
 }

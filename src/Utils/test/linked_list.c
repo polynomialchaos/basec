@@ -15,7 +15,7 @@
  ******************************************************************************/
 void deallocate_data(void *data)
 {
-    printf_r("deallcoate: %d\n", VOID_DEREF(int, data));
+    PRINTF("deallcoate: %d\n", VOID_DEREF(int, data));
     return;
 }
 
@@ -26,7 +26,7 @@ void deallocate_data(void *data)
 bool_t check_data(void *data)
 {
     int tmp = VOID_DEREF(int, data);
-    printf_r("check: %d\n", tmp == -10 ? BTRU : BFLS);
+    PRINTF("check: %d\n", tmp == -10 ? BTRU : BFLS);
     return tmp == -10 ? BTRU : BFLS;
 }
 
@@ -36,34 +36,34 @@ bool_t check_data(void *data)
  ******************************************************************************/
 int main()
 {
-    list_t *test = list_allocate(deallocate_data);
+    list_t *test = LIST_ALLOCATE(deallocate_data);
 
-    check_expression(list_length(test) == 0);
+    CHECK_EXPRESSION(list_length(test) == 0);
 
     int test_val = 0;
-    list_append(test, sizeof(test_val), REF(test_val));
+    LIST_APPEND(test, sizeof(test_val), REF(test_val));
 
     test_val = -5;
-    list_append(test, sizeof(test_val), REF(test_val));
+    LIST_APPEND(test, sizeof(test_val), REF(test_val));
 
     test_val = -10;
-    list_prepend(test, sizeof(test_val), REF(test_val));
-    check_expression(list_length(test) == 3);
+    LIST_PREPEND(test, sizeof(test_val), REF(test_val));
+    CHECK_EXPRESSION(list_length(test) == 3);
 
-    check_expression(list_all(test, check_data) == BFLS);
-    check_expression(list_any(test, check_data) == BTRU);
+    CHECK_EXPRESSION(LIST_ALL(test, check_data) == BFLS);
+    CHECK_EXPRESSION(LIST_ANY(test, check_data) == BTRU);
 
-    list_for_each(test, deallocate_data);
+    LIST_FOR_EACH(test, deallocate_data);
 
-    check_expression(VOID_DEREF(int, list_get_first(test)) == -10);
-    check_expression(VOID_DEREF(int, list_get_ith(test, 1)) == 0);
-    check_expression(VOID_DEREF(int, list_get_last(test)) == -5);
+    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_FIRST(test)) == -10);
+    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_ITH(test, 1)) == 0);
+    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_LAST(test)) == -5);
 
-    list_deallocate_ith(test, 0);
-    list_deallocate_ith(test, 0);
-    check_expression(list_length(test) == 1);
+    LIST_DEALLOCATE_ITH(test, 0);
+    LIST_DEALLOCATE_ITH(test, 0);
+    CHECK_EXPRESSION(list_length(test) == 1);
 
-    list_deallocate(test);
+    LIST_DEALLOCATE(test);
     DEALLOCATE(test);
 
     return 0;

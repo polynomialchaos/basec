@@ -13,7 +13,7 @@
  ******************************************************************************/
 void init_user()
 {
-    printf_r("Hello Init!\n");
+    PRINTF("Hello Init!\n");
 };
 
 /*******************************************************************************
@@ -21,7 +21,7 @@ void init_user()
  ******************************************************************************/
 void free_user()
 {
-    printf_r("Hello Free!\n");
+    PRINTF("Hello Free!\n");
 };
 
 /*******************************************************************************
@@ -30,8 +30,8 @@ void free_user()
  ******************************************************************************/
 int main(int argc, string_t *argv)
 {
-    register_initialize_routine(init_user);
-    register_finalize_routine(free_user);
+    REGISTER_INITIALIZE_ROUTINE(init_user);
+    REGISTER_FINALIZE_ROUTINE(free_user);
 
     global_initialize(argc, argv, BTRU, BFLS, BFLS, BFLS);
 

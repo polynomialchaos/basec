@@ -17,14 +17,14 @@ int main()
 {
     double clock_time = 0.0;
 
-    string_t date = get_date_string_now();
-    string_t time = get_time_string_now();
-    string_t datetime = get_date_time_string_now();
+    string_t date = GET_DATE_STRING_NOW();
+    string_t time = GET_TIME_STRING_NOW();
+    string_t datetime = GET_DATE_TIME_STRING_NOW();
 
     clock_time = get_clock_time(clock_time);
     string_t clock_time_string = get_clock_time_string(clock_time);
 
-    printf_r("%s ... %s ... %s ... %s\n",
+    PRINTF("%s ... %s ... %s ... %s\n",
              date, time, datetime, clock_time_string);
 
     DEALLOCATE(date);

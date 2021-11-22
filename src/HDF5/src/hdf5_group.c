@@ -13,7 +13,7 @@
  ******************************************************************************/
 void close_hdf5_group(hid_t group_id)
 {
-    check_hdf5_expression(H5Gclose(group_id));
+    CHECK_HDF5_EXPRESSION(H5Gclose(group_id));
 }
 
 /*******************************************************************************
@@ -27,9 +27,9 @@ hid_t create_hdf5_group(hid_t parent_id, cstring_t group_name)
     hid_t plist_id = H5Pcreate(H5P_GROUP_CREATE);
     hid_t group_id = H5Gcreate(
         parent_id, group_name, H5P_DEFAULT, plist_id, H5P_DEFAULT);
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 
-    check_hdf5_expression(group_id);
+    CHECK_HDF5_EXPRESSION(group_id);
     return group_id;
 }
 
@@ -42,7 +42,7 @@ hid_t create_hdf5_group(hid_t parent_id, cstring_t group_name)
 bool_t exists_hdf5_group(hid_t parent_id, cstring_t group_name)
 {
     htri_t result = H5Lexists(parent_id, group_name, H5P_DEFAULT);
-    check_hdf5_expression(result);
+    CHECK_HDF5_EXPRESSION(result);
 
     return (result > 0);
 }
@@ -57,8 +57,8 @@ hid_t open_hdf5_group(hid_t parent_id, cstring_t group_name)
 {
     hid_t plist_id = H5Pcreate(H5P_GROUP_ACCESS);
     hid_t group_id = H5Gopen(parent_id, group_name, plist_id);
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 
-    check_hdf5_expression(group_id);
+    CHECK_HDF5_EXPRESSION(group_id);
     return group_id;
 }

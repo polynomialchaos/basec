@@ -29,7 +29,7 @@ if(shared_lib)
 else()
     add_library(${target} STATIC)
 endif()
-target_link_libraries( ${target} Utils JSON Parameter Math MPI Global HDF5)
+target_link_libraries(${target} Utils JSON Parameter Math MPI Global HDF5)
 set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
 
 #*******************************************************************************

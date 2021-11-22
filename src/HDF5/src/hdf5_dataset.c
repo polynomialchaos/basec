@@ -17,7 +17,7 @@
 bool_t exists_hdf5_datatset(hid_t parent_id, cstring_t dataset_name)
 {
     htri_t result = H5Lexists(parent_id, dataset_name, H5P_DEFAULT);
-    check_hdf5_expression(result);
+    CHECK_HDF5_EXPRESSION(result);
 
     return (result > 0);
 }
@@ -47,49 +47,49 @@ void get_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
                       void *data)
 {
     hid_t plist_id = H5Pcreate(H5P_DATASET_XFER);
-    check_hdf5_expression(plist_id);
+    CHECK_HDF5_EXPRESSION(plist_id);
 #ifdef MPI
-    check_hdf5_expression(H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE));
+    CHECK_HDF5_EXPRESSION(H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE));
 #endif /* MPI */
 
     hid_t dataset_id = H5Dopen(parent_id, dataset_name, H5P_DEFAULT);
-    check_hdf5_expression(dataset_id);
+    CHECK_HDF5_EXPRESSION(dataset_id);
 
     hid_t dataspace_id = H5Dget_space(dataset_id);
-    check_hdf5_expression(dataspace_id);
+    CHECK_HDF5_EXPRESSION(dataspace_id);
 
-    check_expression(glob_rank == get_hdf5_space_rank(dataspace_id));
+    CHECK_EXPRESSION(glob_rank == get_hdf5_space_rank(dataspace_id));
     if (glob_dims != NULL)
-        check_expression(
+        CHECK_EXPRESSION(
             is_dataspace_equals(dataspace_id, glob_rank, glob_dims));
 
     hid_t memspace_id = H5Screate_simple(rank, dims, NULL);
-    check_hdf5_expression(memspace_id);
+    CHECK_HDF5_EXPRESSION(memspace_id);
 
     hsize_t sel_count = rank > 1 ? dims[1] : 1;
     select_hdf5_space(glob_rank, sel_count, dataspace_id, offset, count,
                       stride, block, elements, n_elements);
 
     hid_t datatype_id = get_hdf5_data_type(type, dataset_id, H5Dget_type);
-    check_hdf5_expression(datatype_id);
+    CHECK_HDF5_EXPRESSION(datatype_id);
 
     if (type == HDF5String)
     {
         void *str_data = ((string_t *)data)[0];
-        check_hdf5_expression(H5Dread(dataset_id, datatype_id, H5S_ALL, H5S_ALL,
+        CHECK_HDF5_EXPRESSION(H5Dread(dataset_id, datatype_id, H5S_ALL, H5S_ALL,
                                       plist_id, str_data));
-        check_hdf5_expression(H5Tclose(datatype_id));
+        CHECK_HDF5_EXPRESSION(H5Tclose(datatype_id));
     }
     else
     {
-        check_hdf5_expression(H5Dread(dataset_id, datatype_id, memspace_id,
+        CHECK_HDF5_EXPRESSION(H5Dread(dataset_id, datatype_id, memspace_id,
                                       dataspace_id, plist_id, data));
     }
 
-    check_hdf5_expression(H5Sclose(memspace_id));
-    check_hdf5_expression(H5Sclose(dataspace_id));
-    check_hdf5_expression(H5Dclose(dataset_id));
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Sclose(memspace_id));
+    CHECK_HDF5_EXPRESSION(H5Sclose(dataspace_id));
+    CHECK_HDF5_EXPRESSION(H5Dclose(dataset_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 }
 
 /*******************************************************************************
@@ -101,15 +101,15 @@ void get_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
 size_t get_hdf5_dataset_size(hid_t parent_id, cstring_t dataset_name)
 {
     hid_t dataset_id = H5Dopen(parent_id, dataset_name, H5P_DEFAULT);
-    check_hdf5_expression(dataset_id);
+    CHECK_HDF5_EXPRESSION(dataset_id);
 
     hid_t datatype_id = H5Dget_type(dataset_id);
-    check_hdf5_expression(datatype_id);
+    CHECK_HDF5_EXPRESSION(datatype_id);
 
     size_t size = H5Tget_size(datatype_id);
 
-    check_hdf5_expression(H5Tclose(datatype_id));
-    check_hdf5_expression(H5Dclose(dataset_id));
+    CHECK_HDF5_EXPRESSION(H5Tclose(datatype_id));
+    CHECK_HDF5_EXPRESSION(H5Dclose(dataset_id));
 
     return size;
 }
@@ -138,26 +138,26 @@ void set_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
                       hsize_t *elements, size_t n_elements)
 {
     hid_t plist_id = H5Pcreate(H5P_DATASET_XFER);
-    check_hdf5_expression(plist_id);
+    CHECK_HDF5_EXPRESSION(plist_id);
 #ifdef MPI
-    check_hdf5_expression(H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE));
+    CHECK_HDF5_EXPRESSION(H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE));
 #endif /* MPI */
 
     hid_t dataspace_id = H5Screate_simple(glob_rank, glob_dims, NULL);
-    check_hdf5_expression(dataspace_id);
+    CHECK_HDF5_EXPRESSION(dataspace_id);
 
     hid_t memspace_id = H5Screate_simple(rank, dims, NULL);
-    check_hdf5_expression(memspace_id);
+    CHECK_HDF5_EXPRESSION(memspace_id);
 
     hid_t datatype_id = set_hdf5_data_type(type, data, rank, dims);
-    check_hdf5_expression(datatype_id);
+    CHECK_HDF5_EXPRESSION(datatype_id);
 
     hid_t dataset_id = (exists_hdf5_datatset(parent_id, dataset_name))
                            ? H5Dopen(parent_id, dataset_name, H5P_DEFAULT)
                            : H5Dcreate(parent_id, dataset_name, datatype_id,
                                        dataspace_id, H5P_DEFAULT,
                                        H5P_DEFAULT, H5P_DEFAULT);
-    check_hdf5_expression(dataset_id);
+    CHECK_HDF5_EXPRESSION(dataset_id);
 
     hsize_t sel_count = rank > 1 ? dims[1] : 1;
     select_hdf5_space(glob_rank, sel_count, dataspace_id, offset, count,
@@ -166,18 +166,18 @@ void set_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
     if (type == HDF5String)
     {
         void *str_data = ((string_t *)data)[0];
-        check_hdf5_expression(H5Dwrite(dataset_id, datatype_id, H5S_ALL,
+        CHECK_HDF5_EXPRESSION(H5Dwrite(dataset_id, datatype_id, H5S_ALL,
                                        H5S_ALL, plist_id, str_data));
-        check_hdf5_expression(H5Tclose(datatype_id));
+        CHECK_HDF5_EXPRESSION(H5Tclose(datatype_id));
     }
     else
     {
-        check_hdf5_expression(H5Dwrite(dataset_id, datatype_id, memspace_id,
+        CHECK_HDF5_EXPRESSION(H5Dwrite(dataset_id, datatype_id, memspace_id,
                                        dataspace_id, plist_id, data));
     }
 
-    check_hdf5_expression(H5Dclose(dataset_id));
-    check_hdf5_expression(H5Sclose(memspace_id));
-    check_hdf5_expression(H5Sclose(dataspace_id));
-    check_hdf5_expression(H5Pclose(plist_id));
+    CHECK_HDF5_EXPRESSION(H5Dclose(dataset_id));
+    CHECK_HDF5_EXPRESSION(H5Sclose(memspace_id));
+    CHECK_HDF5_EXPRESSION(H5Sclose(dataspace_id));
+    CHECK_HDF5_EXPRESSION(H5Pclose(plist_id));
 }

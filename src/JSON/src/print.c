@@ -34,7 +34,7 @@
 void print_json_object_pass(cstring_t _file, int _line, cstring_t _function,
                             JSON_t *this, FILE *file_pointer, int indent)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
     size_t n_childs = count_json_childs(this);
 
     if (this->key != NULL)
@@ -65,7 +65,7 @@ void print_json_object_pass(cstring_t _file, int _line, cstring_t _function,
                 if (indent >= 0)
                     fprintf(file_pointer, "%*s", (indent + 1) * JIND, "");
                 print_json_object_pass(_file, _line, _function,
-                                       list_get_ith(this->childs, i),
+                                       LIST_GET_ITH(this->childs, i),
                                        file_pointer,
                                        (indent >= 0) ? indent + 1 : indent);
             }
@@ -93,7 +93,7 @@ void print_json_object_pass(cstring_t _file, int _line, cstring_t _function,
         fprintf(file_pointer, JSTR "%s" JSTR, this->string);
         break;
     default:
-        log_error_pass(_file, _line, _function, JERR, this->type);
+        LOG_ERROR_PASS(_file, _line, _function, JERR, this->type);
         break;
     }
 

@@ -28,14 +28,14 @@ list_t *finalize_list = NULL;   /** Finalize list header */
  ******************************************************************************/
 void call_routines(list_t *routines, cstring_t title)
 {
-    printf_r("\n");
+    PRINTF("\n");
     printf_r_sep_title(GBMS, title);
 
     const size_t n = list_length(routines);
     for (size_t i = 0; i < n; ++i)
     {
-        handler_data_t *this = list_get_ith(routines, i);
-        printf_r(" * %s\n", this->file);
+        handler_data_t *this = LIST_GET_ITH(routines, i);
+        PRINTF(" * %s\n", this->file);
         this->function();
         check_abort(0);
         if (i < n - 1)
@@ -64,7 +64,7 @@ void free_routine_hanlder(void *this)
 list_t *init_routines()
 {
     list_t *routines = ALLOCATE(sizeof(list_t));
-    list_init(routines, free_routine_hanlder);
+    LIST_INIT(routines, free_routine_hanlder);
 
     return routines;
 }
@@ -76,7 +76,7 @@ void call_initialize_list()
 {
     call_routines(initialize_list, "Initialize");
 
-    list_deallocate(initialize_list);
+    LIST_DEALLOCATE(initialize_list);
     DEALLOCATE(initialize_list);
 }
 
@@ -87,7 +87,7 @@ void call_finalize_list()
 {
     call_routines(finalize_list, "Finalize");
 
-    list_deallocate(finalize_list);
+    LIST_DEALLOCATE(finalize_list);
     DEALLOCATE(finalize_list);
 }
 
@@ -101,8 +101,8 @@ void register_initialize_routine_pass(cstring_t _file, void_ft function)
     if (initialize_list == NULL)
         initialize_list = init_routines();
 
-    list_append(initialize_list, sizeof(handler_data_t), NULL);
-    handler_data_t *last = list_get_last(initialize_list);
+    LIST_APPEND(initialize_list, sizeof(handler_data_t), NULL);
+    handler_data_t *last = LIST_GET_LAST(initialize_list);
 
     last->file = allocate_strcpy(_file);
     last->function = function;
@@ -118,8 +118,8 @@ void register_finalize_routine_pass(cstring_t _file, void_ft function)
     if (finalize_list == NULL)
         finalize_list = init_routines();
 
-    list_prepend(finalize_list, sizeof(handler_data_t), NULL);
-    handler_data_t *first = list_get_first(finalize_list);
+    LIST_PREPEND(finalize_list, sizeof(handler_data_t), NULL);
+    handler_data_t *first = LIST_GET_FIRST(finalize_list);
 
     first->file = allocate_strcpy(_file);
     first->function = function;

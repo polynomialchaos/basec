@@ -206,7 +206,7 @@ size_t strlen_n(string_t *strings, size_t n)
 {
     size_t max_len = 0;
     for (size_t i = 0; i < n; ++i)
-        max_len = MAX_T(max_len, strlen(strings[i]));
+        max_len = MAX(max_len, strlen(strings[i]));
 
     return max_len;
 }

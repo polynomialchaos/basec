@@ -16,8 +16,8 @@
  ******************************************************************************/
 int main()
 {
-    JSON_t *root = parse_json_string("{\"a\":[12,13,14,15]}");
-    print_json_object_indent(root, get_stdout(), -1);
+    JSON_t *root = PARSE_JSON_STRING("{\"a\":[12,13,14,15]}");
+    PRINT_JSON_OBJECT_INDENT(root, get_stdout(), -1);
 
     free_json_object(root);
     DEALLOCATE(root);

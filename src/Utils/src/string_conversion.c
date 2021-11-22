@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file string_to.c
+ * @file STRING_TO.c
  * @author Florian Eigentler
  * @brief
  * @version 0.1

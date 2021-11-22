@@ -19,7 +19,7 @@ void *old_client_data = NULL;
  ******************************************************************************/
 void activate_hdf5_diag()
 {
-    check_expression(old_func != NULL);
+    CHECK_EXPRESSION(old_func != NULL);
 
     // Restore previous error handler
     H5Eset_auto(H5E_DEFAULT, old_func, old_client_data);
@@ -52,7 +52,7 @@ string_t *allocate_hdf5_string_buffer(size_t n, size_t length,
  ******************************************************************************/
 void deactivate_hdf5_diag()
 {
-    check_expression((old_func == NULL) || (old_client_data == NULL));
+    CHECK_EXPRESSION((old_func == NULL) || (old_client_data == NULL));
 
     // Save old error handler
     H5Eget_auto(H5E_DEFAULT, &old_func, &old_client_data);
@@ -95,7 +95,7 @@ hid_t get_hdf5_data_type(hdf5_type_t type, hid_t id, hid_t_fp_hid_t_t function)
         datatype_id = function(id);
         break;
     default:
-        log_error(HDF5_TYPE_FMT, type);
+        LOG_ERROR(HDF5_TYPE_FMT, type);
         break;
     }
 
@@ -110,7 +110,7 @@ hid_t get_hdf5_data_type(hdf5_type_t type, hid_t id, hid_t_fp_hid_t_t function)
 int get_hdf5_space_rank(hid_t dataspace_id)
 {
     int result = H5Sget_simple_extent_ndims(dataspace_id);
-    check_hdf5_expression(result);
+    CHECK_HDF5_EXPRESSION(result);
 
     return result;
 }
@@ -122,7 +122,7 @@ int get_hdf5_space_rank(hid_t dataspace_id)
  ******************************************************************************/
 void get_hdf5_space_dims(hid_t dataspace_id, hsize_t *dims)
 {
-    check_hdf5_expression(H5Sget_simple_extent_dims(dataspace_id, dims, NULL));
+    CHECK_HDF5_EXPRESSION(H5Sget_simple_extent_dims(dataspace_id, dims, NULL));
 }
 
 /*******************************************************************************
@@ -174,13 +174,13 @@ hid_t set_hdf5_data_type(hdf5_type_t type, void *data, int rank, hsize_t *dims)
         break;
     case HDF5String:
         datatype_id = H5Tcopy(H5T_C_S1);
-        check_hdf5_expression(datatype_id);
+        CHECK_HDF5_EXPRESSION(datatype_id);
         string_t *strvec = (string_t *)data;
         size_t str_len = strlen_n(strvec, rank > 0 ? dims[0] : 1);
-        check_hdf5_expression(H5Tset_size(datatype_id, str_len + 1));
+        CHECK_HDF5_EXPRESSION(H5Tset_size(datatype_id, str_len + 1));
         break;
     default:
-        log_error(HDF5_TYPE_FMT, type);
+        LOG_ERROR(HDF5_TYPE_FMT, type);
         break;
     }
 
@@ -203,10 +203,10 @@ void select_hdf5_elements_1(hid_t dataspace_id,
         coords[i] = elements[i];
 
     if (n_coords > 0)
-        check_hdf5_expression(H5Sselect_elements(
+        CHECK_HDF5_EXPRESSION(H5Sselect_elements(
             dataspace_id, H5S_SELECT_SET, n_coords, coords));
     else
-        check_hdf5_expression(H5Sselect_none(dataspace_id));
+        CHECK_HDF5_EXPRESSION(H5Sselect_none(dataspace_id));
 
     DEALLOCATE(coords);
 }
@@ -234,10 +234,10 @@ void select_hdf5_elements_2(hid_t dataspace_id, hsize_t offset,
         }
 
     if (n_coords > 0)
-        check_hdf5_expression(H5Sselect_elements(
+        CHECK_HDF5_EXPRESSION(H5Sselect_elements(
             dataspace_id, H5S_SELECT_SET, n_coords, coords));
     else
-        check_hdf5_expression(H5Sselect_none(dataspace_id));
+        CHECK_HDF5_EXPRESSION(H5Sselect_none(dataspace_id));
 
     DEALLOCATE(coords);
 }
@@ -267,11 +267,11 @@ void select_hdf5_space(int rank, hsize_t dim, hid_t dataspace_id,
             select_hdf5_elements_2(dataspace_id, offset[0],
                                    dim, elements, n_elements);
         else
-            log_error(HDF5_TYPE_FMT, rank);
+            LOG_ERROR(HDF5_TYPE_FMT, rank);
     }
     else if ((offset != NULL) && (count != NULL))
     {
-        check_hdf5_expression(
+        CHECK_HDF5_EXPRESSION(
             H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET,
                                 offset, stride, count, block));
     }

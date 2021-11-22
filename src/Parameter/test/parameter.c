@@ -17,15 +17,15 @@ int main()
     int value = 12;
     int values[] = {1, 2, 3, 5, 12};
 
-    set_parameter("General/a/b/c/d", ParameterDigit, &value, NULL, NULL, 0);
-    set_parameter("General/a/b/c/e", ParameterDigit, &value, "Test", NULL, 0);
-    set_parameter("General/a/b/c/f", ParameterDigit, &value, "Test", &values[0], 1);
+    SET_PARAMETER("General/a/b/c/d", ParameterDigit, &value, NULL, NULL, 0);
+    SET_PARAMETER("General/a/b/c/e", ParameterDigit, &value, "Test", NULL, 0);
+    SET_PARAMETER("General/a/b/c/f", ParameterDigit, &value, "Test", &values[0], 1);
 
     print_user_defaults();
 
-    get_parameter("General/a/b/c/d", ParameterDigit, &value);
-    get_parameter("General/a/b/c/e", ParameterDigit, &value);
-    get_parameter("General/a/b/c/f", ParameterDigit, &value);
+    GET_PARAMETER("General/a/b/c/d", ParameterDigit, &value);
+    GET_PARAMETER("General/a/b/c/e", ParameterDigit, &value);
+    GET_PARAMETER("General/a/b/c/f", ParameterDigit, &value);
 
     free_parameters();
 

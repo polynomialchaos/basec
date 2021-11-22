@@ -25,7 +25,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         void *value, cstring_t description,
                         void *options, size_t n_options)
 {
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           ((path != NULL) && (path[0] != BNCH)));
 
     if (user_defaults == NULL)
@@ -44,7 +44,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
         JSON_t *tmp_v = create_json_child_pass(_file, _line, _function, tmp);
         set_json_key_pass(_file, _line, _function, tmp_v, PVLK);
         set_json_type_pass(_file, _line, _function, tmp_v, as_json_type[type]);
-        set_json_value_pass(_file, _line, _function, tmp_v, as_json_type[type], value);
+        SET_JSON_VALUE_PASS(_file, _line, _function, tmp_v, as_json_type[type], value);
 
         JSON_t *tmp_d = create_json_child_pass(_file, _line, _function, tmp);
         set_json_key_pass(_file, _line, _function, tmp_d, description);
@@ -62,7 +62,7 @@ void set_parameter_pass(cstring_t _file, int _line, cstring_t _function,
     else
     {
         set_json_type_pass(_file, _line, _function, tmp, as_json_type[type]);
-        set_json_value_pass(_file, _line, _function, tmp, as_json_type[type], value);
+        SET_JSON_VALUE_PASS(_file, _line, _function, tmp, as_json_type[type], value);
     }
 }
 
@@ -84,7 +84,7 @@ void set_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           void **value, size_t n, cstring_t description,
                           void *options, size_t n_options)
 {
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           ((path != NULL) && (path[0] != BNCH)));
 
     if (user_defaults == NULL)

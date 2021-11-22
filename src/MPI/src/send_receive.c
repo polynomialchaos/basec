@@ -20,7 +20,7 @@
 void mpi_receive(mpi_type_t type, int sender, int n, void *data)
 {
 #ifdef MPI
-    check_mpi_expression(
+    CHECK_MPI_EXPRESSION(
         MPI_Recv(data, n, as_mpi_type[type],
                  sender, 0, comm, MPI_STATUS_IGNORE));
 #else
@@ -43,7 +43,7 @@ void mpi_receive(mpi_type_t type, int sender, int n, void *data)
 void mpi_send(mpi_type_t type, int receiver, const void *data, int n)
 {
 #ifdef MPI
-    check_mpi_expression(
+    CHECK_MPI_EXPRESSION(
         MPI_Send(data, n, as_mpi_type[type], receiver, 0, comm));
 #else
 #ifdef DEBUG
@@ -70,7 +70,7 @@ void mpi_send_receive(mpi_type_t type,
                       int r_n, int sender, void *r_data)
 {
 #ifdef MPI
-    check_mpi_expression(
+    CHECK_MPI_EXPRESSION(
         MPI_Sendrecv(s_data, s_n, as_mpi_type[type],
                      receiver, 0,
                      r_data, r_n, as_mpi_type[type],

@@ -16,13 +16,13 @@
 /*******************************************************************************
  * @brief A macro to register a initialize routine
  ******************************************************************************/
-#define register_initialize_routine(fun_ptr) \
+#define REGISTER_INITIALIZE_ROUTINE(fun_ptr) \
     register_initialize_routine_pass(__FILE__, (fun_ptr))
 
 /*******************************************************************************
  * @brief A macro to register a finalize routine
  ******************************************************************************/
-#define register_finalize_routine(fun_ptr) \
+#define REGISTER_FINALIZE_ROUTINE(fun_ptr) \
     register_finalize_routine_pass(__FILE__, (fun_ptr))
 
 /*******************************************************************************

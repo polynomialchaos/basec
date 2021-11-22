@@ -28,7 +28,7 @@ int integer_string_length(int value);
 int integer_string_length(int value)
 {
     int sign = (value < 0.0) ? 1 : 0;
-    double tmp = log10(MAX_T(ABS_T(value), 1));
+    double tmp = log10(MAX(ABS(value), 1));
 
     return (tmp + sign + 1);
 }

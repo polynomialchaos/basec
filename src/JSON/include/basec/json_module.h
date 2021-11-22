@@ -16,106 +16,106 @@
 /*******************************************************************************
  * @brief A macro to create child in JSON object
  ******************************************************************************/
-#define create_json_child(this) create_json_child_pass(__PASS__, (this))
+#define CREATE_JSON_CHILD(this) create_json_child_pass(__PASS__, (this))
 
 /*******************************************************************************
  * @brief A macro to get a JSON object by path
  ******************************************************************************/
-#define get_json_object_by_path(this, path) \
+#define GET_JSON_OBJECT_BY_PATH(this, path) \
     get_json_object_by_path_pass(__PASS__, (this), (path))
 
 /*******************************************************************************
  * @brief A macro to get a JSON object value
  ******************************************************************************/
-#define get_json_value(this, type, value) \
+#define GET_JSON_VALUE(this, type, value) \
     get_json_value_i_pass(__PASS__, (this), (type), (0), (value))
 
 /*******************************************************************************
  * @brief A macro to get a JSON object value at index i
  ******************************************************************************/
-#define get_json_value_i(this, type, i, value) \
+#define GET_JSON_VALUE_I(this, type, i, value) \
     get_json_value_i_pass(__PASS__, (this), (type), (i), (value))
 
 /*******************************************************************************
  * @brief A macro to get all JSON object values
  ******************************************************************************/
-#define get_json_value_n(this, type, value, n) \
+#define GET_JSON_VALUE_N(this, type, value, n) \
     get_json_value_n_pass(__PASS__, (this), (type), (value), (n))
 
 /*******************************************************************************
  * @brief A macro to get a JSON object value and pass file, line and function
  ******************************************************************************/
-#define get_json_value_pass(_file, _line, _function, this, type, value) \
+#define GET_JSON_VALUE_PASS(_file, _line, _function, this, type, value) \
     get_json_value_i_pass((_file), (_line), (_function),                \
                           (this), (type), (0), (value))
 
 /*******************************************************************************
  * @brief A macro to parse a JSON file
  ******************************************************************************/
-#define parse_json_file(path) parse_json_file_pass(__PASS__, (path))
+#define PARSE_JSON_FILE(path) parse_json_file_pass(__PASS__, (path))
 
 /*******************************************************************************
  * @brief A macro to parse a JSON string
  ******************************************************************************/
-#define parse_json_string(string) parse_json_string_pass(__PASS__, (string))
+#define PARSE_JSON_STRING(string) parse_json_string_pass(__PASS__, (string))
 
 /*******************************************************************************
  * @brief A macro to print JSON object
  ******************************************************************************/
-#define print_json_object(this, file_pointer) \
+#define PRINT_JSON_OBJECT(this, file_pointer) \
     print_json_object_pass(__PASS__, (this), (file_pointer), (0))
 
 /*******************************************************************************
  * @brief A macro to print JSON object with indent
  ******************************************************************************/
-#define print_json_object_indent(this, file_pointer, indent) \
+#define PRINT_JSON_OBJECT_INDENT(this, file_pointer, indent) \
     print_json_object_pass(__PASS__, (this), (file_pointer), (indent))
 
 /*******************************************************************************
  * @brie A macro to print JSON object as continous string
  ******************************************************************************/
-#define print_json_object_short(this, file_pointer) \
+#define PRINT_JSON_OBJECT_SHORT(this, file_pointer) \
     print_json_object_pass(__PASS__, (this), (file_pointer), (-1))
 
 /*******************************************************************************
  * @brief A macro to set a JSON object by path
  ******************************************************************************/
-#define set_json_object_by_path(this, path) \
+#define SET_JSON_OBJECT_BY_PATH(this, path) \
     set_json_object_by_path_pass(__PASS__, (this), (path))
 
 /*******************************************************************************
  * @brief A macro to set the key for a JSON object
  ******************************************************************************/
-#define set_json_key(this, key) set_json_key_pass(__PASS__, (this), (key))
+#define SET_JSON_KEY(this, key) set_json_key_pass(__PASS__, (this), (key))
 
 /*******************************************************************************
  * @brief A macro to set the type for a JSON object
  ******************************************************************************/
-#define set_json_type(this, type) set_json_type_pass(__PASS__, (this), (type))
+#define SET_JSON_TYPE(this, type) set_json_type_pass(__PASS__, (this), (type))
 
 /*******************************************************************************
  * @brief A macro to set the value for a JSON object
  ******************************************************************************/
-#define set_json_value(this, type, value) \
+#define SET_JSON_VALUE(this, type, value) \
     set_json_value_i_pass(__PASS__, (this), (type), (value), (0))
 
 /*******************************************************************************
  * @brief A macro to set the value at index i for a JSON object
  ******************************************************************************/
-#define set_json_value_i(this, type, value, i) \
+#define SET_JSON_VALUE_I(this, type, value, i) \
     set_json_value_i_pass(__PASS__, (this), (type), (value), (i))
 
 /*******************************************************************************
  * @brief A macro to set all values for a JSON object
  ******************************************************************************/
-#define set_json_value_n(this, type, value, n) \
+#define SET_JSON_VALUE_N(this, type, value, n) \
     set_json_value_n_pass(__PASS__, (this), (type), (value), (n))
 
 /*******************************************************************************
  * @brief A macro to set the value for a JSON object
  * and pass file, line and function
  ******************************************************************************/
-#define set_json_value_pass(_file, _line, _function, this, type, value) \
+#define SET_JSON_VALUE_PASS(_file, _line, _function, this, type, value) \
     set_json_value_i_pass((_file), (_line), (_function),                \
                           (this), (type), (value), (0))
 

@@ -15,16 +15,16 @@
  ******************************************************************************/
 int main()
 {
-    printf_r("Hello World!\n");
+    PRINTF("Hello World!\n");
 
     FILE *output = fopen("out.dat", "w");
     set_stdout(output);
 
-    printf_r("Hello World!\n");
+    PRINTF("Hello World!\n");
     printf_r_sep('.');
     printf_r_sep_title('.', "Test title");
 
-    reset_stdout();
+    RESET_STDOUT();
     fclose(output);
 
     return 0;

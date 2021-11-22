@@ -20,9 +20,9 @@
 void set_json_key_pass(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, cstring_t key)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
-    check_expression_pass(_file, _line, _function, key != NULL);
-    check_expression_pass(_file, _line, _function, key[0] != BNCH);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, key != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, key[0] != BNCH);
 
     this->key = allocate_strcpy(key);
 }
@@ -40,7 +40,7 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
                                      cstring_t _function,
                                      JSON_t *this, cstring_t path)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
 
     /** either path is NULL or empty, or base level is called */
     if (is_empty(path))
@@ -56,7 +56,7 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
     JSON_t *result = NULL;
     for (size_t i = 0; i < list_length(this->childs); ++i)
     {
-        JSON_t *tmp = list_get_ith(this->childs, i);
+        JSON_t *tmp = LIST_GET_ITH(this->childs, i);
         if ((tmp->key != NULL) && is_equal(level, tmp->key))
         {
             result = tmp;
@@ -94,10 +94,10 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
 void set_json_type_pass(cstring_t _file, int _line, cstring_t _function,
                         JSON_t *this, json_type_t type)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           this->type == _JSONUndefined);
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           (type >= 0) && (type < _json_type_max));
 
     this->type = type;
@@ -117,11 +117,11 @@ void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void *value, size_t i)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
     if (this->type == _JSONUndefined)
         set_json_type_pass(_file, _line, _function, this, type);
     else
-        check_expression_pass(_file, _line, _function, this->type == type);
+        CHECK_EXPRESSION_PASS(_file, _line, _function, this->type == type);
 
     switch (type)
     {
@@ -145,7 +145,7 @@ void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
         }
         break;
     default:
-        log_error_pass(_file, _line, _function, JERR, type);
+        LOG_ERROR_PASS(_file, _line, _function, JERR, type);
         break;
     }
 }
@@ -164,11 +164,11 @@ void set_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void *value, size_t n)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
     if (this->type == _JSONUndefined)
         set_json_type_pass(_file, _line, _function, this, JSONArray);
     else
-        check_expression_pass(_file, _line, _function,
+        CHECK_EXPRESSION_PASS(_file, _line, _function,
                               this->type == JSONArray);
 
     for (size_t i = 0; i < n; ++i)

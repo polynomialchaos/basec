@@ -15,7 +15,7 @@
  ******************************************************************************/
 void global_error_state_handler()
 {
-    printf_r("Calling global error state handler (%d)!\n", is_active_error());
+    PRINTF("Calling global error state handler (%d)!\n", is_active_error());
     return;
 }
 
@@ -25,7 +25,7 @@ void global_error_state_handler()
  ******************************************************************************/
 void error_state_handler()
 {
-    printf_r("Calling error state handler (%d)!\n", is_active_error());
+    PRINTF("Calling error state handler (%d)!\n", is_active_error());
     return;
 }
 
@@ -39,12 +39,12 @@ int main()
     set_global_error_state_handler(global_error_state_handler);
     set_error_state_handler(error_state_handler);
 
-    log_debug("Logging debug message!");
-    log_info("Logging info message!");
-    log_warning("Logging warning message!");
+    LOG_DEBUG("Logging debug message!");
+    LOG_INFO("Logging info message!");
+    LOG_WARNING("Logging warning message!");
 
     set_exit_with_failure(BFLS);
-    log_error("Logging error message!");
+    LOG_ERROR("Logging error message!");
 
     return 0;
 }

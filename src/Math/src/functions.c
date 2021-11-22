@@ -16,7 +16,7 @@
  ******************************************************************************/
 int factorial(int n)
 {
-    check_expression(n >= 0);
+    CHECK_EXPRESSION(n >= 0);
 
     int factorial = 1;
     for (int i = 1; i <= n; ++i)
@@ -24,6 +24,6 @@ int factorial(int n)
         factorial *= i;
     }
 
-    check_expression(factorial > 0);
+    CHECK_EXPRESSION(factorial > 0);
     return factorial;
 }

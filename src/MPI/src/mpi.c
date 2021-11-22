@@ -72,7 +72,7 @@ int get_number_of_procs()
 void global_error_handler_mpi()
 {
     int tmp = is_active_error();
-    mpi_all_reduce(MPIInt, MPILogOr, &tmp, &tmp);
+    MPI_ALL_REDUCE(MPIInt, MPILogOr, &tmp, &tmp);
     set_global_error(tmp);
 }
 
@@ -82,7 +82,7 @@ void global_error_handler_mpi()
 void mpi_barrier()
 {
 #ifdef MPI
-    check_mpi_expression(MPI_Barrier(comm));
+    CHECK_MPI_EXPRESSION(MPI_Barrier(comm));
 #endif /* MPI */
 }
 
@@ -92,14 +92,14 @@ void mpi_barrier()
 void mpi_finalize()
 {
 #ifdef MPI
-    check_mpi_expression(MPI_Finalize());
+    CHECK_MPI_EXPRESSION(MPI_Finalize());
 
-    reset_global_error_state_handler();
+    RESET_GLOBAL_ERROR_STATE_HANDLER();
 
     if (is_parallel() && !is_root())
     {
         close_file(get_stdout());
-        reset_stdout();
+        RESET_STDOUT();
     }
 #endif /* MPI */
 }
@@ -115,9 +115,9 @@ void mpi_initialize(int argc, string_t *argv,
                     bool_t only_rank, bool_t file_out)
 {
 #ifdef MPI
-    check_mpi_expression(MPI_Init(&argc, &argv));
-    check_mpi_expression(MPI_Comm_rank(comm, &i_mpi_proc));
-    check_mpi_expression(MPI_Comm_size(comm, &n_mpi_procs));
+    CHECK_MPI_EXPRESSION(MPI_Init(&argc, &argv));
+    CHECK_MPI_EXPRESSION(MPI_Comm_rank(comm, &i_mpi_proc));
+    CHECK_MPI_EXPRESSION(MPI_Comm_size(comm, &n_mpi_procs));
 
     set_global_error_state_handler(global_error_handler_mpi);
     store_file_out = file_out;

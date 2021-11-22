@@ -19,8 +19,8 @@
 JSON_t *create_json_child_pass(cstring_t _file, int _line, cstring_t _function,
                                JSON_t *this)
 {
-    check_expression_pass(_file, _line, _function, this != NULL);
-    check_expression_pass(_file, _line, _function,
+    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function,
                           (this->type == JSONObject) ||
                               (this->type == JSONArray));
 
@@ -31,10 +31,10 @@ JSON_t *create_json_child_pass(cstring_t _file, int _line, cstring_t _function,
     }
 
     JSON_t *child = create_json_object();
-    list_append(this->childs, sizeof(JSON_t), child);
+    LIST_APPEND(this->childs, sizeof(JSON_t), child);
     DEALLOCATE(child);
 
-    child = list_get_last(this->childs);
+    child = LIST_GET_LAST(this->childs);
     child->parent = this;
 
     return child;
@@ -82,7 +82,7 @@ void free_json_object(void *this)
         DEALLOCATE(this_value->key);
 
     if (this_value->childs != NULL)
-        list_deallocate(this_value->childs);
+        LIST_DEALLOCATE(this_value->childs);
 
     DEALLOCATE(this_value->childs);
 

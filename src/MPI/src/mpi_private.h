@@ -17,8 +17,8 @@
 /*******************************************************************************
  * @brief A macro to check a MPI call
  ******************************************************************************/
-#define check_mpi_expression(expression) \
-    check_expression((expression) == MPI_SUCCESS)
+#define CHECK_MPI_EXPRESSION(expression) \
+    CHECK_EXPRESSION((expression) == MPI_SUCCESS)
 #endif /* MPI */
 
 #ifdef MPI

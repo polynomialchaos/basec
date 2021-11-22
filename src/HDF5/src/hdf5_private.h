@@ -15,7 +15,7 @@
 /*******************************************************************************
  * @brief  A macro to check a HDF5 call
  ******************************************************************************/
-#define check_hdf5_expression(expression) check_expression((expression) >= 0)
+#define CHECK_HDF5_EXPRESSION(expression) CHECK_EXPRESSION((expression) >= 0)
 
 typedef hid_t (*hid_t_fp_hid_t_t)(hid_t);
 

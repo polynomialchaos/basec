@@ -57,8 +57,8 @@ list_t *list_allocate_pass(cstring_t _file, int _line, cstring_t _function,
 bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
                      list_t *list, bool_void_ft fun_ptr)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, fun_ptr != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, fun_ptr != NULL);
 
     bool_t result = BFLS;
 
@@ -86,8 +86,8 @@ bool_t list_all_pass(cstring_t _file, int _line, cstring_t _function,
 void list_append_pass(cstring_t _file, int _line, cstring_t _function,
                       list_t *list, size_t size, void *data)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, size > 0);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, size > 0);
 
     node_t *new = ALLOCATE(sizeof(node_t));
     new->data = ALLOCATE(size);
@@ -120,8 +120,8 @@ void list_append_pass(cstring_t _file, int _line, cstring_t _function,
 bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
                      list_t *list, bool_void_ft fun_ptr)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, fun_ptr != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, fun_ptr != NULL);
 
     bool_t result = BFLS;
 
@@ -149,8 +149,8 @@ bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
 void list_deallocate_ith_pass(cstring_t _file, int _line, cstring_t _function,
                               list_t *list, size_t ith)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, list->length > 0);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list->length > 0);
     node_t *current = list_get_ith_node(_file, _line, _function, list, ith);
 
     if (list->head == current)
@@ -196,7 +196,7 @@ void list_deallocate_node(node_t *node, void_void_ft fun_ptr)
 void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
                           list_t *list)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
 
     node_t *current = list->head;
     while (current != NULL)
@@ -207,7 +207,7 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
         current = next;
     }
 
-    check_expression_pass(_file, _line, _function, list->length == 0);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list->length == 0);
 }
 
 
@@ -222,8 +222,8 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
 void list_for_each_pass(cstring_t _file, int _line, cstring_t _function,
                         list_t *list, void_void_ft fun_ptr)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, fun_ptr != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, fun_ptr != NULL);
 
     node_t *node = list->head;
     while (node != NULL)
@@ -259,8 +259,8 @@ void *list_get_first_pass(cstring_t _file, int _line, cstring_t _function,
 node_t *list_get_ith_node(cstring_t _file, int _line, cstring_t _function,
                           list_t *list, size_t ith)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, ith < list_length(list));
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, ith < list_length(list));
 
     node_t *current = list->head;
     for (size_t i = 0; i < ith; ++i)
@@ -282,7 +282,7 @@ void *list_get_ith_pass(cstring_t _file, int _line, cstring_t _function,
                         list_t *list, size_t ith)
 {
     node_t *node = list_get_ith_node(_file, _line, _function, list, ith);
-    check_expression_pass(_file, _line, _function, node != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, node != NULL);
     return node->data;
 }
 
@@ -312,7 +312,7 @@ void *list_get_last_pass(cstring_t _file, int _line, cstring_t _function,
 void list_init_pass(cstring_t _file, int _line, cstring_t _function,
                     list_t *list, void_void_ft fun_ptr)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
 
     list->length = 0;
     list->head = NULL;
@@ -342,8 +342,8 @@ size_t list_length(list_t *list)
 void list_prepend_pass(cstring_t _file, int _line, cstring_t _function,
                        list_t *list, size_t size, void *data)
 {
-    check_expression_pass(_file, _line, _function, list != NULL);
-    check_expression_pass(_file, _line, _function, size > 0);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, list != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, size > 0);
 
     node_t *new = ALLOCATE(sizeof(node_t));
 

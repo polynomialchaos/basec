@@ -16,18 +16,18 @@
 /*******************************************************************************
  * @brief A macro to wrap printf to redirected stdout
  ******************************************************************************/
-#define printf_r(format, ...) \
+#define PRINTF(format, ...) \
     ({ fprintf((get_stdout()), (format), ##__VA_ARGS__); })
 
 /*******************************************************************************
  * @brief A macro to reset redirected stdout
  ******************************************************************************/
-#define reset_stdout() set_stdout(NULL)
+#define RESET_STDOUT() set_stdout(NULL)
 
 /*******************************************************************************
  * @brief A macro to wrap variadic printf to redirected stdout
  ******************************************************************************/
-#define vprintf_r(format, arg) \
+#define VPRINTF(format, arg) \
     ({ vfprintf((get_stdout()), (format), (arg)); })
 
 /*******************************************************************************

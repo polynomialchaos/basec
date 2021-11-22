@@ -51,7 +51,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
                      math_int_ft matvec, int *iter, double *residual,
                      int n_dims, int n_krylov_restarts)
 {
-    check_expression(matvec != NULL);
+    CHECK_EXPRESSION(matvec != NULL);
     size_t nm = n * m;
     size_t tmp = 0;
 
@@ -91,7 +91,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
         {
             *iter += 1;
 
-            check_expression((*matvec)(&v[j * nm], w, n, m) == 0);
+            CHECK_EXPRESSION((*matvec)(&v[j * nm], w, n, m) == 0);
 
             // Gram-Schmidt
             for (int i = 0; i <= j; ++i)
@@ -125,7 +125,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
             gam[j + 1] = -s[j] * gam[j];
             gam[j] = c[j] * gam[j];
 
-            *residual = sqrt(ABS_T(gam[j + 1]));
+            *residual = sqrt(ABS(gam[j + 1]));
             if ((*residual <= tolerance) || (j == n_dims - 1))
             {
                 for (int i = j; i >= 0; --i)
@@ -153,12 +153,12 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
             }
         }
 
-        check_expression((*matvec)(x, r0, n, m) == 0);
+        CHECK_EXPRESSION((*matvec)(x, r0, n, m) == 0);
         for (size_t i = 0; i < nm; ++i)
             r0[i] = b[i] - r0[i];
 
         norm_r0 = len_n(r0, nm);
     }
 
-    log_error(MITF, __FUNCTION__, iter);
+    LOG_ERROR(MITF, __FUNCTION__, iter);
 }

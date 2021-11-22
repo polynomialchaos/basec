@@ -16,13 +16,13 @@
 int main()
 {
     double *tmp = ALLOCATE(sizeof(double) * 12);
-    check_expression(tmp != NULL);
+    CHECK_EXPRESSION(tmp != NULL);
 
     tmp = REALLOCATE(tmp, sizeof(double) * 12);
-    check_expression(tmp != NULL);
+    CHECK_EXPRESSION(tmp != NULL);
 
     DEALLOCATE(tmp);
-    check_expression(tmp == NULL);
+    CHECK_EXPRESSION(tmp == NULL);
 
     return 0;
 }

@@ -45,7 +45,7 @@ double cos_angle_n(double *a, double *b, size_t n)
     double result = dot_n(a, b, n);
     result /= len_n(a, n);
     result /= len_n(b, n);
-    result = MAX_T(MIN_T(result, 1.0), -1.0);
+    result = MAX(MIN(result, 1.0), -1.0);
 
     return result;
 }
@@ -156,7 +156,7 @@ double max_n(double *a, size_t n)
     double max = -BDMX;
 
     for (size_t i = 0; i < n; ++i)
-        max = MAX_T(max, a[i]);
+        max = MAX(max, a[i]);
 
     return max;
 }
@@ -172,7 +172,7 @@ double min_n(double *a, size_t n)
     double min = BDMX;
 
     for (size_t i = 0; i < n; ++i)
-        min = MIN_T(min, a[i]);
+        min = MIN(min, a[i]);
 
     return min;
 }
@@ -201,7 +201,7 @@ void orthonormal_basis_3(double *a, double *b, double *c, double *d)
 {
     norm_n(a, 3, b);
 
-    if (ABS_T(b[0]) > ABS_T(b[1]))
+    if (ABS(b[0]) > ABS(b[1]))
     {
         c[0] = -b[2];
         c[1] = 0.0;

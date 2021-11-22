@@ -55,19 +55,19 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
 
     if (level > Info)
     {
-        printf_r("\n");
+        PRINTF("\n");
         printf_r_sep(ULMS);
     }
 
-    printf_r("%s:", level_strings[level]);
-    vprintf_r(format, arg);
-    printf_r("\n");
+    PRINTF("%s:", level_strings[level]);
+    VPRINTF(format, arg);
+    PRINTF("\n");
 
     if (_file)
-        printf_r("%s:%i:%s\n", _file, _line, _function);
+        PRINTF("%s:%i:%s\n", _file, _line, _function);
 
     if (_file2)
-        printf_r("%s:%i:%s\n", _file2, _line2, _function2);
+        PRINTF("%s:%i:%s\n", _file2, _line2, _function2);
 
     if (level > Info)
     {
@@ -108,7 +108,7 @@ void default_exit_handler()
 {
     if (is_active_error())
     {
-        printf_r("Failure exit!\n");
+        PRINTF("Failure exit!\n");
         exit(exit_with_failure ? EXIT_FAILURE : EXIT_SUCCESS);
     }
     else

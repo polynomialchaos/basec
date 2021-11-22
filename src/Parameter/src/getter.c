@@ -22,7 +22,7 @@ void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type, void *value)
 {
     JSON_t *tmp = get_parameter_path_pass(_file, _line, _function, path, 1);
-    get_json_value_pass(_file, _line, _function, tmp, as_json_type[type], value);
+    GET_JSON_VALUE_PASS(_file, _line, _function, tmp, as_json_type[type], value);
 }
 
 /*******************************************************************************
@@ -75,7 +75,7 @@ bool_t parameter_exists_pass(cstring_t _file, int _line, cstring_t _function,
 JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,
                                 cstring_t path, int is_required)
 {
-    check_expression_pass(_file, _line, _function, user_defaults != NULL);
+    CHECK_EXPRESSION_PASS(_file, _line, _function, user_defaults != NULL);
     string_t path_value = ALLOCATE(
         sizeof(char) * (strlen(path) + 1 + strlen(PVLK) + 1));
     strcpy(path_value, path);
@@ -100,7 +100,7 @@ JSON_t *get_parameter_path_pass(cstring_t _file, int _line, cstring_t _function,
                                               user_defaults, path);
 
     if (is_required)
-        check_expression_pass(_file, _line, _function, result != NULL);
+        CHECK_EXPRESSION_PASS(_file, _line, _function, result != NULL);
 
     DEALLOCATE(path_value);
     return result;

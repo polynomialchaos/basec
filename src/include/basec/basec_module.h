@@ -16,6 +16,8 @@
 #include "basec/json_module.h"
 #include "basec/parameter_module.h"
 #include "basec/math_module.h"
-#include "basec/mpi_modules.h"
+#include "basec/mpi_module.h"
+#include "basec/global_module.h"
+#include "basec/hdf5_module.h"
 
 #endif /* BASEC_MODULE_H */

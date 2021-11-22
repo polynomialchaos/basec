@@ -22,7 +22,7 @@ void mpi_all_reduce_n(mpi_type_t type, mpi_function_t function,
                   const void *send, int n, void *receive)
 {
 #ifdef MPI
-    check_mpi_expression(
+    CHECK_MPI_EXPRESSION(
         MPI_Allreduce(send, receive, n, as_mpi_type[type],
                       as_mpi_function[function], comm));
 #else
@@ -46,7 +46,7 @@ void mpi_reduce_n(mpi_type_t type, mpi_function_t function, int rank,
                   const void *send, int n, void *receive)
 {
 #ifdef MPI
-    check_mpi_expression(
+    CHECK_MPI_EXPRESSION(
         MPI_Reduce(send, receive, n, as_mpi_type[type],
                    as_mpi_function[function], rank, comm));
 #else
