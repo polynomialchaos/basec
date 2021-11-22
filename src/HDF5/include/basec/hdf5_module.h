@@ -63,7 +63,7 @@ void create_hdf5_soft_link(hid_t parent_id,
  * @brief Deallocate a string buffer
  * @param buffer
  ******************************************************************************/
-void deallocate_hdf5_string_buffer(string_t **buffer);
+void deallocate_hdf5_string_buffer(string_t *buffer);
 
 /*******************************************************************************
  * @brief Wrapper to delete a HDF5 soft link

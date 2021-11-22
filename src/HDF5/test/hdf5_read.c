@@ -72,6 +72,7 @@ int main(int argc, string_t *argv)
 
     DEALLOCATE(vec_int_attr);
     DEALLOCATE(vec_dbl_attr);
+    deallocate_hdf5_string_buffer(vec_str_attr);
     DEALLOCATE(vec_str_attr);
 
     close_hdf5_group(group_id);
@@ -102,6 +103,7 @@ int main(int argc, string_t *argv)
 
     DEALLOCATE(vec_int_attr);
     DEALLOCATE(vec_dbl_attr);
+    deallocate_hdf5_string_buffer(vec_str_attr);
     DEALLOCATE(vec_str_attr);
 
     // vector dataset + offset/count/stride/block + hyperslab

@@ -56,7 +56,8 @@ int main(int argc, string_t *argv)
     set_hdf5_dataset_n(file_id, "vec_dbl_dset", HDF5Double, vec_dbl_attr, dim);
     set_hdf5_dataset_n(file_id, "vec_str_dset", HDF5String, tmp, dim);
 
-    deallocate_hdf5_string_buffer(&tmp);
+    deallocate_hdf5_string_buffer(tmp);
+    DEALLOCATE(tmp);
 
     // vector dataset + offset/count/stride/block + hyperslab
     hsize_t dim_glob = 20;

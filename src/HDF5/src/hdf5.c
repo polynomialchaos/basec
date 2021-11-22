@@ -65,9 +65,8 @@ void deactivate_hdf5_diag()
  * @brief Deallocate a string buffer
  * @param buffer
  ******************************************************************************/
-void deallocate_hdf5_string_buffer(string_t **buffer)
+void deallocate_hdf5_string_buffer(string_t *buffer)
 {
-    DEALLOCATE((*buffer)[0]);
     DEALLOCATE(*buffer);
 }
 
