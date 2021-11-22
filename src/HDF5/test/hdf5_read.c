@@ -79,7 +79,7 @@ int main(int argc, string_t *argv)
 
     close_hdf5_group(group_id);
 
-    // vector dataset
+    /* vector dataset */
     vec_int_attr = ALLOCATE(sizeof(int) * dim);
     vec_dbl_attr = ALLOCATE(sizeof(double) * dim);
     vec_str_attr = NULL;
@@ -108,7 +108,7 @@ int main(int argc, string_t *argv)
     deallocate_hdf5_string_buffer(vec_str_attr);
     DEALLOCATE(vec_str_attr);
 
-    // vector dataset + offset/count/stride/block + hyperslab
+    /* vector dataset + offset/count/stride/block + hyperslab */
     hsize_t dim_glob = 20;
     hsize_t offset = 4;
     hsize_t count = dim;
@@ -166,7 +166,7 @@ int main(int argc, string_t *argv)
 
     DEALLOCATE(vec_int_attr);
 
-    // array dataset
+    /* array dataset */
     hsize_t dim_arr[] = {4, 6};
     double *arr_dbl_dset = ALLOCATE(sizeof(double) * dim_arr[0] * dim_arr[1]);
     GET_HDF5_DATASET_N_M(file_id, "arr_dbl_dset", HDF5Double,
@@ -179,7 +179,7 @@ int main(int argc, string_t *argv)
 
     DEALLOCATE(arr_dbl_dset);
 
-    // array dataset + offset/count/stride/block
+    /* array dataset + offset/count/stride/block */
     hsize_t dim_arr_glob[] = {20, 20};
     hsize_t offset_arr[] = {4, 4};
     hsize_t count_arr[] = {4, 6};

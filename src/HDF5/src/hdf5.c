@@ -21,7 +21,7 @@ void activate_hdf5_diag()
 {
     CHECK_EXPRESSION(old_func != NULL);
 
-    // Restore previous error handler
+    /* Restore previous error handler */
     H5Eset_auto(H5E_DEFAULT, old_func, old_client_data);
 }
 
@@ -54,10 +54,10 @@ void deactivate_hdf5_diag()
 {
     CHECK_EXPRESSION((old_func == NULL) || (old_client_data == NULL));
 
-    // Save old error handler
+    /* Save old error handler */
     H5Eget_auto(H5E_DEFAULT, &old_func, &old_client_data);
 
-    // Turn off error handling
+    /* Turn off error handling */
     H5Eset_auto(H5E_DEFAULT, NULL, NULL);
 }
 

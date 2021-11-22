@@ -18,23 +18,23 @@ int main()
     read_user_inputs("parameters.json");
     print_user_inputs();
 
-    // logical type
+    /* logical type */
     bool_t log_value = BTRU;
     bool_t log_values[] = {BTRU, BFLS, BTRU, BTRU};
 
-    // digit type
+    /* digit type */
     int dig_value = 1;
     int dig_values[] = {-1, 2, 30, 5};
 
-    // number type
+    /* number type */
     double num_value = 1;
     double num_values[] = {-1, 2, 30, 5};
 
-    // string type
+    /* string type */
     string_t str_value = "String";
     string_t str_values[] = {"String 1", "String 2", "String 3", "String 4"};
 
-    // read logical type
+    /* read logical type */
     bool_t log_rvalue = BFLS;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/scalar/bool") == BTRU);
@@ -104,7 +104,7 @@ int main()
     CHECK_EXPRESSION(log_rvalues[3] == log_values[3]);
     DEALLOCATE(log_rvalues);
 
-    // read digit type
+    /* read digit type */
     int dig_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/scalar/digit") == BTRU);
@@ -174,7 +174,7 @@ int main()
     CHECK_EXPRESSION(dig_rvalues[3] == dig_values[3]);
     DEALLOCATE(dig_rvalues);
 
-    // read number type
+    /* read number type */
     double num_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/scalar/number") == BTRU);
@@ -244,7 +244,7 @@ int main()
     CHECK_EXPRESSION(num_rvalues[3] == num_values[3]);
     DEALLOCATE(num_rvalues);
 
-    // read string type
+    /* read string type */
     string_t str_rvalue = NULL;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/string/scalar/string") == BTRU);

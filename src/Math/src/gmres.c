@@ -22,14 +22,14 @@ size_t get_gmres_n_m_work_size(size_t n, size_t m, int n_dims)
     size_t nm = n * m;
     size_t tmp = 0;
 
-    tmp += n_dims;                      // c
-    tmp += n_dims;                      // s
-    tmp += n_dims;                      // y
-    tmp += n_dims + 1;                  // gam
-    tmp += (n_dims + 1) * (n_dims + 1); // h
-    tmp += nm * n_dims;                 // v
-    tmp += nm;                          // w
-    tmp += nm;                          // r0
+    tmp += n_dims;                      /* c */
+    tmp += n_dims;                      /* s */
+    tmp += n_dims;                      /* y */
+    tmp += n_dims + 1;                  /* gam */
+    tmp += (n_dims + 1) * (n_dims + 1); /* h */
+    tmp += nm * n_dims;                 /* v */
+    tmp += nm;                          /* w */
+    tmp += nm;                          /* r0 */
 
     return tmp;
 }
@@ -56,19 +56,19 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
     size_t tmp = 0;
 
     double *c = &work[tmp];
-    tmp += n_dims; // c
+    tmp += n_dims; /* c */
     double *s = &work[tmp];
-    tmp += n_dims; // s
+    tmp += n_dims; /* s */
     double *y = &work[tmp];
-    tmp += n_dims; // y
+    tmp += n_dims; /* y */
     double *gam = &work[tmp];
-    tmp += n_dims + 1; // gam
+    tmp += n_dims + 1; /* gam */
     double *h = &work[tmp];
-    tmp += (n_dims + 1) * (n_dims + 1); // h
+    tmp += (n_dims + 1) * (n_dims + 1); /* h */
     double *v = &work[tmp];
-    tmp += nm * n_dims; // v
+    tmp += nm * n_dims; /* v */
     double *w = &work[tmp];
-    tmp += nm; // w
+    tmp += nm; /* w */
     double *r0 = &work[tmp];
 
     *iter = 0;
@@ -79,7 +79,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
 
     double norm_r0 = len_n(b, nm);
 
-    // Perform GMRes iteration
+    /* Perform GMRes iteration */
     for (int ikr = 0; ikr < n_krylov_restarts; ++ikr)
     {
         for (size_t i = 0; i < nm; ++i)
@@ -93,7 +93,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
 
             CHECK_EXPRESSION((*matvec)(&v[j * nm], w, n, m) == 0);
 
-            // Gram-Schmidt
+            /* Gram-Schmidt */
             for (int i = 0; i <= j; ++i)
             {
                 h[i * n_dims + j] = dot_n(&v[i * nm], w, nm);
@@ -103,7 +103,7 @@ void solve_gmres_n_m(size_t n, size_t m, double *b, double *x, double *work,
 
             h[(j + 1) * n_dims + j] = len_n(w, nm);
 
-            // Givens Rotation
+            /* Givens Rotation */
             for (int i = 0; i <= j - 1; ++i)
             {
                 double tmp = c[i] * h[i * n_dims + j] +

@@ -53,7 +53,7 @@ void fill_read_buffer(buffer_t *buffer)
 
     while (buffer->cursor + buffer->length < JBFL)
     {
-        // file read section
+        /* file read section */
         if (buffer->is_file)
         {
             buffer->is_eof = fgetc(buffer->file);
@@ -70,7 +70,7 @@ void fill_read_buffer(buffer_t *buffer)
         if (buffer->is_eof == EOF)
             break;
 
-        // char parse section
+        /* char parse section */
         char tmp = (char)buffer->is_eof;
 
         if ((!buffer->is_control) && (tmp == JSTR))

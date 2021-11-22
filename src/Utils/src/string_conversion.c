@@ -56,12 +56,12 @@ bool_t string_to_bool(cstring_t string)
     if (string[0] == BNCH)
         return 0;
 
-    // create a copy of the string to perform lower case transformation
+    /* create a copy of the string to perform lower case transformation */
     string_t tmp = allocate_strcpy(string);
     for (size_t i = 0; tmp[i]; ++i)
         tmp[i] = tolower(tmp[i]);
 
-    // check if string is a True place-holder
+    /* check if string is a True place-holder */
     bool_t is_true = BFLS;
     for (size_t i = 0; i < n_bool_keywords; ++i)
         if (is_equal(tmp, bool_keywords[i]))
@@ -132,7 +132,7 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
     (*n) = count_chars(string, UCVD) + 1;
     (*value) = ALLOCATE(string_datatype_bytes[type] * (*n));
 
-    // create a copy of the string to perform the string truncation
+    /* create a copy of the string to perform the string truncation */
     string_t tmp = allocate_strcpy(string);
 
     replace(tmp, USLB, ' ');

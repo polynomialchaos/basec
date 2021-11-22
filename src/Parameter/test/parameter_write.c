@@ -15,7 +15,7 @@
  ******************************************************************************/
 int main()
 {
-    // logical type
+    /* logical type */
     bool_t log_value = BTRU;
     SET_PARAMETER("section/bool/scalar/bool", LogicalParameter,
                   &log_value, NULL, NULL, 0);
@@ -32,7 +32,7 @@ int main()
     SET_PARAMETER_N("section/bool/vector/bool_desc_opt", LogicalParameter,
                     log_values, 4, "Description with options", log_values, 4);
 
-    // digit type
+    /* digit type */
     int dig_value = 1;
     SET_PARAMETER("section/digit/scalar/digit", DigitParameter,
                   &dig_value, NULL, NULL, 0);
@@ -49,7 +49,7 @@ int main()
     SET_PARAMETER_N("section/digit/vector/digit_desc_opt", DigitParameter,
                     dig_values, 4, "Description with options", dig_values, 4);
 
-    // number type
+    /* number type */
     double num_value = 1;
     SET_PARAMETER("section/number/scalar/number", NumberParameter,
                   &num_value, NULL, NULL, 0);
@@ -66,7 +66,7 @@ int main()
     SET_PARAMETER_N("section/number/vector/number_desc_opt", NumberParameter,
                     num_values, 4, "Description with options", num_values, 4);
 
-    // string type
+    /* string type */
     string_t str_value = "String";
     SET_PARAMETER("section/string/scalar/string", StringParameter,
                   &str_value, NULL, NULL, 0);
@@ -86,7 +86,7 @@ int main()
     print_user_defaults();
     flush_user_defaults("parameters.json");
 
-    // read logical type
+    /* read logical type */
     bool_t log_rvalue = BFLS;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/bool/scalar/bool") == BTRU);
@@ -156,7 +156,7 @@ int main()
     CHECK_EXPRESSION(log_rvalues[3] == log_values[3]);
     DEALLOCATE(log_rvalues);
 
-    // read digit type
+    /* read digit type */
     int dig_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/digit/scalar/digit") == BTRU);
@@ -226,7 +226,7 @@ int main()
     CHECK_EXPRESSION(dig_rvalues[3] == dig_values[3]);
     DEALLOCATE(dig_rvalues);
 
-    // read number type
+    /* read number type */
     double num_rvalue = 0;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/number/scalar/number") == BTRU);
@@ -296,7 +296,7 @@ int main()
     CHECK_EXPRESSION(num_rvalues[3] == num_values[3]);
     DEALLOCATE(num_rvalues);
 
-    // read string type
+    /* read string type */
     string_t str_rvalue = NULL;
     CHECK_EXPRESSION(
         PARAMETER_EXISTS("section/string/scalar/string") == BTRU);

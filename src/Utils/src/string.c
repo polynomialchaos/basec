@@ -190,7 +190,7 @@ string_t r_trim(string_t string)
     while (pos > string && isspace((unsigned char)*pos))
         pos--;
 
-    // Write new null terminator character
+    /* Write new null terminator character */
     pos[1] = BNCH;
 
     return string;
