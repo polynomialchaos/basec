@@ -27,7 +27,7 @@ find_package(HDF5 COMPONENTS C REQUIRED)
 # Build target
 #******************************************************************************/
 add_library(${target} OBJECT ${target_sources})
-target_link_libraries( ${target} Utils MPI
+target_link_libraries(${target} Utils MPI
     ${HDF5_C_HL_LIBRARIES} ${HDF5_C_LIBRARIES})
 
 target_include_directories(${target} PUBLIC

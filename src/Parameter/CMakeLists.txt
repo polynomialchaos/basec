@@ -19,7 +19,7 @@ file(GLOB target_sources
 # Build target
 #******************************************************************************/
 add_library(${target} OBJECT ${target_sources})
-target_link_libraries( ${target} Utils JSON)
+target_link_libraries(${target} Utils JSON)
 
 target_include_directories(${target} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

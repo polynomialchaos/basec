@@ -26,7 +26,7 @@ endif()
 # Build target
 #******************************************************************************/
 add_library(${target} OBJECT ${target_sources})
-target_link_libraries( ${target} Utils ${MPI_C_LIBRARIES})
+target_link_libraries(${target} Utils ${MPI_C_LIBRARIES})
 
 target_include_directories(${target} PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"

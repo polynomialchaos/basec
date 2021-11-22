@@ -35,9 +35,9 @@ set_target_properties(${target} PROPERTIES VERSION ${PROJECT_VERSION})
 #*******************************************************************************
 # Install target
 #******************************************************************************/
-install( DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h" )
-install( TARGETS ${target} EXPORT ${install_target}
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*.h")
+install(TARGETS ${target} EXPORT ${install_target}
     RUNTIME DESTINATION bin INCLUDES DESTINATION include
-    LIBRARY DESTINATION lib ARCHIVE DESTINATION lib )
+    LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 
-install( EXPORT ${install_target} DESTINATION share/cmake )
+install(EXPORT ${install_target} DESTINATION share/cmake)
