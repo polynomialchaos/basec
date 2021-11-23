@@ -283,7 +283,7 @@ int main()
     CHECK_EXPRESSION(is_equal(str_rvalues[1], str_values[1]));
     CHECK_EXPRESSION(is_equal(str_rvalues[2], str_values[2]));
     CHECK_EXPRESSION(is_equal(str_rvalues[3], str_values[3]));
-    for(size_t i = 0; i < n_str_rvalues; ++i)
+    for (size_t i = 0; i < n_str_rvalues; ++i)
         DEALLOCATE(str_rvalues[i]);
     DEALLOCATE(str_rvalues);
 
@@ -300,7 +300,7 @@ int main()
     CHECK_EXPRESSION(is_equal(str_rvalues[1], str_values[1]));
     CHECK_EXPRESSION(is_equal(str_rvalues[2], str_values[2]));
     CHECK_EXPRESSION(is_equal(str_rvalues[3], str_values[3]));
-    for(size_t i = 0; i < n_str_rvalues; ++i)
+    for (size_t i = 0; i < n_str_rvalues; ++i)
         DEALLOCATE(str_rvalues[i]);
     DEALLOCATE(str_rvalues);
 
@@ -319,7 +319,7 @@ int main()
     CHECK_EXPRESSION(is_equal(str_rvalues[1], str_values[1]));
     CHECK_EXPRESSION(is_equal(str_rvalues[2], str_values[2]));
     CHECK_EXPRESSION(is_equal(str_rvalues[3], str_values[3]));
-    for(size_t i = 0; i < n_str_rvalues; ++i)
+    for (size_t i = 0; i < n_str_rvalues; ++i)
         DEALLOCATE(str_rvalues[i]);
     DEALLOCATE(str_rvalues);
 

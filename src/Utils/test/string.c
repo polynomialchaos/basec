@@ -66,8 +66,7 @@ int main()
     CHECK_EXPRESSION(is_equal(r_trim(test_string4), "Hello") == BTRU);
 
     string_t string_vector[] = {
-        test_string, test_string2, test_string3, test_string4
-    };
+        test_string, test_string2, test_string3, test_string4};
     CHECK_EXPRESSION(strlen_n(string_vector, 4) == 28);
 
     string_t test_string5 = allocate_strcpy("Hello");

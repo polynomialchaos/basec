@@ -19,7 +19,7 @@
  * @param[out] receive
  ******************************************************************************/
 void mpi_all_reduce_n(mpi_type_t type, mpi_function_t function,
-                  const void *send, int n, void *receive)
+                      const void *send, int n, void *receive)
 {
 #ifdef MPI
     CHECK_MPI_EXPRESSION(

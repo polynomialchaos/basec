@@ -29,7 +29,6 @@ void error_state_handler()
     return;
 }
 
-
 /*******************************************************************************
  * @brief Main test function
  * @return int

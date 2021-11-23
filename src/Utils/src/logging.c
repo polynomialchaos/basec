@@ -19,7 +19,7 @@ cstring_t level_strings[_logging_level_max] = {
 bool_t error_state = BFLS;        /** Error state flag */
 bool_t global_error_state = BFLS; /** Global error state flag */
 bool_t abort_active = BFLS;       /** Abort active flag */
-bool_t exit_with_failure = BTRU;   /** Exit with failure flag */
+bool_t exit_with_failure = BTRU;  /** Exit with failure flag */
 
 /** Global error state function pointer */
 void_ft global_error_state_handler_fun_ptr = NULL;

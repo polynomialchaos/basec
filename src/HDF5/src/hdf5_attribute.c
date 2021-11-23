@@ -67,7 +67,7 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
 
     if (type == HDF5String)
     {
-        void *str_data = ((string_t *) data)[0];
+        void *str_data = ((string_t *)data)[0];
         CHECK_HDF5_EXPRESSION(H5Aread(attribute_id, datatype_id, str_data));
         CHECK_HDF5_EXPRESSION(H5Tclose(datatype_id));
     }
@@ -152,7 +152,7 @@ void set_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
 
     if (type == HDF5String)
     {
-        void *str_data = ((string_t *) data)[0];
+        void *str_data = ((string_t *)data)[0];
         CHECK_HDF5_EXPRESSION(H5Awrite(attribute_id, datatype_id, str_data));
         CHECK_HDF5_EXPRESSION(H5Tclose(datatype_id));
     }

@@ -98,7 +98,7 @@ void global_initialize(int argc, string_t *argv, bool_t use_mpi,
         int n_procs = get_number_of_procs();
         int i_rank = get_rank_number();
         PRINTF("Parallel run: Running on %d processor(s). Rank is %d.\n",
-                 n_procs, i_rank);
+               n_procs, i_rank);
     }
 
     printf_r_sep(GBMS);

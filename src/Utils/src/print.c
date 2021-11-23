@@ -47,10 +47,10 @@ void printf_r_sep_title(const char symbol, cstring_t title)
     memset(tmp, symbol, UTWD);
 
     int len_tile = MIN(strlen(title),
-                         (size_t)(UTWD - 2 * UTIN));
+                       (size_t)(UTWD - 2 * UTIN));
 
     PRINTF("%.*s %.*s %.*s\n", UTIN - 1, tmp, len_tile, title,
-             UTWD - UTIN - len_tile - 1, tmp);
+           UTWD - UTIN - len_tile - 1, tmp);
 }
 
 /*******************************************************************************

@@ -210,7 +210,6 @@ void list_deallocate_pass(cstring_t _file, int _line, cstring_t _function,
     CHECK_EXPRESSION_PASS(_file, _line, _function, list->length == 0);
 }
 
-
 /*******************************************************************************
  * @brief Call a function for each node and pass file, line, function
  * @param[in] _file

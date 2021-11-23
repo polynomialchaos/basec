@@ -108,8 +108,8 @@ int main(int argc, string_t *argv)
     hsize_t offset_vec[] = {10, 10};
     hsize_t count_vec[] = {1, 4};
     SET_HDF5_DATASET_CHUNK_N(file_id, "arr_dbl_dset_off", HDF5Double,
-                               vec_dbl_attr, dim, 2, dim_arr_glob,
-                               offset_vec, count_vec, NULL, NULL);
+                             vec_dbl_attr, dim, 2, dim_arr_glob,
+                             offset_vec, count_vec, NULL, NULL);
 
     hsize_t stride_arr[] = {2, 2};
     SET_HDF5_DATASET_CHUNK_N_M(file_id, "arr_dbl_dset_str", HDF5Double,

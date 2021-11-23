@@ -25,7 +25,7 @@ int main()
     string_t clock_time_string = get_clock_time_string(clock_time);
 
     PRINTF("%s ... %s ... %s ... %s\n",
-             date, time, datetime, clock_time_string);
+           date, time, datetime, clock_time_string);
 
     DEALLOCATE(date);
     DEALLOCATE(time);
