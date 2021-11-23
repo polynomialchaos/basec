@@ -23,7 +23,7 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 attribute
  ******************************************************************************/
-#define GET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, data, n) \
+#define GET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, n, data) \
     get_hdf5_attribute_r_d((parent_id), (attribute_name), (type),        \
                            (1), (REF(n)), (data))
 

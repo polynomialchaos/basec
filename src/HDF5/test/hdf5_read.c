@@ -50,14 +50,14 @@ int main(int argc, string_t *argv)
     string_t *vec_str_attr = NULL;
 
     GET_HDF5_ATTRIBUTE_N(group_id, "vec_int_attr",
-                         HDF5Int, vec_int_attr, dim);
+                         HDF5Int, dim, vec_int_attr);
     CHECK_EXPRESSION(vec_int_attr[0] == 144);
     CHECK_EXPRESSION(vec_int_attr[1] == 101);
     CHECK_EXPRESSION(vec_int_attr[2] == 1);
     CHECK_EXPRESSION(vec_int_attr[3] == 12);
 
     GET_HDF5_ATTRIBUTE_N(group_id, "vec_dbl_attr",
-                         HDF5Double, vec_dbl_attr, dim);
+                         HDF5Double, dim, vec_dbl_attr);
     CHECK_EXPRESSION(vec_dbl_attr[0] == 12.0);
     CHECK_EXPRESSION(vec_dbl_attr[1] == -3.0);
     CHECK_EXPRESSION(vec_dbl_attr[2] == 1.0);
@@ -66,7 +66,7 @@ int main(int argc, string_t *argv)
     str_len = get_hdf5_attribute_size(group_id, "vec_str_attr");
     vec_str_attr = allocate_hdf5_string_buffer(dim, str_len, NULL);
     GET_HDF5_ATTRIBUTE_N(group_id, "vec_str_attr",
-                         HDF5String, vec_str_attr, dim);
+                         HDF5String, dim, vec_str_attr);
     CHECK_EXPRESSION(is_equal(vec_str_attr[0], "Hello"));
     CHECK_EXPRESSION(is_equal(vec_str_attr[1], "See you! + World!"));
     CHECK_EXPRESSION(is_equal(vec_str_attr[2], "a"));
