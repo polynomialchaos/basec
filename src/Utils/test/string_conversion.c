@@ -74,6 +74,8 @@ int main()
     CHECK_EXPRESSION(is_equal(values_c[1], " World      "));
     CHECK_EXPRESSION(is_equal(values_c[2], "   !"));
     CHECK_EXPRESSION(is_equal(values_c[3], "you"));
+    for (size_t i = 0; i < n; ++i)
+        DEALLOCATE(values_c[i]);
     DEALLOCATE(values_c);
 
     return 0;
