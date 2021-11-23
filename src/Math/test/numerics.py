@@ -10,7 +10,7 @@ import numpy as np
 
 
 def gaussSeidel(A, b, tolerance=1e-6, maxIter=100):
-    """Solve the linear system of equations."""
+    """Solve the linear system of equations using Gauss algorithm."""
     b_mod = np.atleast_2d(b).T
     if A.shape[0] != b_mod.shape[0]:
         raise ValueError('Matrix and vector shape not valid!')
@@ -40,7 +40,7 @@ def gaussSeidel(A, b, tolerance=1e-6, maxIter=100):
 
 
 def BiCGStab(A, b, tolerance=1e-30, maxIter=100):
-    """Solve the linear system of equation."""
+    """Solve the linear system of equations using BiCGStab algorithm."""
     b_mod = np.atleast_2d(b).T
     if A.shape[0] != b_mod.shape[0]:
         raise ValueError('Matrix and vector shape not valid!')
@@ -81,16 +81,14 @@ def BiCGStab(A, b, tolerance=1e-30, maxIter=100):
     raise ValueError('BiCGStab did not converge!')
 
 
-def wrapper(f, *args):
-    return f(*args)
-    # return f
-
-
+################################################################################
+# CALL BY SCRIPT
+# ------------------------------------------------------------------------------
 if __name__ == '__main__':
 
     M = np.array([[1, 2, 3], [4, 25, 6], [1, 8, 1]])
     b = np.array([1.083, 2, 1.25])
 
-    # wrapper( gaussSeidel, M, b )
+    print(gaussSeidel(M, b))
     print(BiCGStab(M, b))
     print(np.linalg.solve(M, b))
