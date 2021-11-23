@@ -1,56 +1,32 @@
-# User
-build
-install
-.vscode
+# Compiled source #
+###################
+*.h5
 
-# Prerequisites
-*.d
+# Logs #
+######################
+*.log
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+__pycache__
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Folders #
+###########
+.vscode/
+bin/
+lib/
+build/
+share/
+install/
+*.egg-info/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
+# Packages #
+############
+*.tar
+*.tar.gz
+*.zip
