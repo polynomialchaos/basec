@@ -2,8 +2,8 @@
  * @file mpi_private.h
  * @author Florian Eigentler
  * @brief
- * @version 0.1
- * @date 2021-11-08
+ * @version 1.0.0
+ * @date 2021-11-23
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #ifndef MPI_PRIVATE_H

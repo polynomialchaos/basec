@@ -2,8 +2,8 @@
  * @file utils_file.h
  * @author Florian Eigentler
  * @brief
- * @version 0.1
- * @date 2021-11-07
+ * @version 1.0.0
+ * @date 2021-11-23
  * @copyright Copyright (c) 2021
  ******************************************************************************/
 #ifndef UTILS_FILE_H
