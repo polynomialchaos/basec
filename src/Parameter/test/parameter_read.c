@@ -10,7 +10,7 @@
 #include "basec/parameter_module.h"
 
 /*******************************************************************************
- * @brief Main test function
+ * @brief Main function
  * @return int
  ******************************************************************************/
 int main()

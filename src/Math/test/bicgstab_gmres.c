@@ -36,7 +36,7 @@ int matrix_vector_n_m(double *p, double *v, size_t n, size_t m)
 }
 
 /*******************************************************************************
- * @brief Main test function
+ * @brief Main function
  * @return int
  ******************************************************************************/
 int main()

@@ -10,7 +10,7 @@
 #include "basec/mpi_module.h"
 
 /*******************************************************************************
- * @brief Main test function
+ * @brief Main function
  * @param argc
  * @param argv
  * @return int
