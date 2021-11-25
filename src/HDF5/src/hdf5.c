@@ -85,9 +85,6 @@ hid_t get_hdf5_data_type(hdf5_type_t type, hid_t id, hid_t_fp_hid_t_t function)
     case HDF5Int:
         datatype_id = H5T_NATIVE_INT;
         break;
-    // case HDF5Float:
-    //     datatype_id = H5T_NATIVE_FLOAT;
-    //     break;
     case HDF5Double:
         datatype_id = H5T_NATIVE_DOUBLE;
         break;
@@ -166,9 +163,6 @@ hid_t set_hdf5_data_type(hdf5_type_t type, void *data, int rank, hsize_t *dims)
     case HDF5Int:
         datatype_id = H5T_NATIVE_INT;
         break;
-    // case HDF5Float:
-    //     datatype_id = H5T_NATIVE_FLOAT;
-    //     break;
     case HDF5Double:
         datatype_id = H5T_NATIVE_DOUBLE;
         break;

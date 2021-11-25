@@ -18,7 +18,6 @@
 typedef enum HDF5Type
 {
     HDF5Int, /** HDF5 Integer type */
-    // HDF5Float,  /** HDF5 Float type*/
     HDF5Double, /** HDF5 Double type*/
     HDF5String, /** HDF5 String type */
     _hdf5_type_max
