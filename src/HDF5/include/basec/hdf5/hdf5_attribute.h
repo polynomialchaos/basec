@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file hdf5_module.c
+ * @file hdf5_module.h
  * @author Florian Eigentler
  * @brief @version 1.0.0
  * @date 2021-11-23
