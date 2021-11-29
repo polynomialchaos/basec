@@ -96,11 +96,18 @@ bool_t exists_hdf5_link(hid_t parent_id, cstring_t link_name);
 bool_t is_valid_hdf5_file(cstring_t file_name);
 
 /*******************************************************************************
- * @brief Wrapper to open a HDF5 file
+ * @brief Wrapper to open a HDF5 file (read and write)
  * @param file_name
  * @return hid_t
  ******************************************************************************/
 hid_t open_hdf5_file(cstring_t file_name);
+
+/*******************************************************************************
+ * @brief Wrapper to open a HDF5 file (read only)
+ * @param file_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t open_hdf5_file_read_only(cstring_t file_name);
 
 /*******************************************************************************
  * @brief Wrapper to open a HDF5 group

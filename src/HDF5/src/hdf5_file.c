@@ -56,13 +56,32 @@ bool_t is_valid_hdf5_file(cstring_t file_name)
 }
 
 /*******************************************************************************
- * @brief Wrapper to open a HDF5 file
+ * @brief Wrapper to open a HDF5 file (read and write)
  * @param file_name
  * @return hid_t
  ******************************************************************************/
 hid_t open_hdf5_file(cstring_t file_name)
 {
+    return open_hdf5_file_mode(file_name, H5F_ACC_RDWR);
+}
 
+/*******************************************************************************
+ * @brief Wrapper to open a HDF5 file (read only)
+ * @param file_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t open_hdf5_file_read_only(cstring_t file_name)
+{
+    return open_hdf5_file_mode(file_name, H5F_ACC_RDONLY);
+}
+
+/*******************************************************************************
+ * @brief Wrapper to open a HDF5 file (mode)
+ * @param file_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t open_hdf5_file_mode(cstring_t file_name, unsigned mode)
+{
 #ifdef MPI
     hid_t plist_id = H5Pcreate(H5P_FILE_ACCESS);
     CHECK_HDF5_EXPRESSION(H5Pset_fapl_mpio(plist_id, comm, info));
@@ -70,7 +89,7 @@ hid_t open_hdf5_file(cstring_t file_name)
     hid_t plist_id = H5P_DEFAULT;
 #endif /* MPI */
 
-    hid_t file_id = H5Fopen(file_name, H5F_ACC_RDWR, plist_id);
+    hid_t file_id = H5Fopen(file_name, mode, plist_id);
     CHECK_HDF5_EXPRESSION(file_id);
 
 #ifdef MPI

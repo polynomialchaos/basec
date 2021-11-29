@@ -62,6 +62,13 @@ int get_hdf5_space_rank(hid_t dataspace_id);
 bool_t is_dataspace_equals(hid_t dataspace_id, int rank, hsize_t *dims);
 
 /*******************************************************************************
+ * @brief Wrapper to open a HDF5 file (mode)
+ * @param file_name
+ * @return hid_t
+ ******************************************************************************/
+hid_t open_hdf5_file_mode(cstring_t file_name, unsigned mode);
+
+/*******************************************************************************
  * @brief Set the HDF5 data type
  * @param type
  * @param rank
