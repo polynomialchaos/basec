@@ -128,8 +128,7 @@
  * @brief Wrapper to check if HDF5 dataset exists
  * @param parent_id
  * @param dataset_name
- * @return true
- * @return false
+ * @return bool_t
  ******************************************************************************/
 bool_t exists_hdf5_dataset(hid_t parent_id, cstring_t dataset_name);
 

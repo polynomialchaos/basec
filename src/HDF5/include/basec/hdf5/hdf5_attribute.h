@@ -52,8 +52,7 @@ void delete_hdf5_attribute(hid_t parent_id, cstring_t attribute_name);
  * @brief Wrapper to check if HDF5 attribute exists
  * @param parent_id
  * @param attribute_name
- * @return true
- * @return false
+ * @return bool_t
  ******************************************************************************/
 bool_t exists_hdf5_attribute(hid_t parent_id, cstring_t attribute_name);
 

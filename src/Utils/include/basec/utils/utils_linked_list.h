@@ -148,8 +148,7 @@ void list_append_pass(cstring_t _file, int _line, cstring_t _function,
  * @param[in] _function
  * @param[in] list
  * @param[in] fun_ptr
- * @return true
- * @return false
+ * @return bool_t
  ******************************************************************************/
 bool_t list_any_pass(cstring_t _file, int _line, cstring_t _function,
                      list_t *list, bool_void_ft fun_ptr);

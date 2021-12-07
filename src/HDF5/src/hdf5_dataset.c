@@ -11,10 +11,9 @@
  * @brief Wrapper to check if HDF5 dataset exists
  * @param parent_id
  * @param dataset_name
- * @return true
- * @return false
+ * @return bool_t
  ******************************************************************************/
-bool_t exists_hdf5_datatset(hid_t parent_id, cstring_t dataset_name)
+bool_t exists_hdf5_dataset(hid_t parent_id, cstring_t dataset_name)
 {
     htri_t result = H5Lexists(parent_id, dataset_name, H5P_DEFAULT);
     CHECK_HDF5_EXPRESSION(result);
@@ -152,7 +151,7 @@ void set_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
     hid_t datatype_id = set_hdf5_data_type(type, data, rank, dims);
     CHECK_HDF5_EXPRESSION(datatype_id);
 
-    hid_t dataset_id = (exists_hdf5_datatset(parent_id, dataset_name))
+    hid_t dataset_id = (exists_hdf5_dataset(parent_id, dataset_name))
                            ? H5Dopen(parent_id, dataset_name, H5P_DEFAULT)
                            : H5Dcreate(parent_id, dataset_name, datatype_id,
                                        dataspace_id, H5P_DEFAULT,
