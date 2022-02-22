@@ -1,0 +1,35 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+name: C unit test CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up environment
+      run: |
+          sudo apt update -y
+          sudo apt upgrade -y
+          sudo apt install cmake
+          sudo apt install gcc
+          sudo apt install libopenmpi-dev
+          sudo apt install libhdf5-openmpi-dev
+    - name: Build library
+      run: |
+          mkdir -p build
+          cd build
+          cmake ..
+          make
+    - name: Test library
+      run: |
+          cd build
+          ctest --verbose
