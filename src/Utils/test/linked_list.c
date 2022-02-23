@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file time.c
+ * @file linked_list.c
  * @author Florian Eigentler
  * @brief
  * @version 1.0.0
