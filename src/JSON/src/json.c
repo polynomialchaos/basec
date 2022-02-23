@@ -11,7 +11,7 @@
 
 /*******************************************************************************
  * @brief Create a JSON object child and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this

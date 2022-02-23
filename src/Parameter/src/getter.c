@@ -12,7 +12,7 @@
 
 /*******************************************************************************
  * @brief Get a parameter and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path
@@ -28,7 +28,7 @@ void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a vector parameter count and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path
@@ -43,7 +43,7 @@ int get_parameter_count_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a vector parameter and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path
@@ -61,7 +61,7 @@ void get_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Check if parameter exists and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path

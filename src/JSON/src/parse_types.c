@@ -160,7 +160,7 @@ string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
 
 /*******************************************************************************
  * @brief Parse a JSON array
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -179,7 +179,7 @@ void parse_json_array(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON object
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -218,7 +218,7 @@ void parse_json_object(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON value
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -291,7 +291,7 @@ void parse_json_value(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON logical
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -316,7 +316,7 @@ void parse_json_value_boolean(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON null object
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -338,7 +338,7 @@ void parse_json_value_null(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON number
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -373,7 +373,7 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON string
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this

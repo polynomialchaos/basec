@@ -58,7 +58,7 @@ void delete_hdf5_attribute(hid_t parent_id, cstring_t attribute_name);
 bool_t exists_hdf5_attribute(hid_t parent_id, cstring_t attribute_name);
 
 /*******************************************************************************
-* @brief Wrapper to get a HDF5 attribute vector
+ * @brief Wrapper to get a HDF5 attribute vector
  * @param parent_id
  * @param attribute_name
  * @param type
@@ -71,7 +71,7 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
                             void *data);
 
 /*******************************************************************************
-* @brief Wrapper to get the HDF5 attribute size
+ * @brief Wrapper to get the HDF5 attribute size
  * @param parent_id
  * @param attribute_name
  * @return size_t
@@ -79,7 +79,7 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
 size_t get_hdf5_attribute_size(hid_t parent_id, cstring_t attribute_name);
 
 /*******************************************************************************
-* @brief Wrapper to rename a HDF5 attribute
+ * @brief Wrapper to rename a HDF5 attribute
  * @param parent_id
  * @param attribute_name
  * @param new_attribute_name

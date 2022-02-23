@@ -13,7 +13,7 @@
 
 /*******************************************************************************
  * @brief Parse a JSON file and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] path
@@ -43,7 +43,7 @@ JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Parse a JSON string and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] string

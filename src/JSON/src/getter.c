@@ -17,7 +17,7 @@ const size_t json_type_size[_json_type_max] = {
 
 /*******************************************************************************
  * @brief Get a JSON object by path and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -63,7 +63,7 @@ JSON_t *get_json_object_by_path_pass(cstring_t _file, int _line,
 
 /*******************************************************************************
  * @brief Get a JSON value at index i and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
@@ -103,7 +103,7 @@ void get_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
 
 /*******************************************************************************
  * @brief Get a JSON value vector and pass file, line, function
-*  @param[in] _file
+ * @param[in] _file
  * @param[in] _line
  * @param[in] _function
  * @param[in] this
