@@ -10,6 +10,7 @@
 #ifndef UTILS_MODULE_H
 #define UTILS_MODULE_H
 
+#include "basec/utils/utils_version.h"
 #include "basec/utils/utils_print.h"
 #include "basec/utils/utils_logging.h"
 #include "basec/utils/utils_file.h"

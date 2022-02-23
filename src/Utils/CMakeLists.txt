@@ -30,6 +30,7 @@ target_include_directories(${target} PUBLIC
 #******************************************************************************/
 include(unit_test)
 unit_test(${target} "test/print.c")
+unit_test(${target} "test/version.c")
 unit_test(${target} "test/logging.c")
 unit_test(${target} "test/file.c")
 unit_test(${target} "test/memory.c")

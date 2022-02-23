@@ -51,6 +51,8 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
     add_definitions("-DDEBUG")
 endif()
 
+add_compile_definitions(VERSION="${CMAKE_PROJECT_VERSION}")
+
 #*******************************************************************************
 # User options
 #******************************************************************************/
