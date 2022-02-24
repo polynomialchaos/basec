@@ -46,7 +46,7 @@ double cos_angle_n(double *a, double *b, size_t n)
     double result = dot_n(a, b, n);
     result /= len_n(a, n);
     result /= len_n(b, n);
-    result = MAX(MIN(result, 1.0), -1.0);
+    result = BM_MAX(BM_MIN(result, 1.0), -1.0);
 
     return result;
 }
@@ -115,9 +115,9 @@ bool_t is_inf_n(double *a, size_t n)
 {
     for (size_t i = 0; i < n; ++i)
         if (isinf(a[i]))
-            return BTRU;
+            return BC_TRUE;
 
-    return BFLS;
+    return BC_FALSE;
 }
 
 /*******************************************************************************
@@ -130,9 +130,9 @@ bool_t is_nan_n(double *a, size_t n)
 {
     for (size_t i = 0; i < n; ++i)
         if (isnan(a[i]))
-            return BTRU;
+            return BC_TRUE;
 
-    return BFLS;
+    return BC_FALSE;
 }
 
 /*******************************************************************************
@@ -154,10 +154,10 @@ double len_n(double *a, size_t n)
  ******************************************************************************/
 double max_n(double *a, size_t n)
 {
-    double max = -BDMX;
+    double max = -BC_DMAX;
 
     for (size_t i = 0; i < n; ++i)
-        max = MAX(max, a[i]);
+        max = BM_MAX(max, a[i]);
 
     return max;
 }
@@ -170,10 +170,10 @@ double max_n(double *a, size_t n)
  ******************************************************************************/
 double min_n(double *a, size_t n)
 {
-    double min = BDMX;
+    double min = BC_DMAX;
 
     for (size_t i = 0; i < n; ++i)
-        min = MIN(min, a[i]);
+        min = BM_MIN(min, a[i]);
 
     return min;
 }
@@ -202,7 +202,7 @@ void orthonormal_basis_3(double *a, double *b, double *c, double *d)
 {
     norm_n(a, 3, b);
 
-    if (ABS(b[0]) > ABS(b[1]))
+    if (BM_ABS(b[0]) > BM_ABS(b[1]))
     {
         c[0] = -b[2];
         c[1] = 0.0;

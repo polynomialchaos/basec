@@ -17,38 +17,38 @@
 /*******************************************************************************
  * @brief A macro to get a parameter
  ******************************************************************************/
-#define GET_PARAMETER(path, type, value) \
+#define BM_GET_PARAMETER(path, type, value) \
     get_parameter_pass(__PASS__, (path), (type), (value))
 
 /*******************************************************************************
  * @brief A macro to get a vector parameter count
  ******************************************************************************/
-#define GET_PARAMETER_COUNT(path) get_parameter_count_pass(__PASS__, (path))
+#define BM_GET_PARAMETER_COUNT(path) get_parameter_count_pass(__PASS__, (path))
 
 /*******************************************************************************
  * @brief A macro to get a vector parameter
  ******************************************************************************/
-#define GET_PARAMETER_N(path, type, value, n) \
+#define BM_GET_PARAMETER_N(path, type, value, n) \
     get_parameter_n_pass(__PASS__, (path), (type), (value), (n))
 
 /*******************************************************************************
  * @brief A macro to set a parameter
  ******************************************************************************/
-#define SET_PARAMETER(path, type, value, description, options, n_options) \
-    set_parameter_pass(__PASS__, (path), (type), (value),                 \
+#define BM_SET_PARAMETER(path, type, value, description, options, n_options) \
+    set_parameter_pass(__PASS__, (path), (type), (value),                    \
                        (description), (options), (n_options))
 
 /*******************************************************************************
  * @brief A macro to set a vector parameter
  ******************************************************************************/
-#define SET_PARAMETER_N(path, type, value, n, description, options, n_options) \
-    set_parameter_n_pass(__PASS__, (path), (type), (value), (n),               \
+#define BM_SET_PARAMETER_N(path, type, value, n, description, options, n_options) \
+    set_parameter_n_pass(__PASS__, (path), (type), (value), (n),                  \
                          (description), (options), (n_options))
 
 /*******************************************************************************
  * @brief A macro to check if parameter exists
  ******************************************************************************/
-#define PARAMETER_EXISTS(path) parameter_exists_pass(__PASS__, (path))
+#define BM_PARAMETER_EXISTS(path) parameter_exists_pass(__PASS__, (path))
 
 /*******************************************************************************
  * @brief Parameter type enumeration

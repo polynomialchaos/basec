@@ -10,17 +10,17 @@
 #ifndef BASEC_TYPE_H
 #define BASEC_TYPE_H
 
-#define BDMN 1.e-200 /** Double minimum */
-#define BDMX 1.e200  /** Double maximum */
-#define BDEP 1.e-16  /** Double epsilon */
+#define BC_DMIN 1.e-200 /** Double minimum */
+#define BC_DMAX 1.e200  /** Double maximum */
+#define BC_DEPS 1.e-16  /** Double epsilon */
 
-#define BNCH '\0' /** Null character */
+#define BC_NLCH '\0' /** Null character */
 
 /** File, line and function macro */
 #define __PASS__ __FILE__, __LINE__, __FUNCTION__
 
-#define BTRU 1      /** Boolean type True value */
-#define BFLS 0      /** Boolean type False value */
+#define BC_TRUE 1   /** Boolean type True value */
+#define BC_FALSE 0  /** Boolean type False value */
 typedef int bool_t; /** Bool type */
 
 typedef char *string_t;        /** String type */

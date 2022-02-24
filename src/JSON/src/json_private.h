@@ -13,8 +13,8 @@
 #include "basec/json_module.h"
 
 #define JERR "Unknown JSON data type (%d)!" /** Unknown type string */
-#define JTRU "true"                         /** JSON BTRU string */
-#define JFLS "false"                        /** JSON BFLS string */
+#define JTRU "true"                         /** JSON BC_TRUE string */
+#define JFLS "false"                        /** JSON BC_FALSE string */
 #define JNLL "null"                         /** JSON null string */
 
 #define JBFL 2048 /** Maximum buffer length */

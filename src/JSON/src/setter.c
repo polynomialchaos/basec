@@ -21,9 +21,9 @@
 void set_json_key_pass(cstring_t _file, int _line, cstring_t _function,
                        JSON_t *this, cstring_t key)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
-    CHECK_EXPRESSION_PASS(_file, _line, _function, key != NULL);
-    CHECK_EXPRESSION_PASS(_file, _line, _function, key[0] != BNCH);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, key != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, key[0] != BC_NLCH);
 
     this->key = allocate_strcpy(key);
 }
@@ -41,7 +41,7 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
                                      cstring_t _function,
                                      JSON_t *this, cstring_t path)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
 
     /** either path is NULL or empty, or base level is called */
     if (is_empty(path))
@@ -49,15 +49,15 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
 
     /** allocate level substring */
     size_t len = strcspn(path, "/");
-    string_t level = ALLOCATE(sizeof(char) * (len + 1));
+    string_t level = BM_ALLOCATE(sizeof(char) * (len + 1));
     strncpy(level, path, len);
-    level[len] = BNCH;
+    level[len] = BC_NLCH;
 
     /** loop through childs an break on identical level/key */
     JSON_t *result = NULL;
     for (size_t i = 0; i < list_length(this->childs); ++i)
     {
-        JSON_t *tmp = LIST_GET_ITH(this->childs, i);
+        JSON_t *tmp = BM_LIST_GET_ITH(this->childs, i);
         if ((tmp->key != NULL) && is_equal(level, tmp->key))
         {
             result = tmp;
@@ -80,7 +80,7 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
         result = set_json_object_by_path_pass(_file, _line, _function,
                                               result, &path[len + 1]);
 
-    DEALLOCATE(level);
+    BM_DEALLOCATE(level);
     return result;
 }
 
@@ -95,11 +95,11 @@ JSON_t *set_json_object_by_path_pass(cstring_t _file, int _line,
 void set_json_type_pass(cstring_t _file, int _line, cstring_t _function,
                         JSON_t *this, json_type_t type)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
-    CHECK_EXPRESSION_PASS(_file, _line, _function,
-                          this->type == _JSONUndefined);
-    CHECK_EXPRESSION_PASS(_file, _line, _function,
-                          (type >= 0) && (type < _json_type_max));
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function,
+                             this->type == _JSONUndefined);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function,
+                             (type >= 0) && (type < _json_type_max));
 
     this->type = type;
 }
@@ -118,11 +118,11 @@ void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void *value, size_t i)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
     if (this->type == _JSONUndefined)
         set_json_type_pass(_file, _line, _function, this, type);
     else
-        CHECK_EXPRESSION_PASS(_file, _line, _function, this->type == type);
+        BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this->type == type);
 
     switch (type)
     {
@@ -146,7 +146,7 @@ void set_json_value_i_pass(cstring_t _file, int _line, cstring_t _function,
         }
         break;
     default:
-        LOG_ERROR_PASS(_file, _line, _function, JERR, type);
+        BM_LOG_ERROR_PASS(_file, _line, _function, JERR, type);
         break;
     }
 }
@@ -165,12 +165,12 @@ void set_json_value_n_pass(cstring_t _file, int _line, cstring_t _function,
                            JSON_t *this, json_type_t type,
                            void *value, size_t n)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, this != NULL);
     if (this->type == _JSONUndefined)
         set_json_type_pass(_file, _line, _function, this, JSONArray);
     else
-        CHECK_EXPRESSION_PASS(_file, _line, _function,
-                              this->type == JSONArray);
+        BM_CHECK_EXPRESSION_PASS(_file, _line, _function,
+                                 this->type == JSONArray);
 
     for (size_t i = 0; i < n; ++i)
     {

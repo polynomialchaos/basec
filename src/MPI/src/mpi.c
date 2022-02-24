@@ -10,9 +10,9 @@
 #include "basec/utils_module.h"
 #include "mpi_private.h"
 
-int i_mpi_proc = 0;           /* Processor ID */
-int n_mpi_procs = 1;          /* Number of MPI processors */
-bool_t store_file_out = BTRU; /** Store file out setting */
+int i_mpi_proc = 0;              /* Processor ID */
+int n_mpi_procs = 1;             /* Number of MPI processors */
+bool_t store_file_out = BC_TRUE; /** Store file out setting */
 
 #ifdef MPI
 MPI_Comm comm = MPI_COMM_WORLD; /** MPI communicator */
@@ -73,7 +73,7 @@ int get_number_of_procs()
 void global_error_handler_mpi()
 {
     int tmp = is_active_error();
-    MPI_ALL_REDUCE(MPIInt, MPILogOr, &tmp, &tmp);
+    BM_MPI_ALL_REDUCE(MPIInt, MPILogOr, &tmp, &tmp);
     set_global_error(tmp);
 }
 
@@ -95,12 +95,12 @@ void mpi_finalize()
 #ifdef MPI
     CHECK_MPI_EXPRESSION(MPI_Finalize());
 
-    RESET_GLOBAL_ERROR_STATE_HANDLER();
+    BM_RESET_GLOBAL_ERROR_STATE_HANDLER();
 
     if (is_parallel() && !is_root())
     {
         close_file(get_stdout());
-        RESET_STDOUT();
+        BM_RESET_STDOUT();
     }
 #endif /* MPI */
 }
@@ -131,18 +131,18 @@ void mpi_initialize(int argc, string_t *argv,
         }
         else if (store_file_out)
         {
-            string_t file_path = ALLOCATE(sizeof(char) * 255);
+            string_t file_path = BM_ALLOCATE(sizeof(char) * 255);
             sprintf(file_path, "stdout_proc_%d.log", i_mpi_proc);
             set_stdout(create_file(file_path));
-            DEALLOCATE(file_path);
+            BM_DEALLOCATE(file_path);
         }
     }
 #else
 #ifdef DEBUG
-    UNUSED(argc);
-    UNUSED(argv);
-    UNUSED(only_rank);
-    UNUSED(file_out);
+    BM_UNUSED(argc);
+    BM_UNUSED(argv);
+    BM_UNUSED(only_rank);
+    BM_UNUSED(file_out);
 #endif /* DEBUG */
 #endif /* MPI */
 }

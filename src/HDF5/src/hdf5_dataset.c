@@ -58,9 +58,9 @@ void get_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
     hid_t dataspace_id = H5Dget_space(dataset_id);
     CHECK_HDF5_EXPRESSION(dataspace_id);
 
-    CHECK_EXPRESSION(glob_rank == get_hdf5_space_rank(dataspace_id));
+    BM_CHECK_EXPRESSION(glob_rank == get_hdf5_space_rank(dataspace_id));
     if (glob_dims != NULL)
-        CHECK_EXPRESSION(
+        BM_CHECK_EXPRESSION(
             is_dataspace_equals(dataspace_id, glob_rank, glob_dims));
 
     hid_t memspace_id = H5Screate_simple(rank, dims, NULL);

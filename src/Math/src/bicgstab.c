@@ -44,7 +44,7 @@ size_t get_bicgstab_n_m_work_size(size_t n, size_t m)
 void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
                         math_int_ft matvec, int *iter, double *residual)
 {
-    CHECK_EXPRESSION(matvec != NULL);
+    BM_CHECK_EXPRESSION(matvec != NULL);
     size_t nm = n * m;
     size_t tmp = 0;
 
@@ -89,7 +89,7 @@ void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
             p[i] = r[i] + beta * (p[i] - omega * v[i]);
 
         /** Compute direction adjusting vector PHAT and scalar ALPHA. */
-        CHECK_EXPRESSION((*matvec)(p, v, n, m) == 0);
+        BM_CHECK_EXPRESSION((*matvec)(p, v, n, m) == 0);
 
         alpha = rho / dot_n(rtld, v, nm);
 
@@ -98,7 +98,7 @@ void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
             s[i] = r[i] - alpha * v[i];
 
         /** Compute stabilizer vector SHAT and scalar OMEGA. */
-        CHECK_EXPRESSION((*matvec)(s, t, n, m) == 0);
+        BM_CHECK_EXPRESSION((*matvec)(s, t, n, m) == 0);
 
         omega = dot_n(t, s, nm) / dot_n(t, t, nm);
 
@@ -115,5 +115,5 @@ void solve_bicgstab_n_m(size_t n, size_t m, double *b, double *x, double *work,
             return;
     }
 
-    LOG_ERROR(MITF, __FUNCTION__, iter);
+    BM_LOG_ERROR(MITF, __FUNCTION__, iter);
 }

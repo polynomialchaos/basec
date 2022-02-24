@@ -20,13 +20,13 @@
 /*******************************************************************************
  * @brief A macro to call mpi all_reduce for scalar
  ******************************************************************************/
-#define MPI_ALL_REDUCE(type, function, send, receive) \
+#define BM_MPI_ALL_REDUCE(type, function, send, receive) \
     mpi_all_reduce_n((type), (function), (send), (1), (receive));
 
 /*******************************************************************************
  * @brief A macro to call mpi reduce for scalar
  ******************************************************************************/
-#define MPI_REDUCE(type, function, rank, send, receive) \
+#define BM_MPI_REDUCE(type, function, rank, send, receive) \
     mpi_reduce_n((type), (function), (rank), (send), (1), (receive));
 
 /*******************************************************************************

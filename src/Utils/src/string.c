@@ -19,7 +19,7 @@
 string_t allocate_strcpy(cstring_t string)
 {
     size_t length = strlen(string);
-    string_t tmp = ALLOCATE(sizeof(char) * (length + 1));
+    string_t tmp = BM_ALLOCATE(sizeof(char) * (length + 1));
     strcpy(tmp, string);
 
     return tmp;
@@ -34,7 +34,7 @@ string_t allocate_strcpy(cstring_t string)
 string_t allocate_strcat(cstring_t string_a, cstring_t string_b)
 {
     size_t length = strlen(string_a) + strlen(string_b);
-    string_t tmp = ALLOCATE(sizeof(char) * (length + 1));
+    string_t tmp = BM_ALLOCATE(sizeof(char) * (length + 1));
     strcpy(tmp, string_a);
     strcat(tmp, string_b);
 
@@ -65,11 +65,11 @@ size_t count_chars(cstring_t string, char coi)
 bool_t is_digit(cstring_t string)
 {
     if (is_empty(string))
-        return BFLS;
+        return BC_FALSE;
 
     string_t tmp;
     strtol(string, &tmp, 10);
-    return (*tmp == BNCH);
+    return (*tmp == BC_NLCH);
 }
 
 /*******************************************************************************
@@ -94,11 +94,11 @@ bool_t is_equal(cstring_t string_a, cstring_t string_b)
 bool_t is_empty(cstring_t string)
 {
     if (string == NULL)
-        return BTRU;
-    else if (string[0] == BNCH)
-        return BTRU;
+        return BC_TRUE;
+    else if (string[0] == BC_NLCH)
+        return BC_TRUE;
 
-    return BFLS;
+    return BC_FALSE;
 }
 
 /*******************************************************************************
@@ -109,14 +109,14 @@ bool_t is_empty(cstring_t string)
 bool_t is_number(cstring_t string)
 {
     if (is_empty(string))
-        return BFLS;
+        return BC_FALSE;
 
     if (is_digit(string))
-        return BFLS;
+        return BC_FALSE;
 
     string_t tmp;
     strtod(string, &tmp);
-    return (*tmp == BNCH);
+    return (*tmp == BC_NLCH);
 }
 
 /*******************************************************************************
@@ -131,7 +131,7 @@ size_t len_trim(cstring_t string)
 
     string_t tmp = allocate_strcpy(string);
     size_t str_len = strlen(trim(tmp));
-    DEALLOCATE(tmp);
+    BM_DEALLOCATE(tmp);
 
     return str_len;
 }
@@ -158,7 +158,7 @@ string_t l_trim(string_t string)
 string_t reallocate_strcat(string_t string_a, cstring_t string_b)
 {
     size_t length = strlen(string_a) + strlen(string_b);
-    string_a = REALLOCATE(string_a, sizeof(char) * (length + 1));
+    string_a = BM_REALLOCATE(string_a, sizeof(char) * (length + 1));
     strcat(string_a, string_b);
 
     return string_a;
@@ -192,7 +192,7 @@ string_t r_trim(string_t string)
         pos--;
 
     /* Write new null terminator character */
-    pos[1] = BNCH;
+    pos[1] = BC_NLCH;
 
     return string;
 }
@@ -207,7 +207,7 @@ size_t strlen_n(string_t *strings, size_t n)
 {
     size_t max_len = 0;
     for (size_t i = 0; i < n; ++i)
-        max_len = MAX(max_len, strlen(strings[i]));
+        max_len = BM_MAX(max_len, strlen(strings[i]));
 
     return max_len;
 }

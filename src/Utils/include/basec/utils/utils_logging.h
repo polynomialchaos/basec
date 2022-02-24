@@ -16,28 +16,28 @@
 /*******************************************************************************
  * @brief A macro to add a debug message and pass file, line, function
  ******************************************************************************/
-#define LOG_DEBUG_PASS(_file, _line, _function, format, ...) \
-    add_logging(__PASS__, (_file), (_line), (_function),     \
+#define BM_LOG_DEBUG_PASS(_file, _line, _function, format, ...) \
+    add_logging(__PASS__, (_file), (_line), (_function),        \
                 (Debug), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add a debug message
  ******************************************************************************/
-#define LOG_DEBUG(format, ...) \
-    LOG_DEBUG_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
+#define BM_LOG_DEBUG(format, ...) \
+    BM_LOG_DEBUG_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add an error and pass file, line, function
  ******************************************************************************/
-#define LOG_ERROR_PASS(_file, _line, _function, format, ...) \
-    add_logging(__PASS__, (_file), (_line), (_function),     \
+#define BM_LOG_ERROR_PASS(_file, _line, _function, format, ...) \
+    add_logging(__PASS__, (_file), (_line), (_function),        \
                 (Error), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add an error
  ******************************************************************************/
-#define LOG_ERROR(format, ...) \
-    LOG_ERROR_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
+#define BM_LOG_ERROR(format, ...) \
+    BM_LOG_ERROR_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add a info message and pass file, line, function
@@ -49,48 +49,48 @@
 /*******************************************************************************
  * @brief A macro to add a info message
  ******************************************************************************/
-#define LOG_INFO(format, ...) \
+#define BM_LOG_INFO(format, ...) \
     LOG_INFO_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add a warning and pass file, line, function
  ******************************************************************************/
-#define LOG_WARNING_PASS(_file, _line, _function, format, ...) \
-    add_logging(__PASS__, (_file), (_line), (_function),       \
+#define BM_LOG_WARNING_PASS(_file, _line, _function, format, ...) \
+    add_logging(__PASS__, (_file), (_line), (_function),          \
                 (Warning), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to add a warning
  ******************************************************************************/
 #define LOG_WARNING(format, ...) \
-    LOG_WARNING_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
+    BM_LOG_WARNING_PASS((NULL), (0), (NULL), (format), ##__VA_ARGS__)
 
 /*******************************************************************************
  * @brief A macro to check an expression and pass file, line, function
  ******************************************************************************/
-#define CHECK_EXPRESSION_PASS(_file, _line, _function, expression)        \
-    (                                                                     \
-        {                                                                 \
-            if (!(expression))                                            \
-                LOG_ERROR_PASS((_file), (_line), (_function),             \
-                               "Expression '%s' failed!", (#expression)); \
+#define BM_CHECK_EXPRESSION_PASS(_file, _line, _function, expression)        \
+    (                                                                        \
+        {                                                                    \
+            if (!(expression))                                               \
+                BM_LOG_ERROR_PASS((_file), (_line), (_function),             \
+                                  "Expression '%s' failed!", (#expression)); \
         })
 
 /*******************************************************************************
  * @brief A macro to check an expression
  ******************************************************************************/
-#define CHECK_EXPRESSION(expression) \
-    CHECK_EXPRESSION_PASS((NULL), (0), (NULL), (expression))
+#define BM_CHECK_EXPRESSION(expression) \
+    BM_CHECK_EXPRESSION_PASS((NULL), (0), (NULL), (expression))
 
 /*******************************************************************************
  * @brief A macro to restore default abort handler
  ******************************************************************************/
-#define RESET_ERROR_STATE_HANDLER() set_error_state_handler(NULL)
+#define BM_RESET_ERROR_STATE_HANDLER() set_error_state_handler(NULL)
 
 /*******************************************************************************
  * @brief A macro to restore global error handler
  ******************************************************************************/
-#define RESET_GLOBAL_ERROR_STATE_HANDLER() set_global_error_state_handler(NULL)
+#define BM_RESET_GLOBAL_ERROR_STATE_HANDLER() set_global_error_state_handler(NULL)
 
 typedef void (*void_ft)(); /** Abort handler function type */
 

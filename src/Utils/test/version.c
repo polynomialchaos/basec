@@ -16,6 +16,6 @@
  ******************************************************************************/
 int main()
 {
-    PRINTF("%s\n", get_version_string());
+    BM_PRINT("%s\n", get_version_string());
     return 0;
 }

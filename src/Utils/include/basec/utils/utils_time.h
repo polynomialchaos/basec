@@ -17,17 +17,17 @@
 /*******************************************************************************
  * @brief A macro that generates a date string based on current time.
  ******************************************************************************/
-#define GET_DATE_STRING_NOW() get_date_string(get_now())
+#define BM_GET_DATE_STRING_NOW() get_date_string(get_now())
 
 /*******************************************************************************
  * @brief A macro that generates a date/time string based on current time.
  ******************************************************************************/
-#define GET_DATE_TIME_STRING_NOW() get_date_time_string(get_now())
+#define BM_GET_DATE_TIME_STRING_NOW() get_date_time_string(get_now())
 
 /*******************************************************************************
  * @brief A macro that generates a time string based on current time.
  ******************************************************************************/
-#define GET_TIME_STRING_NOW() get_time_string(get_now())
+#define BM_GET_TIME_STRING_NOW() get_time_string(get_now())
 
 /*******************************************************************************
  * @brief Get the clock time

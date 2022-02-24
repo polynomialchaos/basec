@@ -45,7 +45,7 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
                             hdf5_type_t type, int rank, hsize_t *dims,
                             void *data)
 {
-    CHECK_EXPRESSION(exists_hdf5_attribute(parent_id, attribute_name));
+    BM_CHECK_EXPRESSION(exists_hdf5_attribute(parent_id, attribute_name));
 
     hid_t attribute_id = H5Aopen(parent_id, attribute_name, H5P_DEFAULT);
     CHECK_HDF5_EXPRESSION(attribute_id);
@@ -63,7 +63,7 @@ void get_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
     }
 
     hid_t datatype_id = get_hdf5_data_type(type, attribute_id, H5Aget_type);
-    CHECK_EXPRESSION(datatype_id);
+    BM_CHECK_EXPRESSION(datatype_id);
 
     if (type == HDF5String)
     {
@@ -128,7 +128,7 @@ void set_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
                             hdf5_type_t type, void *data,
                             int rank, hsize_t *dims)
 {
-    CHECK_EXPRESSION(!exists_hdf5_attribute(parent_id, attribute_name));
+    BM_CHECK_EXPRESSION(!exists_hdf5_attribute(parent_id, attribute_name));
 
     hid_t dataspace_id = 0;
     if (rank < 1)
@@ -143,7 +143,7 @@ void set_hdf5_attribute_r_d(hid_t parent_id, cstring_t attribute_name,
     }
 
     hid_t datatype_id = set_hdf5_data_type(type, data, rank, dims);
-    CHECK_EXPRESSION(datatype_id);
+    BM_CHECK_EXPRESSION(datatype_id);
 
     hid_t attribute_id = H5Acreate(parent_id, attribute_name,
                                    datatype_id, dataspace_id,

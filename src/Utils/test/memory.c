@@ -16,14 +16,14 @@
  ******************************************************************************/
 int main()
 {
-    double *tmp = ALLOCATE(sizeof(double) * 12);
-    CHECK_EXPRESSION(tmp != NULL);
+    double *tmp = BM_ALLOCATE(sizeof(double) * 12);
+    BM_CHECK_EXPRESSION(tmp != NULL);
 
-    tmp = REALLOCATE(tmp, sizeof(double) * 12);
-    CHECK_EXPRESSION(tmp != NULL);
+    tmp = BM_REALLOCATE(tmp, sizeof(double) * 12);
+    BM_CHECK_EXPRESSION(tmp != NULL);
 
-    DEALLOCATE(tmp);
-    CHECK_EXPRESSION(tmp == NULL);
+    BM_DEALLOCATE(tmp);
+    BM_CHECK_EXPRESSION(tmp == NULL);
 
     return 0;
 }

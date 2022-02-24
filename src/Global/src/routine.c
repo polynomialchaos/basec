@@ -29,14 +29,14 @@ list_t *finalize_list = NULL;   /** Finalize list header */
  ******************************************************************************/
 void call_routines(list_t *routines, cstring_t title)
 {
-    PRINTF("\n");
+    BM_PRINT("\n");
     printf_r_sep_title(GBMS, title);
 
     const size_t n = list_length(routines);
     for (size_t i = 0; i < n; ++i)
     {
-        handler_data_t *this = LIST_GET_ITH(routines, i);
-        PRINTF(" * %s\n", this->file);
+        handler_data_t *this = BM_LIST_GET_ITH(routines, i);
+        BM_PRINT(" * %s\n", this->file);
         this->function();
         check_abort(0);
         if (i < n - 1)
@@ -54,7 +54,7 @@ void free_routine_hanlder(void *this)
 {
     handler_data_t *this_value = this;
 
-    DEALLOCATE(this_value->file);
+    BM_DEALLOCATE(this_value->file);
     this_value->function = NULL;
 }
 
@@ -64,8 +64,8 @@ void free_routine_hanlder(void *this)
  ******************************************************************************/
 list_t *init_routines()
 {
-    list_t *routines = ALLOCATE(sizeof(list_t));
-    LIST_INIT(routines, free_routine_hanlder);
+    list_t *routines = BM_ALLOCATE(sizeof(list_t));
+    BM_LIST_INIT(routines, free_routine_hanlder);
 
     return routines;
 }
@@ -78,8 +78,8 @@ void call_initialize_list()
     call_routines(initialize_list, "Initialize");
 
     if (initialize_list != NULL)
-        LIST_DEALLOCATE(initialize_list);
-    DEALLOCATE(initialize_list);
+        BM_LIST_DEALLOCATE(initialize_list);
+    BM_DEALLOCATE(initialize_list);
 }
 
 /*******************************************************************************
@@ -90,8 +90,8 @@ void call_finalize_list()
     call_routines(finalize_list, "Finalize");
 
     if (finalize_list != NULL)
-        LIST_DEALLOCATE(finalize_list);
-    DEALLOCATE(finalize_list);
+        BM_LIST_DEALLOCATE(finalize_list);
+    BM_DEALLOCATE(finalize_list);
 }
 
 /*******************************************************************************
@@ -104,8 +104,8 @@ void register_initialize_routine_pass(cstring_t _file, void_ft function)
     if (initialize_list == NULL)
         initialize_list = init_routines();
 
-    LIST_APPEND(initialize_list, sizeof(handler_data_t), NULL);
-    handler_data_t *last = LIST_GET_LAST(initialize_list);
+    BM_LIST_APPEND(initialize_list, sizeof(handler_data_t), NULL);
+    handler_data_t *last = BM_LIST_GET_LAST(initialize_list);
 
     last->file = allocate_strcpy(_file);
     last->function = function;
@@ -121,8 +121,8 @@ void register_finalize_routine_pass(cstring_t _file, void_ft function)
     if (finalize_list == NULL)
         finalize_list = init_routines();
 
-    LIST_PREPEND(finalize_list, sizeof(handler_data_t), NULL);
-    handler_data_t *first = LIST_GET_FIRST(finalize_list);
+    BM_LIST_PREPEND(finalize_list, sizeof(handler_data_t), NULL);
+    handler_data_t *first = BM_LIST_GET_FIRST(finalize_list);
 
     first->file = allocate_strcpy(_file);
     first->function = function;

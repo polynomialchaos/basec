@@ -28,7 +28,7 @@ void mpi_all_reduce_n(mpi_type_t type, mpi_function_t function,
                       as_mpi_function[function], comm));
 #else
 #ifdef DEBUG
-    UNUSED(function);
+    BM_UNUSED(function);
 #endif /* DEBUG */
     memcpy(receive, send, as_base_type_size[type] * n);
 #endif /* MPI */
@@ -52,8 +52,8 @@ void mpi_reduce_n(mpi_type_t type, mpi_function_t function, int rank,
                    as_mpi_function[function], rank, comm));
 #else
 #ifdef DEBUG
-    UNUSED(function);
-    UNUSED(rank);
+    BM_UNUSED(function);
+    BM_UNUSED(rank);
 #endif /* DEBUG */
     memcpy(receive, send, as_base_type_size[type] * n);
 #endif /* MPI */

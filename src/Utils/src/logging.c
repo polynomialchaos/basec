@@ -17,10 +17,10 @@
 cstring_t level_strings[_logging_level_max] = {
     "DEBUG", "INFO", "WARNING", "ERROR"};
 
-bool_t error_state = BFLS;        /** Error state flag */
-bool_t global_error_state = BFLS; /** Global error state flag */
-bool_t abort_active = BFLS;       /** Abort active flag */
-bool_t exit_with_failure = BTRU;  /** Exit with failure flag */
+bool_t error_state = BC_FALSE;        /** Error state flag */
+bool_t global_error_state = BC_FALSE; /** Global error state flag */
+bool_t abort_active = BC_FALSE;       /** Abort active flag */
+bool_t exit_with_failure = BC_TRUE;   /** Exit with failure flag */
 
 /** Global error state function pointer */
 void_ft global_error_state_handler_fun_ptr = NULL;
@@ -49,26 +49,26 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
                  logging_level_t level, cstring_t format, ...)
 {
     if (level > Warning)
-        error_state = BTRU;
+        error_state = BC_TRUE;
 
     va_list arg;
     va_start(arg, format);
 
     if (level > Info)
     {
-        PRINTF("\n");
+        BM_PRINT("\n");
         printf_r_sep(ULMS);
     }
 
-    PRINTF("%s:", level_strings[level]);
-    VPRINTF(format, arg);
-    PRINTF("\n");
+    BM_PRINT("%s:", level_strings[level]);
+    BM_VPRINT(format, arg);
+    BM_PRINT("\n");
 
     if (_file)
-        PRINTF("%s:%i:%s\n", _file, _line, _function);
+        BM_PRINT("%s:%i:%s\n", _file, _line, _function);
 
     if (_file2)
-        PRINTF("%s:%i:%s\n", _file2, _line2, _function2);
+        BM_PRINT("%s:%i:%s\n", _file2, _line2, _function2);
 
     if (level > Info)
     {
@@ -77,7 +77,7 @@ void add_logging(cstring_t _file, int _line, cstring_t _function,
 
     va_end(arg);
 
-    check_abort(BFLS);
+    check_abort(BC_FALSE);
 }
 
 /*******************************************************************************
@@ -109,7 +109,7 @@ void default_exit_handler()
 {
     if (is_active_error())
     {
-        PRINTF("Failure exit!\n");
+        BM_PRINT("Failure exit!\n");
         exit(exit_with_failure ? EXIT_FAILURE : EXIT_SUCCESS);
     }
     else

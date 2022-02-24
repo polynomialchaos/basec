@@ -18,20 +18,20 @@ int main()
 {
     double clock_time = 0.0;
 
-    string_t date = GET_DATE_STRING_NOW();
-    string_t time = GET_TIME_STRING_NOW();
-    string_t datetime = GET_DATE_TIME_STRING_NOW();
+    string_t date = BM_GET_DATE_STRING_NOW();
+    string_t time = BM_GET_TIME_STRING_NOW();
+    string_t datetime = BM_GET_DATE_TIME_STRING_NOW();
 
     clock_time = get_clock_time(clock_time);
     string_t clock_time_string = get_clock_time_string(clock_time);
 
-    PRINTF("%s ... %s ... %s ... %s\n",
-           date, time, datetime, clock_time_string);
+    BM_PRINT("%s ... %s ... %s ... %s\n",
+             date, time, datetime, clock_time_string);
 
-    DEALLOCATE(date);
-    DEALLOCATE(time);
-    DEALLOCATE(datetime);
-    DEALLOCATE(clock_time_string);
+    BM_DEALLOCATE(date);
+    BM_DEALLOCATE(time);
+    BM_DEALLOCATE(datetime);
+    BM_DEALLOCATE(clock_time_string);
 
     return 0;
 }

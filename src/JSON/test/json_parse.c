@@ -17,19 +17,19 @@
  ******************************************************************************/
 int main()
 {
-    JSON_t *root = PARSE_JSON_FILE("test.json");
-    PRINT_JSON_OBJECT(root, get_stdout());
+    JSON_t *root = BM_PARSE_JSON_FILE("test.json");
+    BM_PRINT_JSON_OBJECT(root, get_stdout());
 
-    JSON_t *tmp = GET_JSON_OBJECT_BY_PATH(root, "number vector");
+    JSON_t *tmp = BM_GET_JSON_OBJECT_BY_PATH(root, "number vector");
     double *data;
     size_t n;
 
-    GET_JSON_VALUE_N(tmp, JSONNumber, VOID_REF(data), &n);
-    PRINTF("%ld\n", n);
-    DEALLOCATE(data);
+    BM_GET_JSON_VALUE_N(tmp, JSONNumber, BM_VOID_REF(data), &n);
+    BM_PRINT("%ld\n", n);
+    BM_DEALLOCATE(data);
 
     free_json_object(root);
-    DEALLOCATE(root);
+    BM_DEALLOCATE(root);
 
     return 0;
 }

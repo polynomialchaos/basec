@@ -18,12 +18,12 @@
  * @brief A macro that allocates a portion of memory
  * and pass file, line, function
  ******************************************************************************/
-#define ALLOCATE(size) allocate_pass(__PASS__, (size))
+#define BM_ALLOCATE(size) allocate_pass(__PASS__, (size))
 
 /*******************************************************************************
  * @brief A macro that deallocates a portion of memory
  ******************************************************************************/
-#define DEALLOCATE(ptr) (          \
+#define BM_DEALLOCATE(ptr) (       \
     {                              \
         deallocate_wo_null((ptr)); \
         (ptr) = NULL;              \
@@ -33,7 +33,7 @@
  * @brief A macro that reallocates a portion of memory
  * and pass file, line, function
  ******************************************************************************/
-#define REALLOCATE(old, size) reallocate_pass(__PASS__, (old), (size))
+#define BM_REALLOCATE(old, size) reallocate_pass(__PASS__, (old), (size))
 
 /*******************************************************************************
  * @brief Allocate portion of memory and pass file, line, function

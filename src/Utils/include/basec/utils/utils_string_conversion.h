@@ -19,21 +19,21 @@
 /*******************************************************************************
  * @brief A macro to convert a string to a value
  ******************************************************************************/
-#define STRING_TO(string, type, value) (                               \
-    {                                                                  \
-        int error = string_to_wo_check((string), (type), (value));     \
-        if (error != StringOK)                                         \
-            LOG_ERROR(USCF, (#string), conversion_flag_string(error)); \
+#define BM_STRING_TO(string, type, value) (                               \
+    {                                                                     \
+        int error = string_to_wo_check((string), (type), (value));        \
+        if (error != StringOK)                                            \
+            BM_LOG_ERROR(USCF, (#string), conversion_flag_string(error)); \
     })
 
 /*******************************************************************************
  * @brief A macro to convert a string to a value array
  ******************************************************************************/
-#define STRING_TO_N(string, type, value, n) (                             \
+#define BM_STRING_TO_N(string, type, value, n) (                          \
     {                                                                     \
         int error = string_to_n_wo_check((string), (type), (value), (n)); \
         if (error != StringOK)                                            \
-            LOG_ERROR(USCF, (#string), conversion_flag_string(error));    \
+            BM_LOG_ERROR(USCF, (#string), conversion_flag_string(error)); \
     })
 
 /*******************************************************************************

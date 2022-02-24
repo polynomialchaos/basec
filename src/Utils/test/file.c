@@ -20,7 +20,7 @@ int main()
     FILE *output = create_file(file_name);
     fclose(output);
 
-    CHECK_EXPRESSION(file_exists(file_name) == BTRU);
+    BM_CHECK_EXPRESSION(file_exists(file_name) == BC_TRUE);
 
     output = open_file(file_name);
     fclose(output);

@@ -34,7 +34,7 @@ int max_int_n(int *a, size_t n)
     int max = -INT_MAX;
 
     for (size_t i = 0; i < n; ++i)
-        max = MAX(max, a[i]);
+        max = BM_MAX(max, a[i]);
 
     return max;
 }
@@ -50,7 +50,7 @@ int min_int_n(int *a, size_t n)
     int min = INT_MAX;
 
     for (size_t i = 0; i < n; ++i)
-        min = MIN(min, a[i]);
+        min = BM_MIN(min, a[i]);
 
     return min;
 }

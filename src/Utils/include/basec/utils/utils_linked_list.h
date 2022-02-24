@@ -17,65 +17,65 @@
 /*******************************************************************************
  * @brief A macro to allocate and initialize a linked list
  ******************************************************************************/
-#define LIST_ALLOCATE(fun_ptr) list_allocate_pass(__PASS__, (fun_ptr))
+#define BM_LIST_ALLOCATE(fun_ptr) list_allocate_pass(__PASS__, (fun_ptr))
 
 /*******************************************************************************
  * @brief A macro to call a function for each node and check for all results
  ******************************************************************************/
-#define LIST_ALL(list, fun_ptr) list_all_pass(__PASS__, (list), (fun_ptr))
+#define BM_LIST_ALL(list, fun_ptr) list_all_pass(__PASS__, (list), (fun_ptr))
 
 /*******************************************************************************
  * @brief A macro to append a node to a linked list
  ******************************************************************************/
-#define LIST_APPEND(list, size, element) \
+#define BM_LIST_APPEND(list, size, element) \
     list_append_pass(__PASS__, (list), (size), (element))
 
 /*******************************************************************************
  * @brief A macro to call a function for each node and check for any result
  ******************************************************************************/
-#define LIST_ANY(list, fun_ptr) list_any_pass(__PASS__, (list), (fun_ptr))
+#define BM_LIST_ANY(list, fun_ptr) list_any_pass(__PASS__, (list), (fun_ptr))
 
 /*******************************************************************************
  * @brief A macro to deallocate the ith node in a linked list
  ******************************************************************************/
-#define LIST_DEALLOCATE_ITH(list, ith) \
+#define BM_LIST_DEALLOCATE_ITH(list, ith) \
     list_deallocate_ith_pass(__PASS__, (list), (ith))
 
 /*******************************************************************************
  * @brief A macro to deallocate a linked list
  ******************************************************************************/
-#define LIST_DEALLOCATE(list) list_deallocate_pass(__PASS__, (list))
+#define BM_LIST_DEALLOCATE(list) list_deallocate_pass(__PASS__, (list))
 
 /*******************************************************************************
  * @brief A macro to call a function for each node
  ******************************************************************************/
-#define LIST_FOR_EACH(list, fun_ptr) \
+#define BM_LIST_FOR_EACH(list, fun_ptr) \
     list_for_each_pass(__PASS__, (list), (fun_ptr))
 
 /*******************************************************************************
  * @brief A macro to get first node in a linked list
  ******************************************************************************/
-#define LIST_GET_FIRST(list) list_get_first_pass(__PASS__, (list))
+#define BM_LIST_GET_FIRST(list) list_get_first_pass(__PASS__, (list))
 
 /*******************************************************************************
  * @brief A macro to get ith node in a linked list
  ******************************************************************************/
-#define LIST_GET_ITH(list, ith) list_get_ith_pass(__PASS__, (list), (ith))
+#define BM_LIST_GET_ITH(list, ith) list_get_ith_pass(__PASS__, (list), (ith))
 
 /*******************************************************************************
  * @brief A macro to get last node in a linked list
  ******************************************************************************/
-#define LIST_GET_LAST(list) list_get_last_pass(__PASS__, (list))
+#define BM_LIST_GET_LAST(list) list_get_last_pass(__PASS__, (list))
 
 /*******************************************************************************
  * @brief A macro to initialize a linked list
  ******************************************************************************/
-#define LIST_INIT(list, fun_ptr) list_init_pass(__PASS__, (list), (fun_ptr))
+#define BM_LIST_INIT(list, fun_ptr) list_init_pass(__PASS__, (list), (fun_ptr))
 
 /*******************************************************************************
  * @brief  A macro to prepend a node to a linked list
  ******************************************************************************/
-#define LIST_PREPEND(list, size, element) \
+#define BM_LIST_PREPEND(list, size, element) \
     list_prepend_pass(__PASS__, (list), (size), (element))
 
 /** Linked list void return function type */

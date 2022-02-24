@@ -23,7 +23,7 @@ int as_json_type[_parameter_type_max] = {
 void flush_user_defaults(cstring_t file_name)
 {
     FILE *file = create_file(file_name);
-    PRINT_JSON_OBJECT(user_defaults, file);
+    BM_PRINT_JSON_OBJECT(user_defaults, file);
     close_file(file);
 }
 
@@ -35,13 +35,13 @@ void free_parameters()
     if (user_defaults != NULL)
     {
         free_json_object(user_defaults);
-        DEALLOCATE(user_defaults);
+        BM_DEALLOCATE(user_defaults);
     }
 
     if (user_inputs != NULL)
     {
         free_json_object(user_inputs);
-        DEALLOCATE(user_inputs);
+        BM_DEALLOCATE(user_inputs);
     }
 }
 
@@ -50,7 +50,7 @@ void free_parameters()
  ******************************************************************************/
 void print_user_defaults()
 {
-    PRINT_JSON_OBJECT(user_defaults, get_stdout());
+    BM_PRINT_JSON_OBJECT(user_defaults, get_stdout());
 }
 
 /*******************************************************************************
@@ -58,7 +58,7 @@ void print_user_defaults()
  ******************************************************************************/
 void print_user_inputs()
 {
-    PRINT_JSON_OBJECT(user_inputs, get_stdout());
+    BM_PRINT_JSON_OBJECT(user_inputs, get_stdout());
 }
 
 /*******************************************************************************
@@ -67,5 +67,5 @@ void print_user_inputs()
  ******************************************************************************/
 void read_user_inputs(cstring_t file_name)
 {
-    user_inputs = PARSE_JSON_FILE(file_name);
+    user_inputs = BM_PARSE_JSON_FILE(file_name);
 }

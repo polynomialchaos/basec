@@ -22,16 +22,16 @@
 JSON_t *parse_json_file_pass(cstring_t _file, int _line, cstring_t _function,
                              cstring_t path)
 {
-    CHECK_EXPRESSION_PASS(_file, _line, _function, file_exists(path));
+    BM_CHECK_EXPRESSION_PASS(_file, _line, _function, file_exists(path));
     JSON_t *root = create_json_object();
 
     buffer_t buffer;
     buffer.cursor = 0;
     buffer.length = 0;
-    buffer.skip = BTRU;
-    buffer.is_control = BFLS;
+    buffer.skip = BC_TRUE;
+    buffer.is_control = BC_FALSE;
 
-    buffer.is_file = BTRU;
+    buffer.is_file = BC_TRUE;
     buffer.file = open_file(path);
     buffer.is_eof = 0;
 
@@ -57,10 +57,10 @@ JSON_t *parse_json_string_pass(cstring_t _file, int _line, cstring_t _function,
     buffer_t buffer;
     buffer.cursor = 0;
     buffer.length = 0;
-    buffer.skip = BTRU;
-    buffer.is_control = BFLS;
+    buffer.skip = BC_TRUE;
+    buffer.is_control = BC_FALSE;
 
-    buffer.is_file = BFLS;
+    buffer.is_file = BC_FALSE;
     buffer.string = string;
     buffer.is_eof = 0;
 

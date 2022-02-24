@@ -14,7 +14,7 @@
  ******************************************************************************/
 void init_user()
 {
-    PRINTF("Hello Init!\n");
+    BM_PRINT("Hello Init!\n");
 };
 
 /*******************************************************************************
@@ -22,7 +22,7 @@ void init_user()
  ******************************************************************************/
 void free_user()
 {
-    PRINTF("Hello Free!\n");
+    BM_PRINT("Hello Free!\n");
 };
 
 /*******************************************************************************
@@ -33,10 +33,10 @@ void free_user()
  ******************************************************************************/
 int main(int argc, string_t *argv)
 {
-    REGISTER_INITIALIZE_ROUTINE(init_user);
-    REGISTER_FINALIZE_ROUTINE(free_user);
+    BM_REGISTER_INITIALIZE_ROUTINE(init_user);
+    BM_REGISTER_FINALIZE_ROUTINE(free_user);
 
-    global_initialize(argc, argv, BTRU, BFLS, BFLS, BFLS);
+    global_initialize(argc, argv, BC_TRUE, BC_FALSE, BC_FALSE, BC_FALSE);
 
     check_abort(1);
     return 0;

@@ -13,7 +13,7 @@
 /*******************************************************************************
  * @brief A macro to return absoute value
  ******************************************************************************/
-#define ABS(a) (                \
+#define BM_ABS(a) (             \
     {                           \
         __typeof__(a) _a = (a); \
         _a < 0 ? -_a : _a;      \
@@ -22,20 +22,20 @@
 /*******************************************************************************
  * @brief A macro to compare values within epsilon tolerance
  ******************************************************************************/
-#define EQ(a, b) (                                       \
-    { ABS((a) - (b)) <= (BDEP * MAX(ABS((a)), ABS((b)))) \
-          ? 1                                            \
+#define BM_EQ(a, b) (                                                   \
+    { BM_ABS((a) - (b)) <= (BC_DEPS * BM_MAX(BM_ABS((a)), BM_ABS((b)))) \
+          ? 1                                                           \
           : 0; })
 
 /*******************************************************************************
  * @brief A macro to compare value within epsilon tolerance to zero
  ******************************************************************************/
-#define EQ0(a) ({ ABS((a)) <= (BDMN * 10) ? 1 : 0; })
+#define BM_EQ0(a) ({ BM_ABS((a)) <= (BC_DMIN * 10) ? 1 : 0; })
 
 /*******************************************************************************
  * @brief  A macro to return the maximum of two values
  ******************************************************************************/
-#define MAX(a, b) (             \
+#define BM_MAX(a, b) (          \
     {                           \
         __typeof__(a) _a = (a); \
         __typeof__(b) _b = (b); \
@@ -45,7 +45,7 @@
 /*******************************************************************************
  * @brief  A macro to return the minimum of two values
  ******************************************************************************/
-#define MIN(a, b) (             \
+#define BM_MIN(a, b) (          \
     {                           \
         __typeof__(a) _a = (a); \
         __typeof__(b) _b = (b); \
@@ -55,21 +55,21 @@
 /*******************************************************************************
  * @brief A macro to return value as refernce
  ******************************************************************************/
-#define REF(reference) &(reference)
+#define BM_REF(reference) &(reference)
 
 /*******************************************************************************
  * @brief A macro to touch a pointer to prevent debug warnings
  ******************************************************************************/
-#define UNUSED(pointer) (void)(pointer)
+#define BM_UNUSED(pointer) (void)(pointer)
 
 /*******************************************************************************
  * @brief A macro to return value as void refernce
  ******************************************************************************/
-#define VOID_REF(pointer) (void *)REF(pointer)
+#define BM_VOID_REF(pointer) (void *)BM_REF(pointer)
 
 /*******************************************************************************
  * @brief A macro to return a value from void reference
  ******************************************************************************/
-#define VOID_DEREF(type, pointer) *(type *)pointer
+#define BM_VOID_DEREF(type, pointer) *(type *)pointer
 
 #endif /* BASEC_MACRO_H */

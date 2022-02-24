@@ -26,10 +26,10 @@ void mpi_receive(mpi_type_t type, int sender, int n, void *data)
                  sender, 0, comm, MPI_STATUS_IGNORE));
 #else
 #ifdef DEBUG
-    UNUSED(type);
-    UNUSED(sender);
-    UNUSED(n);
-    UNUSED(data);
+    BM_UNUSED(type);
+    BM_UNUSED(sender);
+    BM_UNUSED(n);
+    BM_UNUSED(data);
 #endif /* DEBUG */
 #endif /* MPI */
 }
@@ -48,10 +48,10 @@ void mpi_send(mpi_type_t type, int receiver, const void *data, int n)
         MPI_Send(data, n, as_mpi_type[type], receiver, 0, comm));
 #else
 #ifdef DEBUG
-    UNUSED(type);
-    UNUSED(receiver);
-    UNUSED(data);
-    UNUSED(n);
+    BM_UNUSED(type);
+    BM_UNUSED(receiver);
+    BM_UNUSED(data);
+    BM_UNUSED(n);
 #endif /* DEBUG */
 #endif /* MPI */
 }
@@ -78,13 +78,13 @@ void mpi_send_receive(mpi_type_t type,
                      sender, 0, comm, MPI_STATUS_IGNORE));
 #else
 #ifdef DEBUG
-    UNUSED(type);
-    UNUSED(s_data);
-    UNUSED(s_n);
-    UNUSED(receiver);
-    UNUSED(r_n);
-    UNUSED(sender);
-    UNUSED(r_data);
+    BM_UNUSED(type);
+    BM_UNUSED(s_data);
+    BM_UNUSED(s_n);
+    BM_UNUSED(receiver);
+    BM_UNUSED(r_n);
+    BM_UNUSED(sender);
+    BM_UNUSED(r_data);
 #endif /* DEBUG */
 #endif /* MPI */
 }

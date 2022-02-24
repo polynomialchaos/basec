@@ -14,7 +14,7 @@
 #include "basec/math/math_vector_int.h"
 #include "basec/math/math_vector.h"
 
-#define MCPI 3.14159265358979323846 /* MCPI constant */
+#define BC_PI 3.14159265358979323846 /* pi constant */
 
 /*******************************************************************************
  * @brief Conversion from degrees to radiants

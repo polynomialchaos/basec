@@ -18,13 +18,13 @@
  ******************************************************************************/
 int main(int argc, string_t *argv)
 {
-    mpi_initialize(argc, argv, BFLS, BFLS);
+    mpi_initialize(argc, argv, BC_FALSE, BC_FALSE);
 
     int i_proc = get_rank_number();
     int result;
 
-    MPI_ALL_REDUCE(MPIInt, MPIMax, &i_proc, &result);
-    PRINTF("Hello World from #%d (max=%d)\n", i_proc, result);
+    BM_MPI_ALL_REDUCE(MPIInt, MPIMax, &i_proc, &result);
+    BM_PRINT("Hello World from #%d (max=%d)\n", i_proc, result);
 
     mpi_finalize();
 

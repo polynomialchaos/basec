@@ -20,7 +20,7 @@ void *old_client_data = NULL;
  ******************************************************************************/
 void activate_hdf5_diag()
 {
-    CHECK_EXPRESSION(old_func != NULL);
+    BM_CHECK_EXPRESSION(old_func != NULL);
 
     /* Restore previous error handler */
     H5Eset_auto(H5E_DEFAULT, old_func, old_client_data);
@@ -35,8 +35,8 @@ void activate_hdf5_diag()
 string_t *allocate_hdf5_string_buffer(size_t n, size_t length,
                                       string_t *strings)
 {
-    string_t *cstrings = ALLOCATE(sizeof(string_t) * n);
-    cstrings[0] = ALLOCATE(sizeof(char) * n * length);
+    string_t *cstrings = BM_ALLOCATE(sizeof(string_t) * n);
+    cstrings[0] = BM_ALLOCATE(sizeof(char) * n * length);
     for (size_t i = 0; i < n; ++i)
     {
         cstrings[i] = cstrings[0] + i * length;
@@ -53,7 +53,7 @@ string_t *allocate_hdf5_string_buffer(size_t n, size_t length,
  ******************************************************************************/
 void deactivate_hdf5_diag()
 {
-    CHECK_EXPRESSION((old_func == NULL) || (old_client_data == NULL));
+    BM_CHECK_EXPRESSION((old_func == NULL) || (old_client_data == NULL));
 
     /* Save old error handler */
     H5Eget_auto(H5E_DEFAULT, &old_func, &old_client_data);
@@ -68,7 +68,7 @@ void deactivate_hdf5_diag()
  ******************************************************************************/
 void deallocate_hdf5_string_buffer(string_t *buffer)
 {
-    DEALLOCATE(*buffer);
+    BM_DEALLOCATE(*buffer);
 }
 
 /*******************************************************************************
@@ -93,7 +93,7 @@ hid_t get_hdf5_data_type(hdf5_type_t type, hid_t id, hid_t_fp_hid_t_t function)
         datatype_id = function(id);
         break;
     default:
-        LOG_ERROR(HDF5_TYPE_FMT, type);
+        BM_LOG_ERROR(HDF5_TYPE_FMT, type);
         break;
     }
 
@@ -134,15 +134,15 @@ bool_t is_dataspace_equals(hid_t dataspace_id, int rank, hsize_t *dims)
 {
     int d_rank = get_hdf5_space_rank(dataspace_id);
     if (rank != d_rank)
-        return BFLS;
+        return BC_FALSE;
 
     hsize_t d_dims[d_rank];
     get_hdf5_space_dims(dataspace_id, &d_dims[0]);
     for (int i = 0; i < rank; ++i)
         if (dims[i] != d_dims[i])
-            return BFLS;
+            return BC_FALSE;
 
-    return BTRU;
+    return BC_TRUE;
 }
 
 /*******************************************************************************
@@ -155,8 +155,8 @@ bool_t is_dataspace_equals(hid_t dataspace_id, int rank, hsize_t *dims)
 hid_t set_hdf5_data_type(hdf5_type_t type, void *data, int rank, hsize_t *dims)
 {
 #ifdef DEBUG
-    UNUSED(rank);
-    UNUSED(dims);
+    BM_UNUSED(rank);
+    BM_UNUSED(dims);
 #endif
     hid_t datatype_id = 0;
     switch (type)
@@ -175,7 +175,7 @@ hid_t set_hdf5_data_type(hdf5_type_t type, void *data, int rank, hsize_t *dims)
         CHECK_HDF5_EXPRESSION(H5Tset_size(datatype_id, str_len + 1));
         break;
     default:
-        LOG_ERROR(HDF5_TYPE_FMT, type);
+        BM_LOG_ERROR(HDF5_TYPE_FMT, type);
         break;
     }
 
@@ -192,7 +192,7 @@ void select_hdf5_elements_1(hid_t dataspace_id,
                             hsize_t *elements, size_t n_elements)
 {
     size_t n_coords = n_elements;
-    hsize_t *coords = ALLOCATE(sizeof(hsize_t) * n_coords);
+    hsize_t *coords = BM_ALLOCATE(sizeof(hsize_t) * n_coords);
 
     for (size_t i = 0; i < n_elements; ++i)
         coords[i] = elements[i];
@@ -203,7 +203,7 @@ void select_hdf5_elements_1(hid_t dataspace_id,
     else
         CHECK_HDF5_EXPRESSION(H5Sselect_none(dataspace_id));
 
-    DEALLOCATE(coords);
+    BM_DEALLOCATE(coords);
 }
 
 /*******************************************************************************
@@ -219,7 +219,7 @@ void select_hdf5_elements_2(hid_t dataspace_id, hsize_t offset,
 {
     const int rank = 2;
     size_t n_coords = n_elements * count;
-    hsize_t *coords = ALLOCATE(sizeof(hsize_t) * n_coords * rank);
+    hsize_t *coords = BM_ALLOCATE(sizeof(hsize_t) * n_coords * rank);
 
     for (size_t i = 0; i < n_elements; ++i)
         for (hsize_t j = 0; j < count; ++j)
@@ -234,7 +234,7 @@ void select_hdf5_elements_2(hid_t dataspace_id, hsize_t offset,
     else
         CHECK_HDF5_EXPRESSION(H5Sselect_none(dataspace_id));
 
-    DEALLOCATE(coords);
+    BM_DEALLOCATE(coords);
 }
 
 /*******************************************************************************
@@ -262,7 +262,7 @@ void select_hdf5_space(int rank, hsize_t dim, hid_t dataspace_id,
             select_hdf5_elements_2(dataspace_id, offset[0],
                                    dim, elements, n_elements);
         else
-            LOG_ERROR(HDF5_TYPE_FMT, rank);
+            BM_LOG_ERROR(HDF5_TYPE_FMT, rank);
     }
     else if ((offset != NULL) && (count != NULL))
     {

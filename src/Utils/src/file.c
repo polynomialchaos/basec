@@ -29,7 +29,7 @@ void close_file(FILE *file_ptr)
 FILE *create_file(cstring_t path)
 {
     FILE *file_ptr = fopen(path, "w");
-    CHECK_EXPRESSION(file_ptr != NULL);
+    BM_CHECK_EXPRESSION(file_ptr != NULL);
 
     return file_ptr;
 }
@@ -45,10 +45,10 @@ bool_t file_exists(cstring_t path)
     if (file)
     {
         fclose(file);
-        return BTRU;
+        return BC_TRUE;
     }
 
-    return BFLS;
+    return BC_FALSE;
 }
 
 /*******************************************************************************
@@ -59,7 +59,7 @@ bool_t file_exists(cstring_t path)
 FILE *open_file(cstring_t path)
 {
     FILE *file_ptr = fopen(path, "r");
-    CHECK_EXPRESSION(file_ptr != NULL);
+    BM_CHECK_EXPRESSION(file_ptr != NULL);
 
     return file_ptr;
 }

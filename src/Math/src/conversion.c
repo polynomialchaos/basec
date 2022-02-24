@@ -17,7 +17,7 @@
  ******************************************************************************/
 double deg_to_rad(double deg)
 {
-    return deg * MCPI / 180.0;
+    return deg * BC_PI / 180.0;
 }
 
 /*******************************************************************************
@@ -29,7 +29,7 @@ int integer_string_length(int value);
 int integer_string_length(int value)
 {
     int sign = (value < 0.0) ? 1 : 0;
-    double tmp = log10(MAX(ABS(value), 1));
+    double tmp = log10(BM_MAX(BM_ABS(value), 1));
 
     return (tmp + sign + 1);
 }
@@ -41,5 +41,5 @@ int integer_string_length(int value)
  ******************************************************************************/
 double rad_to_deg(double rad)
 {
-    return rad * 180.0 / MCPI;
+    return rad * 180.0 / BC_PI;
 }

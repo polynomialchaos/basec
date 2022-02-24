@@ -17,7 +17,7 @@
  ******************************************************************************/
 int factorial(int n)
 {
-    CHECK_EXPRESSION(n >= 0);
+    BM_CHECK_EXPRESSION(n >= 0);
 
     int factorial = 1;
     for (int i = 1; i <= n; ++i)
@@ -25,6 +25,6 @@ int factorial(int n)
         factorial *= i;
     }
 
-    CHECK_EXPRESSION(factorial > 0);
+    BM_CHECK_EXPRESSION(factorial > 0);
     return factorial;
 }

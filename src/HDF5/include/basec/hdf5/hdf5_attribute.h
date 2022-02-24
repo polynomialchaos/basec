@@ -17,30 +17,30 @@
 /*******************************************************************************
  * @brief A macro to get a HDF5 attribute
  ******************************************************************************/
-#define GET_HDF5_ATTRIBUTE(parent_id, attribute_name, type, data) \
-    get_hdf5_attribute_r_d((parent_id), (attribute_name), (type), \
+#define BM_GET_HDF5_ATTRIBUTE(parent_id, attribute_name, type, data) \
+    get_hdf5_attribute_r_d((parent_id), (attribute_name), (type),    \
                            (0), (NULL), (data))
 
 /*******************************************************************************
  * @brief A macro to get a HDF5 attribute
  ******************************************************************************/
-#define GET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, n, data) \
-    get_hdf5_attribute_r_d((parent_id), (attribute_name), (type),      \
-                           (1), (REF(n)), (data))
+#define BM_GET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, n, data) \
+    get_hdf5_attribute_r_d((parent_id), (attribute_name), (type),         \
+                           (1), (BM_REF(n)), (data))
 
 /*******************************************************************************
  * @brief A macro to se a HDF5 attribute
  ******************************************************************************/
-#define SET_HDF5_ATTRIBUTE(parent_id, attribute_name, type, data) \
-    set_hdf5_attribute_r_d((parent_id), (attribute_name), (type), \
+#define BM_SET_HDF5_ATTRIBUTE(parent_id, attribute_name, type, data) \
+    set_hdf5_attribute_r_d((parent_id), (attribute_name), (type),    \
                            (data), (0), (NULL))
 
 /*******************************************************************************
  * @brief A macro to se a HDF5 attribute
  ******************************************************************************/
-#define SET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, data, n) \
-    set_hdf5_attribute_r_d((parent_id), (attribute_name), (type),      \
-                           (data), (1), (REF(n)))
+#define BM_SET_HDF5_ATTRIBUTE_N(parent_id, attribute_name, type, data, n) \
+    set_hdf5_attribute_r_d((parent_id), (attribute_name), (type),         \
+                           (data), (1), (BM_REF(n)))
 
 /*******************************************************************************
  * @brief Wrapper to delete a HDF5 attribute

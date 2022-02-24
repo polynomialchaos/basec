@@ -1,5 +1,5 @@
 /*******************************************************************************
- * @file STRING_TO.c
+ * @file BM_STRING_TO.c
  * @author Florian Eigentler
  * @brief
  * @version 1.0.0
@@ -54,7 +54,7 @@ bool_t string_to_bool(cstring_t string)
 {
     if (string == NULL)
         return 0;
-    if (string[0] == BNCH)
+    if (string[0] == BC_NLCH)
         return 0;
 
     /* create a copy of the string to perform lower case transformation */
@@ -63,15 +63,15 @@ bool_t string_to_bool(cstring_t string)
         tmp[i] = tolower(tmp[i]);
 
     /* check if string is a True place-holder */
-    bool_t is_true = BFLS;
+    bool_t is_true = BC_FALSE;
     for (size_t i = 0; i < n_bool_keywords; ++i)
         if (is_equal(tmp, bool_keywords[i]))
         {
-            is_true = BTRU;
+            is_true = BC_TRUE;
             break;
         }
 
-    DEALLOCATE(tmp);
+    BM_DEALLOCATE(tmp);
     return is_true;
 }
 
@@ -131,7 +131,7 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
         return StringMissingBraces;
 
     (*n) = count_chars(string, UCVD) + 1;
-    (*value) = ALLOCATE(string_datatype_bytes[type] * (*n));
+    (*value) = BM_ALLOCATE(string_datatype_bytes[type] * (*n));
 
     /* create a copy of the string to perform the string truncation */
     string_t tmp = allocate_strcpy(string);
@@ -151,7 +151,7 @@ sc_flag_t string_to_n_wo_check(cstring_t string, sc_type_t type,
         element = strtok(NULL, USVD);
     }
 
-    DEALLOCATE(tmp);
+    BM_DEALLOCATE(tmp);
     return error;
 }
 

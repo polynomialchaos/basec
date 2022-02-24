@@ -16,7 +16,7 @@
  ******************************************************************************/
 void deallocate_data(void *data)
 {
-    PRINTF("deallcoate: %d\n", VOID_DEREF(int, data));
+    BM_PRINT("deallcoate: %d\n", BM_VOID_DEREF(int, data));
     return;
 }
 
@@ -26,9 +26,9 @@ void deallocate_data(void *data)
  ******************************************************************************/
 bool_t check_data(void *data)
 {
-    int tmp = VOID_DEREF(int, data);
-    PRINTF("check: %d\n", tmp == -10 ? BTRU : BFLS);
-    return tmp == -10 ? BTRU : BFLS;
+    int tmp = BM_VOID_DEREF(int, data);
+    BM_PRINT("check: %d\n", tmp == -10 ? BC_TRUE : BC_FALSE);
+    return tmp == -10 ? BC_TRUE : BC_FALSE;
 }
 
 /*******************************************************************************
@@ -37,35 +37,35 @@ bool_t check_data(void *data)
  ******************************************************************************/
 int main()
 {
-    list_t *test = LIST_ALLOCATE(deallocate_data);
+    list_t *test = BM_LIST_ALLOCATE(deallocate_data);
 
-    CHECK_EXPRESSION(list_length(test) == 0);
+    BM_CHECK_EXPRESSION(list_length(test) == 0);
 
     int test_val = 0;
-    LIST_APPEND(test, sizeof(test_val), REF(test_val));
+    BM_LIST_APPEND(test, sizeof(test_val), BM_REF(test_val));
 
     test_val = -5;
-    LIST_APPEND(test, sizeof(test_val), REF(test_val));
+    BM_LIST_APPEND(test, sizeof(test_val), BM_REF(test_val));
 
     test_val = -10;
-    LIST_PREPEND(test, sizeof(test_val), REF(test_val));
-    CHECK_EXPRESSION(list_length(test) == 3);
+    BM_LIST_PREPEND(test, sizeof(test_val), BM_REF(test_val));
+    BM_CHECK_EXPRESSION(list_length(test) == 3);
 
-    CHECK_EXPRESSION(LIST_ALL(test, check_data) == BFLS);
-    CHECK_EXPRESSION(LIST_ANY(test, check_data) == BTRU);
+    BM_CHECK_EXPRESSION(BM_LIST_ALL(test, check_data) == BC_FALSE);
+    BM_CHECK_EXPRESSION(BM_LIST_ANY(test, check_data) == BC_TRUE);
 
-    LIST_FOR_EACH(test, deallocate_data);
+    BM_LIST_FOR_EACH(test, deallocate_data);
 
-    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_FIRST(test)) == -10);
-    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_ITH(test, 1)) == 0);
-    CHECK_EXPRESSION(VOID_DEREF(int, LIST_GET_LAST(test)) == -5);
+    BM_CHECK_EXPRESSION(BM_VOID_DEREF(int, BM_LIST_GET_FIRST(test)) == -10);
+    BM_CHECK_EXPRESSION(BM_VOID_DEREF(int, BM_LIST_GET_ITH(test, 1)) == 0);
+    BM_CHECK_EXPRESSION(BM_VOID_DEREF(int, BM_LIST_GET_LAST(test)) == -5);
 
-    LIST_DEALLOCATE_ITH(test, 0);
-    LIST_DEALLOCATE_ITH(test, 0);
-    CHECK_EXPRESSION(list_length(test) == 1);
+    BM_LIST_DEALLOCATE_ITH(test, 0);
+    BM_LIST_DEALLOCATE_ITH(test, 0);
+    BM_CHECK_EXPRESSION(list_length(test) == 1);
 
-    LIST_DEALLOCATE(test);
-    DEALLOCATE(test);
+    BM_LIST_DEALLOCATE(test);
+    BM_DEALLOCATE(test);
 
     return 0;
 }

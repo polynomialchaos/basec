@@ -22,7 +22,7 @@ void check_arguments(int argc, string_t *argv)
     switch (argc)
     {
     case 2:
-        CHECK_EXPRESSION(file_exists(argv[1]));
+        BM_CHECK_EXPRESSION(file_exists(argv[1]));
         read_user_inputs(argv[1]);
         break;
     case 3:
@@ -33,18 +33,18 @@ void check_arguments(int argc, string_t *argv)
         }
         else if (is_equal(argv[1], "-s") || is_equal(argv[1], "--show"))
         {
-            CHECK_EXPRESSION(file_exists(argv[2]));
+            BM_CHECK_EXPRESSION(file_exists(argv[2]));
             read_user_inputs(argv[2]);
             print_user_inputs();
             check_abort(1);
         }
         else
         {
-            LOG_ERROR("Unsupported parameter (%s)", argv[1]);
+            BM_LOG_ERROR("Unsupported parameter (%s)", argv[1]);
         }
         break;
     default:
-        LOG_ERROR("Unsupported number of parameters (%d)", argc);
+        BM_LOG_ERROR("Unsupported number of parameters (%d)", argc);
         break;
     }
 }
@@ -54,18 +54,18 @@ void check_arguments(int argc, string_t *argv)
  ******************************************************************************/
 void global_finalize()
 {
-    RESET_ERROR_STATE_HANDLER();
+    BM_RESET_ERROR_STATE_HANDLER();
 
     call_finalize_list();
 
     free_parameters();
 
-    PRINTF("\n");
+    BM_PRINT("\n");
     printf_r_sep(GBMS);
 
     string_t time_string = get_clock_time_string(get_clock_time(0.0));
-    PRINTF("Finished. Total runtime of %s.\n", time_string);
-    DEALLOCATE(time_string);
+    BM_PRINT("Finished. Total runtime of %s.\n", time_string);
+    BM_DEALLOCATE(time_string);
 
     printf_r_sep(GBMS);
 
@@ -90,22 +90,22 @@ void global_initialize(int argc, string_t *argv, bool_t use_mpi,
 
     printf_r_sep(GBMS);
 
-    string_t time_string = GET_DATE_TIME_STRING_NOW();
-    PRINTF("%s (%s)\n", argv[0], time_string);
-    DEALLOCATE(time_string);
+    string_t time_string = BM_GET_DATE_TIME_STRING_NOW();
+    BM_PRINT("%s (%s)\n", argv[0], time_string);
+    BM_DEALLOCATE(time_string);
 
     if (is_parallel())
     {
         int n_procs = get_number_of_procs();
         int i_rank = get_rank_number();
-        PRINTF("Parallel run: Running on %d processor(s). Rank is %d.\n",
-               n_procs, i_rank);
+        BM_PRINT("Parallel run: Running on %d processor(s). Rank is %d.\n",
+                 n_procs, i_rank);
     }
 
     printf_r_sep(GBMS);
 
     if (!use_mpi)
-        CHECK_EXPRESSION(!is_parallel());
+        BM_CHECK_EXPRESSION(!is_parallel());
 
     if (use_arguments)
         check_arguments(argc, argv);
