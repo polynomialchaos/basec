@@ -90,7 +90,8 @@
 /*******************************************************************************
  * @brief A macro to restore global error handler
  ******************************************************************************/
-#define BM_RESET_GLOBAL_ERROR_STATE_HANDLER() set_global_error_state_handler(NULL)
+#define BM_RESET_GLOBAL_ERROR_STATE_HANDLER() \
+    set_global_error_state_handler(NULL)
 
 typedef void (*void_ft)(); /** Abort handler function type */
 

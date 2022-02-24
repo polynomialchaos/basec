@@ -36,7 +36,8 @@ int main()
     vector_2[1] = 0;
     vector_3[0] = 0;
     vector_3[1] = 1;
-    BM_CHECK_EXPRESSION(BM_EQ(rad_to_deg(angle_n(vector_2, vector_3, 2)), 90.0));
+    BM_CHECK_EXPRESSION(
+        BM_EQ(rad_to_deg(angle_n(vector_2, vector_3, 2)), 90.0));
 
     vector_3[0] = 1;
     norm_n(vector_3, 3, vector_3);

@@ -148,7 +148,8 @@ string_t read_buffer_until_break(buffer_t *buffer, const char *breaks,
             pos = 0;
         }
 
-        was_ctrl = use_ctrl ? (buffer->buffer[buffer->cursor] == JCTR) : BC_FALSE;
+        was_ctrl =
+            use_ctrl ? (buffer->buffer[buffer->cursor] == JCTR) : BC_FALSE;
         tmp_string[pos] = buffer->buffer[buffer->cursor];
         pos++;
 
@@ -365,7 +366,8 @@ void parse_json_value_number(cstring_t _file, int _line, cstring_t _function,
     else
     {
         BM_LOG_ERROR_PASS(_file, _line, _function,
-                          "Unsupported JSON type digit/number string (%s)!", tmp);
+                          "Unsupported JSON type digit/number string (%s)!",
+                          tmp);
     }
 
     BM_DEALLOCATE(tmp);

@@ -49,7 +49,8 @@ int main()
     double b[] = {1.083, 2, 1.25};
     double x[3];
 
-    double *work = BM_ALLOCATE(sizeof(double) * get_bicgstab_n_m_work_size(n, 1));
+    double *work =
+        BM_ALLOCATE(sizeof(double) * get_bicgstab_n_m_work_size(n, 1));
 
     iter = 100;
     residual = 1e-32;

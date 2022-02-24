@@ -92,7 +92,8 @@
 /*******************************************************************************
  * @brief A macro to set the type for a JSON object
  ******************************************************************************/
-#define BM_SET_JSON_TYPE(this, type) set_json_type_pass(__PASS__, (this), (type))
+#define BM_SET_JSON_TYPE(this, type) \
+    set_json_type_pass(__PASS__, (this), (type))
 
 /*******************************************************************************
  * @brief A macro to set the value for a JSON object

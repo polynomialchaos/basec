@@ -38,7 +38,7 @@ bool_t exists_hdf5_dataset(hid_t parent_id, cstring_t dataset_name)
  * @param elements
  * @param n_elements
  * @param data
- *******************************************************************************/
+ ******************************************************************************/
 void get_hdf5_dataset(hid_t parent_id, cstring_t dataset_name,
                       hdf5_type_t type, int rank, hsize_t *dims,
                       int glob_rank, hsize_t *glob_dims,

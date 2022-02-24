@@ -31,7 +31,8 @@ int main()
     BM_SET_PARAMETER_N("section/bool/vector/bool_desc", LogicalParameter,
                        log_values, 4, "Description", NULL, 0);
     BM_SET_PARAMETER_N("section/bool/vector/bool_desc_opt", LogicalParameter,
-                       log_values, 4, "Description with options", log_values, 4);
+                       log_values, 4, "Description with options",
+                       log_values, 4);
 
     /* digit type */
     int dig_value = 1;
@@ -48,7 +49,8 @@ int main()
     BM_SET_PARAMETER_N("section/digit/vector/digit_desc", DigitParameter,
                        dig_values, 4, "Description", NULL, 0);
     BM_SET_PARAMETER_N("section/digit/vector/digit_desc_opt", DigitParameter,
-                       dig_values, 4, "Description with options", dig_values, 4);
+                       dig_values, 4, "Description with options",
+                       dig_values, 4);
 
     /* number type */
     double num_value = 1;
@@ -65,7 +67,8 @@ int main()
     BM_SET_PARAMETER_N("section/number/vector/number_desc", NumberParameter,
                        num_values, 4, "Description", NULL, 0);
     BM_SET_PARAMETER_N("section/number/vector/number_desc_opt", NumberParameter,
-                       num_values, 4, "Description with options", num_values, 4);
+                       num_values, 4, "Description with options",
+                       num_values, 4);
 
     /* string type */
     string_t str_value = "String";
@@ -82,7 +85,8 @@ int main()
     BM_SET_PARAMETER_N("section/string/vector/string_desc", StringParameter,
                        str_values, 4, "Description", NULL, 0);
     BM_SET_PARAMETER_N("section/string/vector/string_desc_opt", StringParameter,
-                       str_values, 4, "Description with options", str_values, 4);
+                       str_values, 4, "Description with options",
+                       str_values, 4);
 
     print_user_defaults();
     flush_user_defaults("parameters.json");
@@ -97,8 +101,10 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/bool/scalar/bool_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/bool/scalar/bool_desc/Description") == BC_TRUE);
-    BM_GET_PARAMETER("section/bool/scalar/bool_desc", LogicalParameter, &log_rvalue);
+        BM_PARAMETER_EXISTS(
+            "section/bool/scalar/bool_desc/Description") == BC_TRUE);
+    BM_GET_PARAMETER(
+        "section/bool/scalar/bool_desc", LogicalParameter, &log_rvalue);
     BM_CHECK_EXPRESSION(log_rvalue == log_value);
 
     BM_CHECK_EXPRESSION(
@@ -115,7 +121,8 @@ int main()
     bool_t *log_rvalues = NULL;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/bool/vector/bool") == BC_TRUE);
-    BM_CHECK_EXPRESSION(BM_GET_PARAMETER_COUNT("section/bool/vector/bool") == 4);
+    BM_CHECK_EXPRESSION(
+        BM_GET_PARAMETER_COUNT("section/bool/vector/bool") == 4);
     BM_GET_PARAMETER_N("section/bool/vector/bool", LogicalParameter,
                        BM_VOID_REF(log_rvalues), &n_log_rvalues);
     BM_CHECK_EXPRESSION(n_log_rvalues == 4);
@@ -128,7 +135,8 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/bool/vector/bool_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/bool/scalar/bool_desc/Description") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/bool/scalar/bool_desc/Description") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_GET_PARAMETER_COUNT("section/bool/vector/bool_desc") == 4);
     BM_GET_PARAMETER_N("section/bool/vector/bool_desc", LogicalParameter,
@@ -167,8 +175,10 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/digit/scalar/digit_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/digit/scalar/digit_desc/Description") == BC_TRUE);
-    BM_GET_PARAMETER("section/digit/scalar/digit_desc", DigitParameter, &dig_rvalue);
+        BM_PARAMETER_EXISTS(
+            "section/digit/scalar/digit_desc/Description") == BC_TRUE);
+    BM_GET_PARAMETER(
+        "section/digit/scalar/digit_desc", DigitParameter, &dig_rvalue);
     BM_CHECK_EXPRESSION(dig_rvalue == dig_value);
 
     BM_CHECK_EXPRESSION(
@@ -185,7 +195,8 @@ int main()
     int *dig_rvalues = NULL;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/digit/vector/digit") == BC_TRUE);
-    BM_CHECK_EXPRESSION(BM_GET_PARAMETER_COUNT("section/digit/vector/digit") == 4);
+    BM_CHECK_EXPRESSION(
+        BM_GET_PARAMETER_COUNT("section/digit/vector/digit") == 4);
     BM_GET_PARAMETER_N("section/digit/vector/digit", DigitParameter,
                        BM_VOID_REF(dig_rvalues), &n_dig_rvalues);
     BM_CHECK_EXPRESSION(n_dig_rvalues == 4);
@@ -198,7 +209,8 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/digit/vector/digit_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/digit/scalar/digit_desc/Description") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/digit/scalar/digit_desc/Description") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_GET_PARAMETER_COUNT("section/digit/vector/digit_desc") == 4);
     BM_GET_PARAMETER_N("section/digit/vector/digit_desc", DigitParameter,
@@ -231,18 +243,22 @@ int main()
     double num_rvalue = 0;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/number/scalar/number") == BC_TRUE);
-    BM_GET_PARAMETER("section/number/scalar/number", NumberParameter, &num_rvalue);
+    BM_GET_PARAMETER(
+        "section/number/scalar/number", NumberParameter, &num_rvalue);
     BM_CHECK_EXPRESSION(num_rvalue == num_value);
 
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/number/scalar/number_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/number/scalar/number_desc/Description") == BC_TRUE);
-    BM_GET_PARAMETER("section/number/scalar/number_desc", NumberParameter, &num_rvalue);
+        BM_PARAMETER_EXISTS(
+            "section/number/scalar/number_desc/Description") == BC_TRUE);
+    BM_GET_PARAMETER(
+        "section/number/scalar/number_desc", NumberParameter, &num_rvalue);
     BM_CHECK_EXPRESSION(num_rvalue == num_value);
 
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/number/scalar/number_desc_opt") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/number/scalar/number_desc_opt") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS(
             "section/number/scalar/number_desc_opt/Description with options") ==
@@ -255,7 +271,8 @@ int main()
     double *num_rvalues = NULL;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/number/vector/number") == BC_TRUE);
-    BM_CHECK_EXPRESSION(BM_GET_PARAMETER_COUNT("section/number/vector/number") == 4);
+    BM_CHECK_EXPRESSION(
+        BM_GET_PARAMETER_COUNT("section/number/vector/number") == 4);
     BM_GET_PARAMETER_N("section/number/vector/number", NumberParameter,
                        BM_VOID_REF(num_rvalues), &n_num_rvalues);
     BM_CHECK_EXPRESSION(n_num_rvalues == 4);
@@ -268,7 +285,8 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/number/vector/number_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/number/scalar/number_desc/Description") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/number/scalar/number_desc/Description") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_GET_PARAMETER_COUNT("section/number/vector/number_desc") == 4);
     BM_GET_PARAMETER_N("section/number/vector/number_desc", NumberParameter,
@@ -281,7 +299,8 @@ int main()
     BM_DEALLOCATE(num_rvalues);
 
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/number/vector/number_desc_opt") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/number/vector/number_desc_opt") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS(
             "section/number/scalar/number_desc_opt/Description with options") ==
@@ -301,20 +320,24 @@ int main()
     string_t str_rvalue = NULL;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/string/scalar/string") == BC_TRUE);
-    BM_GET_PARAMETER("section/string/scalar/string", StringParameter, &str_rvalue);
+    BM_GET_PARAMETER(
+        "section/string/scalar/string", StringParameter, &str_rvalue);
     BM_CHECK_EXPRESSION(is_equal(str_rvalue, str_value));
     BM_DEALLOCATE(str_rvalue);
 
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/string/scalar/string_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/string/scalar/string_desc/Description") == BC_TRUE);
-    BM_GET_PARAMETER("section/string/scalar/string_desc", StringParameter, &str_rvalue);
+        BM_PARAMETER_EXISTS(
+            "section/string/scalar/string_desc/Description") == BC_TRUE);
+    BM_GET_PARAMETER(
+        "section/string/scalar/string_desc", StringParameter, &str_rvalue);
     BM_CHECK_EXPRESSION(is_equal(str_rvalue, str_value));
     BM_DEALLOCATE(str_rvalue);
 
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/string/scalar/string_desc_opt") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/string/scalar/string_desc_opt") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS(
             "section/string/scalar/string_desc_opt/Description with options") ==
@@ -328,7 +351,8 @@ int main()
     string_t *str_rvalues = NULL;
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/string/vector/string") == BC_TRUE);
-    BM_CHECK_EXPRESSION(BM_GET_PARAMETER_COUNT("section/string/vector/string") == 4);
+    BM_CHECK_EXPRESSION(
+        BM_GET_PARAMETER_COUNT("section/string/vector/string") == 4);
     BM_GET_PARAMETER_N("section/string/vector/string", StringParameter,
                        BM_VOID_REF(str_rvalues), &n_str_rvalues);
     BM_CHECK_EXPRESSION(n_str_rvalues == 4);
@@ -343,7 +367,8 @@ int main()
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS("section/string/vector/string_desc") == BC_TRUE);
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/string/scalar/string_desc/Description") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/string/scalar/string_desc/Description") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_GET_PARAMETER_COUNT("section/string/vector/string_desc") == 4);
     BM_GET_PARAMETER_N("section/string/vector/string_desc", StringParameter,
@@ -358,7 +383,8 @@ int main()
     BM_DEALLOCATE(str_rvalues);
 
     BM_CHECK_EXPRESSION(
-        BM_PARAMETER_EXISTS("section/string/vector/string_desc_opt") == BC_TRUE);
+        BM_PARAMETER_EXISTS(
+            "section/string/vector/string_desc_opt") == BC_TRUE);
     BM_CHECK_EXPRESSION(
         BM_PARAMETER_EXISTS(
             "section/string/scalar/string_desc_opt/Description with options") ==

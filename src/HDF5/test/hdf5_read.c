@@ -35,12 +35,14 @@ int main(int argc, string_t *argv)
     BM_GET_HDF5_ATTRIBUTE(group_id, "scal_int_attr", HDF5Int, &scal_int_attr);
     BM_CHECK_EXPRESSION(scal_int_attr == 144);
 
-    BM_GET_HDF5_ATTRIBUTE(group_id, "scal_dbl_attr", HDF5Double, &scal_dbl_attr);
+    BM_GET_HDF5_ATTRIBUTE(group_id, "scal_dbl_attr",
+                          HDF5Double, &scal_dbl_attr);
     BM_CHECK_EXPRESSION(scal_dbl_attr == 12.0);
 
     size_t str_len = get_hdf5_attribute_size(group_id, "scal_str_attr");
     scal_str_attr = BM_ALLOCATE(sizeof(char) * str_len);
-    BM_GET_HDF5_ATTRIBUTE(group_id, "scal_str_attr", HDF5String, &scal_str_attr);
+    BM_GET_HDF5_ATTRIBUTE(group_id, "scal_str_attr",
+                          HDF5String, &scal_str_attr);
     BM_CHECK_EXPRESSION(is_equal(scal_str_attr, "Hello World!"));
 
     BM_DEALLOCATE(scal_str_attr);
@@ -90,7 +92,8 @@ int main(int argc, string_t *argv)
     BM_CHECK_EXPRESSION(vec_int_attr[2] == 1);
     BM_CHECK_EXPRESSION(vec_int_attr[3] == 12);
 
-    BM_GET_HDF5_DATASET_N(file_id, "vec_dbl_dset", HDF5Double, dim, vec_dbl_attr);
+    BM_GET_HDF5_DATASET_N(file_id, "vec_dbl_dset",
+                          HDF5Double, dim, vec_dbl_attr);
     BM_CHECK_EXPRESSION(vec_dbl_attr[0] == 12.0);
     BM_CHECK_EXPRESSION(vec_dbl_attr[1] == -3.0);
     BM_CHECK_EXPRESSION(vec_dbl_attr[2] == 1.0);
@@ -98,7 +101,8 @@ int main(int argc, string_t *argv)
 
     str_len = get_hdf5_dataset_size(file_id, "vec_str_dset");
     vec_str_attr = allocate_hdf5_string_buffer(dim, str_len, NULL);
-    BM_GET_HDF5_DATASET_N(file_id, "vec_str_dset", HDF5String, dim, vec_str_attr);
+    BM_GET_HDF5_DATASET_N(file_id, "vec_str_dset",
+                          HDF5String, dim, vec_str_attr);
     BM_CHECK_EXPRESSION(is_equal(vec_str_attr[0], "Hello"));
     BM_CHECK_EXPRESSION(is_equal(vec_str_attr[1], "See you! + World!"));
     BM_CHECK_EXPRESSION(is_equal(vec_str_attr[2], "a"));
@@ -169,7 +173,8 @@ int main(int argc, string_t *argv)
 
     /* array dataset */
     hsize_t dim_arr[] = {4, 6};
-    double *arr_dbl_dset = BM_ALLOCATE(sizeof(double) * dim_arr[0] * dim_arr[1]);
+    double *arr_dbl_dset =
+        BM_ALLOCATE(sizeof(double) * dim_arr[0] * dim_arr[1]);
     BM_GET_HDF5_DATASET_N_M(file_id, "arr_dbl_dset", HDF5Double,
                             dim_arr, arr_dbl_dset);
 

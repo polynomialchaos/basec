@@ -23,7 +23,8 @@ void get_parameter_pass(cstring_t _file, int _line, cstring_t _function,
                         cstring_t path, parameter_type_t type, void *value)
 {
     JSON_t *tmp = get_parameter_path_pass(_file, _line, _function, path, 1);
-    BM_GET_JSON_VALUE_PASS(_file, _line, _function, tmp, as_json_type[type], value);
+    BM_GET_JSON_VALUE_PASS(_file, _line, _function,
+                           tmp, as_json_type[type], value);
 }
 
 /*******************************************************************************
@@ -56,7 +57,8 @@ void get_parameter_n_pass(cstring_t _file, int _line, cstring_t _function,
                           void **value, size_t *n)
 {
     JSON_t *tmp = get_parameter_path_pass(_file, _line, _function, path, 1);
-    get_json_value_n_pass(_file, _line, _function, tmp, as_json_type[type], value, n);
+    get_json_value_n_pass(_file, _line, _function,
+                          tmp, as_json_type[type], value, n);
 }
 
 /*******************************************************************************

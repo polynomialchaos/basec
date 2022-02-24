@@ -41,8 +41,9 @@
 /*******************************************************************************
  * @brief A macro to set a vector parameter
  ******************************************************************************/
-#define BM_SET_PARAMETER_N(path, type, value, n, description, options, n_options) \
-    set_parameter_n_pass(__PASS__, (path), (type), (value), (n),                  \
+#define BM_SET_PARAMETER_N(path, type, value, n,                 \
+                           description, options, n_options)      \
+    set_parameter_n_pass(__PASS__, (path), (type), (value), (n), \
                          (description), (options), (n_options))
 
 /*******************************************************************************
